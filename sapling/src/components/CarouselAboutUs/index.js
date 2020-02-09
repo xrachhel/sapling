@@ -2,6 +2,9 @@ import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import "./style.css";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import { Carousel } from 'react-bootstrap';
 
 // This carousel will auto-change over time through images
 
