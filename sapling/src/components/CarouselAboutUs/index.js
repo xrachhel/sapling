@@ -1,10 +1,8 @@
 import React from "react";
-import Carousel from 'react-bootstrap/Carousel';
 import "./style.css";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import { Carousel } from 'react-bootstrap';
+import {Carousel} from 'react-bootstrap'
 
 // This carousel will auto-change over time through images
 
@@ -14,7 +12,7 @@ function CarouselAboutUs() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src="../images/amazon-dog-3.gif"
+            src="../images/amazon-skyline.png"
             alt="First slide"
             />
 
@@ -28,8 +26,8 @@ function CarouselAboutUs() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src="../images/target-symbol.gif"
-            alt="Third slide"
+            src="holder.js/800x400?text=Second slide&bg=282c34"
+            alt="Second slide"
             />
 
             <Carousel.Caption>

@@ -1,13 +1,15 @@
 import React from 'react';
-import CarouselAboutUs from "./components/CarouselAboutUs/index.js";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import Carousel from "./components/CarouselAboutUs/index";
 
 
 function App() {
   return (
     <div className="App">
-      <CarouselAboutUs />
+      <Carousel />
     </div>
   );
 }
