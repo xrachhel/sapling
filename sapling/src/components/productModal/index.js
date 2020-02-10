@@ -72,10 +72,6 @@ function productModal(props){
     </div>    
   );
 }
-        
-        </div>
-    )
-}
 
 export default productModal;
 
