@@ -2,8 +2,8 @@ import React from "react";
 import "./style.css";
 
 import {Carousel} from 'react-bootstrap'
-// this carousel appears on the product page (suggestions)
-// gives related products to user
+// this carousel appears on the landing page
+// gives random products to user...or possibly top products (maybe one per store)
 // user will be able to button through options and auto-scroll
 // Cards will go here (Racheal is making cards)
 
