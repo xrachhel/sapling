@@ -8,7 +8,6 @@ import {Carousel} from 'react-bootstrap'
 // Cards will go here (Racheal is making cards)
 
 
-
 function CarouselSuggestions(props) {
 
     const [index, setIndex] = useState(0);

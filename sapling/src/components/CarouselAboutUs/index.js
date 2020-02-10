@@ -2,9 +2,9 @@ import React from "react";
 import "./style.css";
 
 import {Carousel} from 'react-bootstrap'
-
 // This carousel will auto-change over time through images
 // images can be changed at any time (commented out images are forest themed)
+
 
 function CarouselAboutUs() {
     return (
