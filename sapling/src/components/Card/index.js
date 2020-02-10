@@ -12,7 +12,7 @@ function MyCard() {
                     <Card.Text>
                         $$
                 </Card.Text>
-                    <Button variant="success">Go somewhere</Button>
+                    <Button variant="success">Go to product page</Button>
                 </Card.Body>
             </Card>
     )
