@@ -24,6 +24,16 @@ module.exports = function(app){
             });
     });
 
+    //returns a specif product
+    app.get("/api/products/:id",(req,res)=>{
+        db.Products.findOne({_id: req.params.id})
+            .then(product=>{
+                res.json(product);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
     //creates one user
     app.post("/api/user",(req,res)=>{
         db.User.create({
@@ -85,6 +95,7 @@ module.exports = function(app){
             });
     });
 
+    //deletes one user
     app.delete("/api/user/:id",(req,res)=>{
         db.User.deleteOne({_id: req.params.id})
             .then(user=>{
