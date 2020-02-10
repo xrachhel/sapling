@@ -1,6 +1,8 @@
 const db = require("../models");
 
 module.exports = function(app){
+
+    //returns a list of all the users
     app.get("/api/user",(req,res)=>{
         db.User.find({})
             .populate("trackedProducts")
@@ -11,6 +13,18 @@ module.exports = function(app){
             });
     });
 
+    //returns a specific user
+    app.get("/api/user/:id",(req,res)=>{
+        db.User.findOne({_id: req.params.id})
+            .populate("trackedProducts")
+            .then(user=>{
+                res.json(user);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
+    //creates one user
     app.post("/api/user",(req,res)=>{
         db.User.create({
             firstName: req.body.firstName,
@@ -24,6 +38,7 @@ module.exports = function(app){
         });
     });
 
+    //creates a product and adds it to  the user's trackeProduct list
     app.put("/api/user/:id",(req,res)=>{
         db.Products.create({
             name: req.body.name
@@ -42,28 +57,40 @@ module.exports = function(app){
         });
     });
 
-    app.delete("/api/products/:userId",(req,res)=>{
-        
-        db.User.find({
-            _id: req.params.userId
-        }).then(dbUser =>{
-            let trackedProducts = dbUser.trackedProducts;
-            let newProductList = trackedProducts.splice(trackedProducts.indexOf(req.body.productId),1);
+    //removes product from user's tracked product list and deletes it
+    app.delete("/api/products/:userId/:productId",(req,res)=>{
+        db.User.findOne({_id:req.params.userId})
+            .then(user=>{
+                let trackedProducts = user.trackedProducts;
+                let index = trackedProducts.indexOf(req.params.productId);
+                trackedProducts.splice(index,1);
+                db.User.updateOne(
+                    {_id: req.params.userId},
+                    {
+                        $set:{
+                            trackedProducts: trackedProducts
+                        }
+                    }).then(()=>{
+                        db.Products.deleteOne({_id: req.params.productId})
+                            .then(product=>{
+                                res.json(product);
+                            }).catch(err=>{
+                                res.send(err);
+                            });
+                    }).catch(err=>{
+                        res.send(err);
+                    });
+            }).catch(err =>{
+                res.send(err);
+            });
+    });
 
-            db.User.updateOne(
-                {_id: req.params.id},
-                {
-                    $set:{
-                        trackedProducts: newProductList
-                    }
-                }
-            ).then(()=>{
-                db.Products.deleteOne({_id: req.body.productId})
-                    .then(result=>res.json(result))
-                    .catch(err=>res.send(err));
-
-            }).catch(err=>res.send(err));
-            
-        }).catch(err=>res.send(err));
+    app.delete("/api/user/:id",(req,res)=>{
+        db.User.deleteOne({_id: req.params.id})
+            .then(user=>{
+                res.json(user);
+            }).catch(err=>{
+                res.send(err);
+            });
     });
 };
