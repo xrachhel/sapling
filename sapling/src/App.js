@@ -1,54 +1,42 @@
-// ========================= Carousels ==================================================
-// CarouselOne = CarouselAboutUs
-// CarouselTwo = CarouselSuggestions
-// CarouselThree = CarouselLanding
-
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navbar from "./components/ourNavbar/index";
+// import Jumbotron from "./components/Footer/Index";
 
+// Everything below will be called in other components
+// import Button from "./components/Button/index";
+// import Card from "./components/Card/index";
+// import Columns from "./components/Columns/index";
+// import Graph from "./components/Graph/index";
+// import Rows from "./components/Rows/index";
 
+// All Carousels imported from components
 import CarouselOne from "./components/CarouselAboutUs/index";
-import CarouselTwo from "./components/CarouselSuggestions/index";
+// import CarouselTwo from "./components/CarouselSuggestions/index";
 import CarouselThree from "./components/CarouselLanding/index";
-// import { Carousel } from 'react-bootstrap';
 
 
-class App extends Component {
-    state = {
-        frontCards: frontCards,
-        suggestCards : suggestCards
-    }
+function App() {
+  return (
+    <div>
+      <Navbar/>
 
-    render() {
-    return (
-        <div className="App"> 
-
+      <div>
         <CarouselOne />
-        
-        {this.state.frontCards.map(card => (
-          <CarouselTwo
-              id={card.id}
-              key={card.id}
-              image={card.image}
-              name={card.name}
-              cardSelected={this.cardSelected} // function to detect chosen card (?)
-          />
-        ))}
+      </div>
 
-        {this.state.suggestCards.map(card => (
-          <CarouselThree
-              id={card.id}
-              key={card.id}
-              image={card.image}
-              name={card.name}
-              cardSelected={this.cardSelected} // function to detect chosen card (?)
-          />
-        ))}
+      <div>
+        <CarouselThree />
+      </div>
 
-        </div>
-    );
-  }
+      {/* <Jumbotron/> */}
+    </div>
+  );
 }
+
+
+
+
 
 export default App;
