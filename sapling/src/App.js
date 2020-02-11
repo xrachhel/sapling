@@ -18,7 +18,6 @@ function App() {
       <Navbar/>
       <Login/>
       
-
       <div>
         <CarouselOne />
       </div>

@@ -43,6 +43,7 @@ function LoginModal() {
                         placeholder="Password"
                         aria-label="Password"
                         aria-describedby="basic-addon2"
+                        type="password"
                         />
                     </InputGroup>
 
@@ -57,7 +58,7 @@ function LoginModal() {
                     Sign-In
                 </Button>
 
-                <Button id="sign-up" variant="primary" onClick={handleClose}>
+                <Button id="sign-up" variant="primary">
                     Sign-Up
                 </Button>
                 </Modal.Footer>
