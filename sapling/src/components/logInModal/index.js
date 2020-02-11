@@ -6,9 +6,14 @@ import "./style.css";
 
 function LoginModal() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
+    const [showUp, setShowSign] = useState(false);
+    const handleCloseSignUp = () => setShowSign(false);
+    const handleShowSignUp = () => setShowSign(true);
+
 
     return (
         <Container>
@@ -19,25 +24,29 @@ function LoginModal() {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title> <i class="fas fa-seedling"></i> Modal heading</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
 
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                        <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">
+                            <i class="fas fa-sun"></i> Email
+                            </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                        placeholder="Username"
-                        aria-label="Username"
+                        placeholder="Email"
+                        aria-label="Email"
                         aria-describedby="basic-addon1"
                         />
                     </InputGroup>
 
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                        <InputGroup.Text id="basic-addon2">Password</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon2">
+                                <i class="fas fa-cloud-rain"></i> Password
+                            </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                         placeholder="Password"
@@ -47,23 +56,117 @@ function LoginModal() {
                         />
                     </InputGroup>
 
-                    {/* <input id="userName" type="text">Username</input>
-
-                    <input id="password" type="password">Password</input> */}
                 </Modal.Body>
 
 
                 <Modal.Footer>
                 <Button id="sign-in" variant="primary" onClick={handleClose}>
-                    Sign-In
+                    <i class="fas fa-tree"></i> Sign-In
                 </Button>
 
-                <Button id="sign-up" variant="primary">
-                    Sign-Up
-                </Button>
+                <Button id="sign-up" variant="primary" onClick={handleShowSignUp}>
+                    <i class="fas fa-seedling"></i> Sign-Up
+                </Button>   
                 </Modal.Footer>
             </Modal>
             </>
+
+{/* ==================================================         =========================================================================== */}
+{/* ================================================== Sign-Up =========================================================================== */}
+{/* ==================================================         =========================================================================== */}
+            <>
+            <Modal show={showUp} onHide={handleCloseSignUp}>
+            <Modal.Header closeButton>
+            <Modal.Title> Modal heading</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon1">
+                        <i class="fas fa-leaf"></i> First Name
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                    placeholder="FirstName"
+                    aria-label="FirstName"
+                    aria-describedby="basic-addon1"
+                    />
+                </InputGroup>
+
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon1">
+                        <i class="fas fa-seedling"></i> Last Name
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                    placeholder="LastName"
+                    aria-label="LastName"
+                    aria-describedby="basic-addon2"
+                    />
+                </InputGroup>
+
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon1">
+                        <i class="fas fa-sun"></i> Email
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                    placeholder="EmailSignUp"
+                    aria-label="EmailSignUp"
+                    aria-describedby="basic-addon3"
+                    />
+                </InputGroup>
+
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon2">
+                            <i class="fas fa-cloud"></i> Password
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="basic-addon4"
+                    type="password"
+                    />
+                </InputGroup>
+
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon2">
+                            <i class="fas fa-cloud-rain"></i> Confirm
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                    placeholder="Confirm"
+                    aria-label="Confirm"
+                    aria-describedby="basic-addon5"
+                    type="password"
+                    />
+                </InputGroup>
+
+            </Modal.Body>
+
+
+            <Modal.Footer>
+
+            <Button id="submit" variant="primary" onClick={handleCloseSignUp}>
+                <i class="fas fa-tree"></i> Submit
+            </Button>
+
+            </Modal.Footer>
+            </Modal>
+            </>
+
+
+
+
+
+
 
         </Container>
     )
