@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CardLanding from "../CardProduct/index";
 // import Card from "../Card/index";
-import {Carousel, CardDeck} from 'react-bootstrap'
+import {Carousel, CardDeck} from 'react-bootstrap';
 
 import "./style.css";
 
