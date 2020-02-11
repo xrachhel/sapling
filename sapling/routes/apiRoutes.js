@@ -24,7 +24,7 @@ module.exports = function(app){
             });
     });
 
-    //returns a specif product
+    //returns a specific product
     app.get("/api/products/:id",(req,res)=>{
         db.Products.findOne({_id: req.params.id})
             .then(product=>{
@@ -51,7 +51,8 @@ module.exports = function(app){
     //creates a product and adds it to  the user's trackeProduct list
     app.put("/api/user/:id",(req,res)=>{
         db.Products.create({
-            name: req.body.name
+            name: req.body.name,
+            asin: req.body.asin
         }).then(dbProducts=>db.User.findOneAndUpdate(
             {_id: req.params.id},
             {

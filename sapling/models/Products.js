@@ -5,6 +5,10 @@ const ProductSchema = new Schema({
     name:{
         type: String,
         required: true
+    },
+    asin:{
+        type: String,
+        required: true
     }
 });
 
