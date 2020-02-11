@@ -4,13 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/ourNavbar/index";
 // import Jumbotron from "./components/Footer/Index";
 
-// Everything below will be called in other components
-// import Button from "./components/Button/index";
-// import Card from "./components/Card/index";
-// import Columns from "./components/Columns/index";
-// import Graph from "./components/Graph/index";
-// import Rows from "./components/Rows/index";
-
 // All Carousels imported from components
 import CarouselOne from "./components/CarouselAboutUs/index";
 // import CarouselTwo from "./components/CarouselSuggestions/index";

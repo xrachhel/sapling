@@ -11,7 +11,6 @@ function MyCardDeck() {
             <Card></Card>
             <Card></Card>
             </CardDeck>
-            
     )
 }
 
