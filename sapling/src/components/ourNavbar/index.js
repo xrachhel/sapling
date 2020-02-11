@@ -10,11 +10,10 @@ function ourNavbar() {
       <Navbar.Brand href="#home">Best Buy</Navbar.Brand>
       <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2 ml-5" />
-        <Button variant="warning">Search</Button>
+        <Button variant="success">Search</Button>
       </Form>
           <Nav className="float-right">
-            <Nav.Link ><strong >login</strong></Nav.Link>
-            <Nav.Link href="#link"><strong>SignUp</strong></Nav.Link>
+            <Nav.Link href="#link"><strong>Useer Name</strong></Nav.Link>
             <Nav.Link href="#link"><strong><i class="fas fa-shopping-cart"></i></strong></Nav.Link>
           </Nav>
     </Navbar>

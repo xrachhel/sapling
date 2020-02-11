@@ -10,7 +10,7 @@ function renderNoAuthNavbar() {
         <Navbar.Brand href="#home">Best Buy</Navbar.Brand>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2 ml-5" />
-          <Button variant="warning">Search</Button>
+          <Button variant="success">Search</Button>
         </Form>
             <Nav className="float-right">
               <Nav.Link ><strong >login</strong></Nav.Link>
