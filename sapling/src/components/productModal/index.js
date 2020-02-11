@@ -74,39 +74,3 @@ function productModal(props){
 }
 
 export default productModal;
-
-{/* <Modal.Dialog>
-<Modal.Header closeButton>
-  <Modal.Title>Your poduct</Modal.Title>
-</Modal.Header>
-
-<Modal.Body>
-      <div className="float-left">
-          <div className="card row">
-              <div className="card-body">
-                  <p>ldgdsgshgdhjsagdhjsagdhjagfjhagshfgdhfghjsdagfhjgfhgahfgdhsjgfjhsadkgfhgsa</p>
-                  </div>
-
-          </div>
-          <div className="row">
-              <h3>Sold At:</h3><br></br>
-              <h3>Amazon</h3><br></br>
-              <h3>Target</h3><br></br>
-              <h3>Walmart</h3><br></br>
-              </div>
-              <div className="row">
-                  <Doughnut
-                  data={props.data}
-                  width={100}
-                  height={50}
-                  options={{maintainAspectRatio: false}}
-                  />
-              </div>
-      </div>
-</Modal.Body>
-
-<Modal.Footer>
-  <Button variant="secondary">Close</Button>
-  <Button variant="primary">Save changes</Button>
-</Modal.Footer>
-</Modal.Dialog> */}

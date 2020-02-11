@@ -17,7 +17,7 @@ function App() {
                       label:"Amazon",
                       fill:false,
                       data:[
-                        "$"+110.00,
+                        110.00,
                         14.00,
                         20.00,
                         540.00,
