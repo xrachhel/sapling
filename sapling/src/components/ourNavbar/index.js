@@ -6,20 +6,18 @@ import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 
 function ourNavbar() {
     return (
-      <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Sapling</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+      <Navbar variant="dark" expand="lg">
+      <Navbar.Brand href="#home">Best Buy</Navbar.Brand>
+      <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2 ml-5" />
+        <Button variant="warning">Search</Button>
+      </Form>
+          <Nav className="float-right">
+            <Nav.Link ><strong >login</strong></Nav.Link>
+            <Nav.Link href="#link"><strong>SignUp</strong></Nav.Link>
+            <Nav.Link href="#link"><strong><i class="fas fa-shopping-cart"></i></strong></Nav.Link>
           </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Navbar>
+    </Navbar>
     )
 }
 export default ourNavbar;
