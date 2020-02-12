@@ -52,7 +52,8 @@ module.exports = function(app){
     app.put("/api/user/:id",(req,res)=>{
         db.Products.create({
             name: req.body.name,
-            asin: req.body.asin
+            asin: req.body.asin,
+            price: req.body.price
         }).then(dbProducts=>db.User.findOneAndUpdate(
             {_id: req.params.id},
             {
@@ -67,6 +68,32 @@ module.exports = function(app){
             res.send(err);
         });
     });
+
+    //pushes the a product's old price to the recent prices list,
+    //and updates the current price
+    app.put("/api/products/:id/:price", (req,res)=>{
+        db.Products.findOne({_id: req.params.id})
+            .then(product=>{
+                let oldPrice = product.price;
+                db.Products.findOneAndUpdate(
+                    {_id: req.params.id},
+                    {
+                        $push:{
+                            recentPrices: oldPrice
+                        },
+                        $set:{
+                            price: req.params.price
+                        }
+                    }
+                ).then(result=>{
+                    res.json(result);
+                }).catch(err => {
+                    res.send(err);
+                });
+            }).catch(err=>{
+                res.send(err);
+            });
+    })
 
     //removes product from user's tracked product list and deletes it
     app.delete("/api/products/:userId/:productId",(req,res)=>{

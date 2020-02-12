@@ -9,6 +9,15 @@ const ProductSchema = new Schema({
     asin:{
         type: String,
         required: true
+    },
+    recentPrices:[
+        {
+            type: Number
+        }
+    ],
+    price:{
+        type: Number,
+        required: true
     }
 });
 
