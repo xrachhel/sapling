@@ -1,4 +1,5 @@
 const db = require("../models");
+const axios = require("axios");
 
 module.exports = function(app){
 
@@ -128,6 +129,40 @@ module.exports = function(app){
         db.User.deleteOne({_id: req.params.id})
             .then(user=>{
                 res.json(user);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
+    //searches for a product and returns result list
+    app.get("/api/rainforest/:product/:page",(req,res)=>{
+        const params = {
+            api_key: "19ED14B806614C50B9B33AD645BD1E15",
+            type: "search",
+            amazon_domain: "amazon.com",
+            search_term: req.params.product,
+            page: req.params.page
+        }
+
+        axios.get('https://api.rainforestapi.com/request', { params })
+            .then(result =>{
+                res.json(result.data);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
+    app.get("/api/rainforest/product/:asin", (req,res)=>{
+        const params = {
+            api_key: "19ED14B806614C50B9B33AD645BD1E15",
+            type: "product",
+            amazon_domain: "amazon.com",
+            asin: req.params.asin
+        }
+
+        axios.get('https://api.rainforestapi.com/request', { params })
+            .then(result =>{
+                res.json(result.data);
             }).catch(err=>{
                 res.send(err);
             });

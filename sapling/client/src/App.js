@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/ourNavbar/index";
 import Container from "./components/Container/index";
 import Jumbotron from "./components/Footer/Index";
+import API from "./utils/API";
 
 // Everything below will be called in other components
 // import Button from "./components/Button/index";
@@ -15,6 +16,10 @@ import Jumbotron from "./components/Footer/Index";
 
 function App() {
 
+  API.searchProduct("ps4",1)
+    .then(res =>{
+      console.log(res.data);
+    });
   return (
     <div>
       <Navbar/>

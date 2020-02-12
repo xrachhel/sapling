@@ -66,27 +66,12 @@ export default {
     //searches for a product and returns result list
     // pageNumber must be a string
     searchProduct: (productName, pageNumber) =>{
-        const params = {
-            api_key: "19ED14B806614C50B9B33AD645BD1E15",
-            type: "search",
-            amazon_domain: "amazon.com",
-            search_term: productName,
-            page: pageNumber
-          }
-        
-        return  axios.get('https://api.rainforestapi.com/request', { params });
+        return axios.get(`/api/rainforest/${productName}/${pageNumber}`);
     },
 
     //searches a specific products information
     //the asin code is a unique identifier belonging to the product
     getProductInfo: asinCode => {
-        const params = {
-            api_key: "19ED14B806614C50B9B33AD645BD1E15",
-            type: "product",
-            amazon_domain: "amazon.com",
-            asin: asinCode
-        }
-
-        return axios.get('https://api.rainforestapi.com/request', { params });
+        return axios.get(`/api/rainforest/product/${asinCode}`);
     }
 };
