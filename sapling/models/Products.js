@@ -6,9 +6,12 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
-    asin:{
-        type: String,
+    upc:{
+        type: Number,
         required: true
+    },
+    asin:{
+        type: String
     },
     recentPrices:[
         {
