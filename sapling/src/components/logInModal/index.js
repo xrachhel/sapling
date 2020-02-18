@@ -24,7 +24,7 @@ function LoginModal() {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title> <i class="fas fa-seedling"></i> Modal heading</Modal.Title>
+                <Modal.Title> <i className="fas fa-seedling"></i> Modal heading</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -32,7 +32,7 @@ function LoginModal() {
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">
-                            <i class="fas fa-sun"></i> Email
+                            <i className="fas fa-sun"></i> Email
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
@@ -45,7 +45,7 @@ function LoginModal() {
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon2">
-                                <i class="fas fa-cloud-rain"></i> Password
+                                <i className="fas fa-cloud-rain"></i> Password
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
@@ -61,11 +61,11 @@ function LoginModal() {
 
                 <Modal.Footer>
                 <Button id="sign-in" variant="primary" onClick={handleClose}>
-                    <i class="fas fa-tree"></i> Sign-In
+                    <i className="fas fa-tree"></i> Sign-In
                 </Button>
 
                 <Button id="sign-up" variant="primary" onClick={handleShowSignUp}>
-                    <i class="fas fa-seedling"></i> Sign-Up
+                    <i className="fas fa-seedling"></i> Sign-Up
                 </Button>   
                 </Modal.Footer>
             </Modal>
@@ -85,7 +85,7 @@ function LoginModal() {
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon1">
-                        <i class="fas fa-leaf"></i> First Name
+                        <i className="fas fa-leaf"></i> First Name
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
@@ -98,7 +98,7 @@ function LoginModal() {
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon1">
-                        <i class="fas fa-seedling"></i> Last Name
+                        <i className="fas fa-seedling"></i> Last Name
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
@@ -111,7 +111,7 @@ function LoginModal() {
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon1">
-                        <i class="fas fa-sun"></i> Email
+                        <i className="fas fa-sun"></i> Email
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
@@ -124,7 +124,7 @@ function LoginModal() {
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon2">
-                            <i class="fas fa-cloud"></i> Password
+                            <i className="fas fa-cloud"></i> Password
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
@@ -138,7 +138,7 @@ function LoginModal() {
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon2">
-                            <i class="fas fa-cloud-rain"></i> Confirm
+                            <i className="fas fa-cloud-rain"></i> Confirm
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
@@ -153,20 +153,12 @@ function LoginModal() {
 
 
             <Modal.Footer>
-
             <Button id="submit" variant="primary" onClick={handleCloseSignUp}>
-                <i class="fas fa-tree"></i> Submit
+                <i className="fas fa-tree"></i> Submit
             </Button>
-
             </Modal.Footer>
             </Modal>
             </>
-
-
-
-
-
-
 
         </Container>
     )
