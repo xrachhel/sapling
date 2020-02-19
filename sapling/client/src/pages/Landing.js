@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "../components/ourNavbar/index";
-import Jumbotron from "../components/Footer/Index";
+// import Jumbotron from "../components/Footer/Index";
 import CarouselThree from "../components/CarouselLanding/index";
 import "./assets/landing.css";
 import {Carousel,Card,CardDeck} from "react-bootstrap";
