@@ -130,7 +130,7 @@ module.exports = function(app){
             });
     });
 
-    //searches for a product and returns result list
+    //searches for a product on amazon and returns result list
     app.get("/api/rainforest/:product",(req,res)=>{
         const params = {
             api_key: process.env.RAINFOREST_API_KEY,
@@ -147,6 +147,7 @@ module.exports = function(app){
             });
     });
 
+    //searches for a specific product on amazon
     app.get("/api/rainforest/product/:gtin", (req,res)=>{
         const params = {
             api_key: process.env.RAINFOREST_API_KEY,
@@ -163,6 +164,7 @@ module.exports = function(app){
             });
     });
 
+    //searches the walmart api
     app.get("/api/walmart/:product", (req,res)=>{
         const params = {
             query: req.params.product,
@@ -178,6 +180,7 @@ module.exports = function(app){
             });
     });
 
+    //searches for a specific product on walmart api
     app.get("/api/walmart/product/:itemId", (req,res)=>{
         const params = {
             format: "json",
@@ -189,5 +192,15 @@ module.exports = function(app){
             }).catch(err=>{
                 res.send(err);
             });
-    })
+    });
+
+    //searches best buy api
+    app.get("/api/bestbuy/product/:upc", (req,res)=>{
+        axios.get(`https://api.bestbuy.com/v1/products(upc=${req.params.upc})?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`)
+            .then(result =>{
+                res.json(result.data);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
 };

@@ -87,5 +87,15 @@ export default {
 
     getProductInfoWalmart: itemId =>{
         return axios.get(`/api/walmart/product/${itemId}`);
+    },
+
+    /*
+    ----------------------------------------------------------------------
+    -------------------------BESTBUY API ROUTES---------------------------
+    ----------------------------------------------------------------------
+    */
+
+    getProductInfoBestbuy: upc =>{
+        return axios.get(`/api/bestbuy/product/${upc}`);
     }
 };

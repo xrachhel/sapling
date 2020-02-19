@@ -1,6 +1,8 @@
 import React, {createContext, useReducer, useContext} from "react";
 import {
     SET_CURRENT_PRODUCT,
+    SET_AMAZON_PRODUCT,
+    SET_BESTBUY_PRODUCT,
     UPDATE_RESULT_LIST,
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
@@ -19,6 +21,20 @@ const reducer = (state, action) => {
       currentProduct: action.product,
       loading: false
     };
+
+  case SET_BESTBUY_PRODUCT:
+    return {
+      ...state,
+      bestbuyProduct: action.product,
+      loading: false
+    };
+
+    case SET_AMAZON_PRODUCT:
+        return {
+          ...state,
+          amazonProduct: action.product,
+          loading: false
+        };
 
   case UPDATE_RESULT_LIST:
     return {
@@ -63,6 +79,16 @@ const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
       searchTerm: "top products",
       productList: [],
+      bestbuyProduct:{
+        name: "",
+        price: 0,
+        link: ""
+      },
+      amazonProduct:{
+        name: "",
+        price: 0,
+        link: ""
+      },
       currentProduct: {
         _id: 0,
         name: "",
