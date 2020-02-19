@@ -12,7 +12,7 @@ function CarouselAboutUs() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('../images/amazon-skyline.png')} height
+            src={require('./images/amazon-skyline.png')} height
             alt="First slide"
             id="image-1"
             />
@@ -27,7 +27,7 @@ function CarouselAboutUs() {
         {/* <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('../images/forest-3.jpg')}
+            src={require('./images/forest-3.jpg')}
             alt="Second slide"
             id="image-2"
             />
@@ -42,7 +42,7 @@ function CarouselAboutUs() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('../images/target-symbol.gif')}
+            src={require('./images/target-symbol.gif')}
             alt="Third slide"
             id="image-3"
             />
@@ -57,7 +57,7 @@ function CarouselAboutUs() {
         {/* <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('../images/forest-2.jpg')}
+            src={require('./images/forest-2.jpg')}
             alt="Fourth slide"
             id="image-4"
             />
@@ -72,7 +72,7 @@ function CarouselAboutUs() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('../images/macys-logo.jpg')}
+            src={require('./images/macys-logo.jpg')}
             alt="Fifth slide"
             id="image-5"
             />
@@ -87,7 +87,7 @@ function CarouselAboutUs() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('../images/walmart-logo.jpg')}
+            src={require('./images/walmart-logo.jpg')}
             alt="Sixth slide"
             id="image-6"
             />
