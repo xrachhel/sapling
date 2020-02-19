@@ -13,7 +13,7 @@ const Product = () => {
 
     }, []);
 
-    const getProduct = ()
+   // const getProduct = ();
 
 
 

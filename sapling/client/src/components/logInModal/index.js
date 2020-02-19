@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Button, Modal, Container, InputGroup, FormControl} from 'react-bootstrap';
-import "./style.css";
+//import "./style.css";
 
 
 

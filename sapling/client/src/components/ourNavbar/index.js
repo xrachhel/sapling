@@ -1,8 +1,8 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-import "./style.css";
+//import "./style.css";
 // import Navbar from 'react-bootstrap/Navbar'
-import Login from "../LoginModal/index";
+import Login from "../logInModal";
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 
 function ourNavbar() {
