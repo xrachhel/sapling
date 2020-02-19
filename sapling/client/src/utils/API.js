@@ -74,7 +74,7 @@ export default {
     getProductInfoAmazon: gtinCode => {
         return axios.get(`/api/rainforest/product/${gtinCode}`);
     },
-
+    
     /*
     ----------------------------------------------------------------------
     -------------------------WALMART API ROUTES---------------------------
@@ -88,4 +88,5 @@ export default {
     getProductInfoWalmart: itemId =>{
         return axios.get(`/api/walmart/product/${itemId}`);
     }
+    getTop
 };
