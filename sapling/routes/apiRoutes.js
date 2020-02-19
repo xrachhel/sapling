@@ -51,11 +51,7 @@ module.exports = function(app){
 
     //creates a product and adds it to  the user's trackeProduct list
     app.put("/api/user/:id",(req,res)=>{
-        db.Products.create({
-            name: req.body.name,
-            asin: req.body.asin,
-            price: req.body.price
-        }).then(dbProducts=>db.User.findOneAndUpdate(
+        db.Products.create(req.body).then(dbProducts=>db.User.findOneAndUpdate(
             {_id: req.params.id},
             {
                 $push: {
@@ -135,13 +131,12 @@ module.exports = function(app){
     });
 
     //searches for a product and returns result list
-    app.get("/api/rainforest/:product/:page",(req,res)=>{
+    app.get("/api/rainforest/:product",(req,res)=>{
         const params = {
             api_key: "19ED14B806614C50B9B33AD645BD1E15",
             type: "search",
             amazon_domain: "amazon.com",
-            search_term: req.params.product,
-            page: req.params.page
+            search_term: req.params.product
         }
 
         axios.get('https://api.rainforestapi.com/request', { params })

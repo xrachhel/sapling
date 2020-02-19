@@ -30,21 +30,21 @@ const reducer = (state, action) => {
   case TRACK_PRODUCT:
     return {
       ...state,
-      cartList: [action.product, ...state.cartList],
+      trackedList: [action.product, ...state.trackedList],
     };
 
   case REMOVE_PRODUCT:
     return {
       ...state,
-      cartList: state.cartList.filter((product) => {
-        return product.sku !== action.sku; 
+      trackedList: state.trackedList.filter((product) => {
+        return product.upc !== action.upc; 
       })
     };
 
   case UPDATE_DASHBOARD_LIST:
     return {
       ...state,
-      cartList: [...state.cartList],
+      trackedList: [...state.trackedList],
       loading: false
     };
   
