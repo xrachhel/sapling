@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import { useStoreContext } from "../utils/GlobalState"
 import { UPDATE_RESULT_LIST } from "../utils/actions";
 import API from "../utils/API";
+import { Link } from "react-router-dom"
 
 
 
@@ -19,7 +20,9 @@ const Results = () => {
 
     const getResults = (search) => {
         API.searchProductAmazon(search)
-        .then(res => dispatch({ type: UPDATE_RESULT_LIST, productList: res.data}))
+        .then(res =>{ 
+            console.log(res)
+            dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.search_results})})
         .catch(err => console.log(err));
     };
 
@@ -54,18 +57,18 @@ const Results = () => {
                             <CardColumns>
                                 {state.productList.map(product => {
                                     return (
-                                        <Card key={product.name} >
+                                        <Card key={product.title} >
                                             <Card.Img variant="top" src={product.image} style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
                                             <Card.Body className="text-center">
-                                                <Card.Title>{product.name}</Card.Title>
+                                                <Card.Title>{product.title}</Card.Title>
                                                 <Card.Text>
-                                                    <strong>Price: </strong> ${product.price}
+                                                    <strong>Price: </strong> ${product.prices.raw}
                                                 </Card.Text>
                                                 <Card.Text>
                                                     <strong>Rating:</strong>
-                                                    {product.rating}
+                                                    {product.rating}/5
                                                 </Card.Text>
-                                                <Button variant="primary" >View Product</Button>
+                                                <Link to={"/product/" + product.upc}>Track Product</Link>
                                                 {/* <Button variant="success" onClick={trackProduct}>Track Product</Button> */}
                                             </Card.Body>
                                         </Card>

@@ -15,11 +15,11 @@ function App() {
       <div>
         <StoreProvider>
           <Switch>
-            {/* <Route exact path="/" component={Landing}/>
+            <Route exact path="/" component={Landing}/>
             <Route exact path="/home" component={Landing}/>
-            <Route exact path="/product" component={Product}/> */}
+            <Route exact path="/product" component={Product}/>
             <Route exact path="/results" component={Results}/>
-            {/* <Route exact path="/dashboard" component={Dashboard}/> */}
+            <Route exact path="/dashboard" component={Dashboard}/>
           </Switch>
         </StoreProvider>
       </div>
