@@ -81,7 +81,7 @@ export default {
     ----------------------------------------------------------------------
     */
 
-    searachProductWalmart: productName =>{
+    searchProductWalmart: productName =>{
         return axios.get(`/api/walmart/${productName}`);
     }
 };

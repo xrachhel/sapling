@@ -19,10 +19,10 @@ const Results = () => {
 
 
     const getResults = (search) => {
-        API.searchProductAmazon(search)
+        API.searchProductWalmart(search)
         .then(res =>{ 
             console.log(res)
-            dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.search_results})})
+            dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items})})
         .catch(err => console.log(err));
     };
 
@@ -57,16 +57,16 @@ const Results = () => {
                             <CardColumns>
                                 {state.productList.map(product => {
                                     return (
-                                        <Card key={product.title} >
-                                            <Card.Img variant="top" src={product.image} style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
+                                        <Card key={product.name} >
+                                            <Card.Img variant="top" src={product.thumbnailImage} style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
                                             <Card.Body className="text-center">
-                                                <Card.Title>{product.title}</Card.Title>
+                                                <Card.Title>{product.name}</Card.Title>
                                                 <Card.Text>
-                                                    <strong>Price: </strong> ${product.prices.raw}
+                                                    <strong>Price: </strong> ${product.salePrice}
                                                 </Card.Text>
                                                 <Card.Text>
                                                     <strong>Rating:</strong>
-                                                    {product.rating}/5
+                                                    {product.customerRating}/5
                                                 </Card.Text>
                                                 <Link to={"/product/" + product.upc}>Track Product</Link>
                                                 {/* <Button variant="success" onClick={trackProduct}>Track Product</Button> */}
