@@ -65,13 +65,13 @@ export default {
 
     //searches for a product and returns result list
     // pageNumber must be a string
-    searchProduct: (productName, pageNumber) =>{
-        return axios.get(`/api/rainforest/${productName}/${pageNumber}`);
+    searchProductAmazon: (productName) =>{
+        return axios.get(`/api/rainforest/${productName}`);
     },
 
     //searches a specific products information
     //the asin code is a unique identifier belonging to the product
-    getProductInfo: asinCode => {
+    getProductInfoAmazon: asinCode => {
         return axios.get(`/api/rainforest/product/${asinCode}`);
     }
 };
