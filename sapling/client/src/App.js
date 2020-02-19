@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <AuthPro/>
+      <Navbar/>
     </div>
   );
 }

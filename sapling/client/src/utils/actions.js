@@ -1,0 +1,6 @@
+export const TACKING_BUTTON = "ADD_TO_CART";
+export const DELETE_FROM_CART = "DELETE_FROM_CART";
+export const GRAPH_BUTTON = "GRAPH_BUTTON";
+export const ALL_GRAPH_BUTTON = "ALL_GRAPH_BUTTON";
+export const SEARCH = "SEARCH";
+export const COMPARE_BUTTON = "COMPARE_BUTTON";
