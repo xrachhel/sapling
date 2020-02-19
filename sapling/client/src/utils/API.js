@@ -81,7 +81,11 @@ export default {
     ----------------------------------------------------------------------
     */
 
-    searachProductWalmart: productName =>{
+    searchProductWalmart: productName =>{
         return axios.get(`/api/walmart/${productName}`);
+    },
+
+    getProductInfoWalmart: itemId =>{
+        return axios.get(`/api/walmart/product/${itemId}`);
     }
 };

@@ -177,4 +177,17 @@ module.exports = function(app){
                 res.send(err);
             });
     });
+
+    app.get("/api/walmart/product/:itemId", (req,res)=>{
+        const params = {
+            format: "json",
+            apiKey: process.env.WALMART_API_KEY
+        }
+        axios.get(`http://api.walmartlabs.com/v1/items/${req.params.itemId}?`,{params})
+            .then(result =>{
+                res.json(result.data);
+            }).catch(err=>{
+                res.send(err);
+            });
+    })
 };
