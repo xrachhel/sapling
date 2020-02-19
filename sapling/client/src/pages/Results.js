@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Navbar, Nav, Form, FormControl, Button, Container, Card } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button, Container, Col, CardColumns } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card'
 import { useStoreContext } from "../utils/GlobalState"
-import { SET_CURRENT_PRODUCT, TRACK_PRODUCT } from "../utils/actions";
+import { UPDATE_RESULT_LIST } from "../utils/actions";
 import API from "../utils/API";
 
 
@@ -10,22 +11,21 @@ import API from "../utils/API";
 const Results = () => {
     const [state, dispatch] = useStoreContext();
 
-    const getResults = (search) => {
-        API.searchProduct(search, 1)
-        .then(res => dispatch)
-    };
 
     useEffect(() => {
-        getResults();
-    });
+        getResults("mouse");
+    }, []);
 
-    const viewProduct = () => {
-        dispatch({ type: SET_CURRENT_PRODUCT });
+
+    const getResults = (search) => {
+        API.searchProductAmazon(search)
+        .then(res => dispatch({ type: UPDATE_RESULT_LIST, productList: res.data}))
+        .catch(err => console.log(err));
     };
 
-    const trackProduct = () => {
-        dispatch({ type: TRACK_PRODUCT, post: state.currentProduct });
-    };
+    // const trackProduct = () => {
+    //     dispatch({ type: TRACK_PRODUCT, trackedList: state.currentProduct });
+    // };
 
 
     return (
@@ -65,8 +65,8 @@ const Results = () => {
                                                     <strong>Rating:</strong>
                                                     {product.rating}
                                                 </Card.Text>
-                                                <Button variant="primary" onClick={viewProduct} >View Product</Button>
-                                                <Button variant="success" onClick={trackProduct}>Track Product</Button>
+                                                <Button variant="primary" >View Product</Button>
+                                                {/* <Button variant="success" onClick={trackProduct}>Track Product</Button> */}
                                             </Card.Body>
                                         </Card>
                                     );
