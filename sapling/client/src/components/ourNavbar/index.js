@@ -2,6 +2,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import "./style.css";
 // import Navbar from 'react-bootstrap/Navbar'
+import Login from "../LoginModal/index";
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 
 function ourNavbar() {
@@ -14,7 +15,9 @@ function ourNavbar() {
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
           </Nav>
+
           <Form inline>
+            <Login/>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
