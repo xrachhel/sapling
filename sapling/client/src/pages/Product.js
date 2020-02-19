@@ -2,18 +2,25 @@ import React, { useEffect } from "react";
 import { Navbar, Nav, Form, FormControl, Button, Container, Col, CardColumns } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { useStoreContext } from "../utils/GlobalState"
-import { UPDATE_RESULT_LIST } from "../utils/actions";
+import { SET_CURRENT_PRODUCT } from "../utils/actions";
 import API from "../utils/API";
 
-const Product = () => {
+const Product = props => {
 
     const [state, dispatch] = useStoreContext();
 
     useEffect(() => {
-
+        getProduct();
     }, []);
 
-    const getProduct = ()
+    const getProduct = () => {
+        API.getProductInfoWalmart(props.match.params.itemId)
+        .then(res => {
+            console.log(res.data)
+            console.log(res.data.itemId)
+            dispatch({type: SET_CURRENT_PRODUCT, product: res.data})})
+        .catch(err => console.log(err))
+    }
 
 
 
@@ -33,7 +40,28 @@ const Product = () => {
                 </Form>
             </Navbar.Collapse>
         </Navbar>
+<Container>
 
+
+
+        <Card style={{width:"18rem"}} className="shadow-sm">
+            <Card.Title>{state.currentProduct.name}</Card.Title>
+            <Card.Img src={state.currentProduct.thumbnailImage} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5"/>
+            <Card.Text>Description: {state.currentProduct.shortDescription}</Card.Text>
+
+            
+        </Card>
+
+        {/* <Card>
+            <Card.Title>Walmart:</Card.Title>
+            <Card.Text>{walmart price}</Card.Text>
+        </Card>
+
+        <Card>
+            <Card.Title>Best Buy:</Card.Title>
+        </Card>  */}
+
+</Container>
         </div>
     );
 };

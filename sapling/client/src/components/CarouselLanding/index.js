@@ -3,7 +3,7 @@ import CardLanding from "../CardProduct/index";
 // import Card from "../Card/index";
 import {Carousel, CardDeck} from 'react-bootstrap';
 
-import "./style.css";
+
 
 // this carousel appears on the landing page
 // gives random products to user...or possibly top products (maybe one per store)
