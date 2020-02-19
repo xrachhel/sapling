@@ -65,13 +65,23 @@ export default {
 
     //searches for a product and returns result list
     // pageNumber must be a string
-    searchProductAmazon: (productName) =>{
+    searchProductAmazon: productName =>{
         return axios.get(`/api/rainforest/${productName}`);
     },
 
     //searches a specific products information
     //the asin code is a unique identifier belonging to the product
-    getProductInfoAmazon: asinCode => {
-        return axios.get(`/api/rainforest/product/${asinCode}`);
+    getProductInfoAmazon: gtinCode => {
+        return axios.get(`/api/rainforest/product/${gtinCode}`);
+    },
+
+    /*
+    ----------------------------------------------------------------------
+    -------------------------WALMART API ROUTES---------------------------
+    ----------------------------------------------------------------------
+    */
+
+    searachProductWalmart: productName =>{
+        return axios.get(`/api/walmart/${productName}`);
     }
 };
