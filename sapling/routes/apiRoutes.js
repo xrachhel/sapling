@@ -133,7 +133,7 @@ module.exports = function(app){
     //searches for a product and returns result list
     app.get("/api/rainforest/:product",(req,res)=>{
         const params = {
-            api_key: "19ED14B806614C50B9B33AD645BD1E15",
+            api_key: process.env.RAINFOREST_API_KEY,
             type: "search",
             amazon_domain: "amazon.com",
             search_term: req.params.product
@@ -147,15 +147,30 @@ module.exports = function(app){
             });
     });
 
-    app.get("/api/rainforest/product/:asin", (req,res)=>{
+    app.get("/api/rainforest/product/:gtin", (req,res)=>{
         const params = {
-            api_key: "19ED14B806614C50B9B33AD645BD1E15",
+            api_key: process.env.RAINFOREST_API_KEY,
             type: "product",
             amazon_domain: "amazon.com",
-            asin: req.params.asin
+            gtin: req.params.gtin
         }
 
         axios.get('https://api.rainforestapi.com/request', { params })
+            .then(result =>{
+                res.json(result.data);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
+    app.get("/api/walmart/:product", (req,res)=>{
+        const params = {
+            query: req.params.product,
+            format: "json",
+            apiKey: process.env.WALMART_API_KEY
+        }
+
+        axios.get("http://api.walmartlabs.com/v1/search?",{params})
             .then(result =>{
                 res.json(result.data);
             }).catch(err=>{

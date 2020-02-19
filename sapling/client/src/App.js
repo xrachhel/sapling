@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div>
-        <StoreProvider>
+        {/* <StoreProvider>
           <Switch>
             <Route exact path="/" component={Landing}/>
             <Route exact path="/home" component={Landing}/>
@@ -21,7 +21,7 @@ function App() {
             <Route exact path="/results" component={Results}/>
             <Route exact path="/dashboard" component={Dashboard}/>
           </Switch>
-        </StoreProvider>
+        </StoreProvider> */}
       </div>
     </Router>
   );
