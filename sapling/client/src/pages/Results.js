@@ -68,7 +68,7 @@ const Results = () => {
                                                     <strong>Rating:</strong>
                                                     {product.customerRating}/5
                                                 </Card.Text>
-                                                <Link to={"/product/" + product.upc}>Track Product</Link>
+                                                <Link to={"/product/" + product.itemId}>Track Product</Link>
                                                 {/* <Button variant="success" onClick={trackProduct}>Track Product</Button> */}
                                             </Card.Body>
                                         </Card>
