@@ -97,5 +97,8 @@ export default {
 
     getProductInfoBestbuy: upc =>{
         return axios.get(`/api/bestbuy/product/${upc}`);
+    },
+    getWalmartTopProduct:() =>{
+        return axios.get("/api/walmart")
     }
 };

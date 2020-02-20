@@ -164,7 +164,11 @@ module.exports = function(app){
             });
     });
 
-    //searches the walmart api
+
+
+//// WALMART API ROUTES
+
+
     app.get("/api/walmart/:product", (req,res)=>{
         const params = {
             query: req.params.product,
@@ -192,11 +196,17 @@ module.exports = function(app){
             }).catch(err=>{
                 res.send(err);
             });
-    });
+    })
 
-    //searches best buy api
-    app.get("/api/bestbuy/product/:upc", (req,res)=>{
-        axios.get(`https://api.bestbuy.com/v1/products(upc=${req.params.upc})?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`)
+
+    //GET Top products
+    app.get("/api/walmart", (req,res)=>{
+        const params = {
+            format: "json",
+            apiKey: process.env.WALMART_API_KEY
+        }
+
+        axios.get("http://api.walmartlabs.com/v1/trends?",{params})
             .then(result =>{
                 res.json(result.data);
             }).catch(err=>{

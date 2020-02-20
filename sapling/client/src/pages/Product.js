@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Navbar, Nav, Form, FormControl, Button, Container, Col, CardColumns } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { useStoreContext } from "../utils/GlobalState"
-import { SET_CURRENT_PRODUCT } from "../utils/actions";
+import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT } from "../utils/actions";
 import API from "../utils/API";
 
 const Product = props => {
@@ -10,10 +10,34 @@ const Product = props => {
     const [state, dispatch] = useStoreContext();
 
     useEffect(() => {
-        getProduct();
+        getProduct()
+        getAmazon();
     }, []);
 
+<<<<<<< HEAD
    // const getProduct = ();
+=======
+    const getProduct = () => {
+        API.getProductInfoWalmart(props.match.params.itemId)
+        .then(res => {
+            dispatch({type: SET_CURRENT_PRODUCT, product: res.data})})
+        .catch(err => console.log(err))
+    };
+
+    const getAmazon = () => {
+        console.log("*******",props.match.params.upc)
+        API.getProductInfoAmazon(props.match.params.upc)
+        .then(res => {
+            console.log(res.data)
+            dispatch({type: SET_AMAZON_PRODUCT, product: res.data})
+        })
+        .catch(err => console.log(err))
+    };
+
+    const getBestBuy = () => {
+
+    }
+>>>>>>> 1604ca19913ea2efa95c109a8943b21fa1011a03
 
 
 
@@ -45,12 +69,12 @@ const Product = props => {
             
         </Card>
 
-        {/* <Card>
-            <Card.Title>Walmart:</Card.Title>
-            <Card.Text>{walmart price}</Card.Text>
+        <Card>
+            <Card.Title>Amazon:</Card.Title>
+            <Card.Text>{state.amazonProduct.product.title}</Card.Text>
         </Card>
 
-        <Card>
+        {/* <Card>
             <Card.Title>Best Buy:</Card.Title>
         </Card>  */}
 
