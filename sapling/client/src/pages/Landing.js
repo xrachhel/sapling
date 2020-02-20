@@ -1,6 +1,5 @@
-import React,{useEffect,useState} from 'react';
+import React,{ useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import Navbar from "../components/ourNavbar/index";
 import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
 import {Carousel,Card,CardDeck} from "react-bootstrap";
@@ -45,7 +44,7 @@ function LandingPage() {
   }
   return (
     <div>
-      {/* <Navbar/> */}
+      <Navbar/>
       
       <div>
         {/* Thsis is the about us Carasuel */}

@@ -9,6 +9,7 @@ import {
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
     UPDATE_DASHBOARD_LIST,
+    SET_DASHBOARD_LIST,
     LOADING
 } from "./actions";
 
@@ -60,13 +61,13 @@ const reducer = (state, action) => {
   case TRACK_PRODUCT:
     return {
       ...state,
-      cartList: [action.product, ...state.cartList],
+      trackedList: [action.product, ...state.trackedList],
     };
 
   case REMOVE_PRODUCT:
     return {
       ...state,
-      cartList: state.cartList.filter((product) => {
+      trackedList: state.trackedList.filter((product) => {
         return product.sku !== action.sku; 
       })
     };
@@ -74,7 +75,14 @@ const reducer = (state, action) => {
   case UPDATE_DASHBOARD_LIST:
     return {
       ...state,
-      cartList: [...state.cartList],
+      trackedList: [...state.trackedList],
+      loading: false
+    };
+
+  case SET_DASHBOARD_LIST:
+    return{
+      ...state,
+      trackedList: [...action.trackedList],
       loading: false
     };
   
