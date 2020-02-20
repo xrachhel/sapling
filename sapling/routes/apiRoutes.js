@@ -196,7 +196,7 @@ module.exports = function(app){
             }).catch(err=>{
                 res.send(err);
             });
-    })
+    });
 
 
     //GET Top products
@@ -207,6 +207,16 @@ module.exports = function(app){
         }
 
         axios.get("http://api.walmartlabs.com/v1/trends?",{params})
+            .then(result =>{
+                res.json(result.data);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
+    //searches best buy api
+    app.get("/api/bestbuy/product/:upc", (req,res)=>{
+        axios.get(`https://api.bestbuy.com/v1/products(upc=${req.params.upc})?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`)
             .then(result =>{
                 res.json(result.data);
             }).catch(err=>{

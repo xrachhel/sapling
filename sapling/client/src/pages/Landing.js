@@ -2,9 +2,9 @@ import React,{ useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
-import { Carousel, Card, CardDeck } from "react-bootstrap";
-import { useStoreContext } from "../utils/GlobalState"
-import { TOP_WALMART_ITEMS } from "../utils/actions"
+import {Carousel,Card,CardDeck} from "react-bootstrap";
+import {useStoreContext} from "../utils/GlobalState"
+import {TOP_WALMART_ITEMS,TOP_AMAZON_ITEMS} from "../utils/actions"
 import API from "../utils/API"
 
 function LandingPage() {
@@ -12,6 +12,7 @@ function LandingPage() {
   const [direction, setDirection] = useState(null);
   const [state, dispatch] = useStoreContext();
   const list = [] 
+  const upcList = []
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -25,12 +26,19 @@ function LandingPage() {
   const topItemLoad = () =>{
     API.getWalmartTopProduct()
     .then(res => {
-      console.log(res.data.items);
-      for(var i = 0; i < res.data.items.length -11; i++){
+      for(var i = 0; i < res.data.items.length -11;i++){
         list.push(res.data.items[i])
-        console.log(list)
+        API.getProductInfoAmazon(res.data.items[i].upc)
+        .then(res => {
+          //console.log(res.data.product.main_image.link)
+          upcList.push(res.data.product.main_image)
+          console.log(upcList)
+          dispatch({type:TOP_AMAZON_ITEMS,TopAmazonList:upcList})
+        })
+        .catch(err => console.log(err))
       }
       dispatch({type:TOP_WALMART_ITEMS,TopWalmartList:list})
+      console.log(list)
     })
     .catch(err => console.log(err))
   }
@@ -121,6 +129,19 @@ function LandingPage() {
               )}
             </CardDeck>
         </Carousel.Item>
+        <Carousel.Item>
+            <CardDeck>
+              {state.TopAmazonList.map(item => (
+              <div>
+                  <Card style={{ width: '13rem', margin: '20px' }}>
+                    <Card.Img variant="top" src={item.link} />
+                  </Card>
+                </div>
+               )
+              )}
+            </CardDeck>
+        </Carousel.Item>
+
     </Carousel>
       </div>
 

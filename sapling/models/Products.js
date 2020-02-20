@@ -10,8 +10,9 @@ const ProductSchema = new Schema({
         type: Number,
         required: true
     },
-    gtin:{
-        type: String
+    image:{
+        type: String,
+        required: true
     },
     recentPrices:[
         {

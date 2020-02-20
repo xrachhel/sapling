@@ -4,10 +4,12 @@ import {
     SET_AMAZON_PRODUCT,
     SET_BESTBUY_PRODUCT,
     TOP_WALMART_ITEMS,
+    TOP_AMAZON_ITEMS,
     UPDATE_RESULT_LIST,
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
     UPDATE_DASHBOARD_LIST,
+    SET_DASHBOARD_LIST,
     LOADING
 } from "./actions";
 
@@ -42,6 +44,12 @@ const reducer = (state, action) => {
           TopWalmartList: [...action.TopWalmartList],
           loading: false
           };
+    case TOP_AMAZON_ITEMS:
+        return {
+          ...state,
+          TopAmazonList: [...action.TopAmazonList],
+          loading: false
+          };
 
   case UPDATE_RESULT_LIST:
     return {
@@ -53,13 +61,13 @@ const reducer = (state, action) => {
   case TRACK_PRODUCT:
     return {
       ...state,
-      cartList: [action.product, ...state.cartList],
+      trackedList: [action.product, ...state.trackedList],
     };
 
   case REMOVE_PRODUCT:
     return {
       ...state,
-      cartList: state.cartList.filter((product) => {
+      trackedList: state.trackedList.filter((product) => {
         return product.sku !== action.sku; 
       })
     };
@@ -67,7 +75,14 @@ const reducer = (state, action) => {
   case UPDATE_DASHBOARD_LIST:
     return {
       ...state,
-      cartList: [...state.cartList],
+      trackedList: [...state.trackedList],
+      loading: false
+    };
+
+  case SET_DASHBOARD_LIST:
+    return{
+      ...state,
+      trackedList: [...action.trackedList],
       loading: false
     };
   
@@ -108,6 +123,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         image: ""
       },
       TopWalmartList:[],
+      TopAmazonList:[],
       trackedList: [],
       loading: false
     });
