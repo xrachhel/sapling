@@ -10,6 +10,10 @@ const ProductSchema = new Schema({
         type: Number,
         required: true
     },
+    image:{
+        type: String,
+        required: true
+    },
     recentPrices:[
         {
             type: Number

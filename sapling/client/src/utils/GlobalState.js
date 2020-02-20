@@ -8,6 +8,7 @@ import {
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
     UPDATE_DASHBOARD_LIST,
+    SET_DASHBOARD_LIST,
     LOADING
 } from "./actions";
 
@@ -68,6 +69,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       trackedList: [...state.trackedList],
+      loading: false
+    };
+
+  case SET_DASHBOARD_LIST:
+    return{
+      ...state,
+      trackedList: [...action.trackedList],
       loading: false
     };
   
