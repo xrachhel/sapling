@@ -53,13 +53,13 @@ const reducer = (state, action) => {
   case TRACK_PRODUCT:
     return {
       ...state,
-      cartList: [action.product, ...state.cartList],
+      trackedList: [action.product, ...state.trackedList],
     };
 
   case REMOVE_PRODUCT:
     return {
       ...state,
-      cartList: state.cartList.filter((product) => {
+      trackedList: state.trackedList.filter((product) => {
         return product.sku !== action.sku; 
       })
     };
@@ -67,7 +67,7 @@ const reducer = (state, action) => {
   case UPDATE_DASHBOARD_LIST:
     return {
       ...state,
-      cartList: [...state.cartList],
+      trackedList: [...state.trackedList],
       loading: false
     };
   
