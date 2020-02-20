@@ -13,18 +13,7 @@ const Product = props => {
         getProduct();
     }, []);
 
-<<<<<<< HEAD
-    const getProduct = () => {
-        API.getProductInfoWalmart(props.match.params.itemId)
-        .then(res => {
-            console.log(res.data)
-            console.log(res.data.itemId)
-            dispatch({type: SET_CURRENT_PRODUCT, product: res.data})})
-        .catch(err => console.log(err))
-    }
-=======
    // const getProduct = ();
->>>>>>> 292e627a4b94cd7c02c776cf120294b8477ce904
 
 
 
