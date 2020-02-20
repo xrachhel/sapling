@@ -3,6 +3,7 @@ import {
     SET_CURRENT_PRODUCT,
     SET_AMAZON_PRODUCT,
     SET_BESTBUY_PRODUCT,
+    TOP_WALMART_ITEMS,
     UPDATE_RESULT_LIST,
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
@@ -35,6 +36,12 @@ const reducer = (state, action) => {
           amazonProduct: action.product,
           loading: false
         };
+    case TOP_WALMART_ITEMS:
+        return {
+           ...state,
+          TopWalmartList: [...action.TopWalmartList],
+          loading: false
+          };
 
   case UPDATE_RESULT_LIST:
     return {
@@ -46,13 +53,13 @@ const reducer = (state, action) => {
   case TRACK_PRODUCT:
     return {
       ...state,
-      cartList: [action.product, ...state.cartList],
+      trackedList: [action.product, ...state.trackedList],
     };
 
   case REMOVE_PRODUCT:
     return {
       ...state,
-      cartList: state.cartList.filter((product) => {
+      trackedList: state.trackedList.filter((product) => {
         return product.sku !== action.sku; 
       })
     };
@@ -60,7 +67,7 @@ const reducer = (state, action) => {
   case UPDATE_DASHBOARD_LIST:
     return {
       ...state,
-      cartList: [...state.cartList],
+      trackedList: [...state.trackedList],
       loading: false
     };
   
@@ -100,6 +107,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         description: "",
         image: ""
       },
+      TopWalmartList:[],
       trackedList: [],
       loading: false
     });

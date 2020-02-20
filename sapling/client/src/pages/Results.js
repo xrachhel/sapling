@@ -14,7 +14,7 @@ const Results = () => {
 
 
     useEffect(() => {
-        getResults("sunglasses");
+        getResults("chromebook");
     }, []);
 
 
