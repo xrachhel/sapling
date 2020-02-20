@@ -104,35 +104,23 @@ function LandingPage() {
       {/* This is the items cards  */}
       <div>
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
+
         <Carousel.Item>
-            <CardDeck>
+            <CardDeck id="walmart-deck">
               {state.TopWalmartList.map(item => (
-              <div>
-                  <Card key={item.itemId} style={{ width: '13rem', margin: '20px' }}>
-                    <Card.Img variant="top" src={item.mediumImage} />
-                  </Card>
-                </div>
-               )
+
+                    <div className="mx-auto" id="walmart-card">
+                      <img src={require('./assets/images/logos/walmart-logo.png')} className="walmart-logo" />
+
+                        <Card key={item.itemId}>
+                          <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
+                        </Card>
+                    </div>
+
+                )
               )}
             </CardDeck>
         </Carousel.Item>
-{/* 
-        <Carousel.Item>
-            <CardDeck>
-                <CardLanding></CardLanding>
-                <CardLanding></CardLanding>
-                <CardLanding></CardLanding>
-                <CardLanding></CardLanding>
-            </CardDeck>
-        </Carousel.Item> */}
-         {/* {state.TopWalmartList.map(item => (
-              <div>
-                  <Card style={{ width: '18rem', margin: '20px' }}>
-                    <Card.Img variant="top" src={item.mediumImage} />
-                  </Card>
-                </div>
-               )
-              )} */}
     </Carousel>
       </div>
 
