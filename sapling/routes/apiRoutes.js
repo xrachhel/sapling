@@ -130,7 +130,7 @@ module.exports = function(app){
             });
     });
 
-    //searches for a product and returns result list
+    //searches for a product on amazon and returns result list
     app.get("/api/rainforest/:product",(req,res)=>{
         const params = {
             api_key: process.env.RAINFOREST_API_KEY,
@@ -147,6 +147,7 @@ module.exports = function(app){
             });
     });
 
+    //searches for a specific product on amazon
     app.get("/api/rainforest/product/:gtin", (req,res)=>{
         const params = {
             api_key: process.env.RAINFOREST_API_KEY,
@@ -163,6 +164,11 @@ module.exports = function(app){
             });
     });
 
+
+
+//// WALMART API ROUTES
+
+
     app.get("/api/walmart/:product", (req,res)=>{
         const params = {
             query: req.params.product,
@@ -178,6 +184,7 @@ module.exports = function(app){
             });
     });
 
+    //searches for a specific product on walmart api
     app.get("/api/walmart/product/:itemId", (req,res)=>{
         const params = {
             format: "json",
@@ -190,4 +197,20 @@ module.exports = function(app){
                 res.send(err);
             });
     })
+
+
+    //GET Top products
+    app.get("/api/walmart", (req,res)=>{
+        const params = {
+            format: "json",
+            apiKey: process.env.WALMART_API_KEY
+        }
+
+        axios.get("http://api.walmartlabs.com/v1/trends?",{params})
+            .then(result =>{
+                res.json(result.data);
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
 };

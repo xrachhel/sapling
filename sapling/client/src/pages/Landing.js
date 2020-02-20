@@ -1,17 +1,39 @@
-import React,{useState} from 'react';
+import React,{ useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
-import {Carousel,Card,CardDeck} from "react-bootstrap";
+import { Carousel, Card, CardDeck } from "react-bootstrap";
+import { useStoreContext } from "../utils/GlobalState"
+import { TOP_WALMART_ITEMS } from "../utils/actions"
+import API from "../utils/API"
 
 function LandingPage() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(null);
+  const [state, dispatch] = useStoreContext();
+  const list = [] 
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
     setDirection(e.direction);
+  
   };
+ useEffect(()=>{
+   topItemLoad()
+ },[])
+
+  const topItemLoad = () =>{
+    API.getWalmartTopProduct()
+    .then(res => {
+      console.log(res.data.items);
+      for(var i = 0; i < res.data.items.length -11; i++){
+        list.push(res.data.items[i])
+        console.log(list)
+      }
+      dispatch({type:TOP_WALMART_ITEMS,TopWalmartList:list})
+    })
+    .catch(err => console.log(err))
+  }
   return (
     <div>
       <Navbar/>
@@ -84,18 +106,14 @@ function LandingPage() {
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
         <Carousel.Item>
             <CardDeck>
-                  <Card style={{ width: '18rem', margin: '20px' }}>
-                    <Card.Img variant="top" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MV7N2?wid=1144&hei=1144&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489688005" />
+              {state.TopWalmartList.map(item => (
+              <div>
+                  <Card key={item.itemId} style={{ width: '13rem', margin: '20px' }}>
+                    <Card.Img variant="top" src={item.mediumImage} />
                   </Card>
-                  <Card style={{ width: '18rem', margin: '20px' }}>
-                    <Card.Img variant="top" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MV7N2?wid=1144&hei=1144&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489688005" />
-                  </Card>
-                  <Card style={{ width: '18rem', margin: '20px' }}>
-                    <Card.Img variant="top" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MV7N2?wid=1144&hei=1144&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489688005" />
-                  </Card>
-                  <Card style={{ width: '18rem', margin: '20px' }}>
-                    <Card.Img variant="top" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MV7N2?wid=1144&hei=1144&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489688005" />
-                  </Card>
+                </div>
+               )
+              )}
             </CardDeck>
         </Carousel.Item>
 {/* 
@@ -107,11 +125,19 @@ function LandingPage() {
                 <CardLanding></CardLanding>
             </CardDeck>
         </Carousel.Item> */}
+         {/* {state.TopWalmartList.map(item => (
+              <div>
+                  <Card style={{ width: '18rem', margin: '20px' }}>
+                    <Card.Img variant="top" src={item.mediumImage} />
+                  </Card>
+                </div>
+               )
+              )} */}
     </Carousel>
       </div>
 
     </div>
-  );
+  )
 }
 
 
