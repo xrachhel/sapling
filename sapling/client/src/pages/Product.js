@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import { Navbar, Nav, Form, FormControl, Button, Container, Col, CardColumns } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card'
-import { useStoreContext } from "../utils/GlobalState"
-import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT } from "../utils/actions";
+import { Navbar, Nav, Button, Container, FormControl} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form'
+import Spinner from 'react-bootstrap/Spinner';
+import Card from 'react-bootstrap/Card';
+import { useStoreContext } from "../utils/GlobalState";
+import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT, SET_BESTBUY_PRODUCT, LOADING, TRACK_PRODUCT } from "../utils/actions";
 import API from "../utils/API";
+import { Link } from "react-router-dom";
 
 const Product = props => {
 
@@ -11,34 +14,53 @@ const Product = props => {
 
     useEffect(() => {
         getProduct()
-        getAmazon();
+        // getAmazon();
+        getBestBuy();
     }, []);
 
-<<<<<<< HEAD
-   // const getProduct = ();
-=======
     const getProduct = () => {
         API.getProductInfoWalmart(props.match.params.itemId)
         .then(res => {
-            dispatch({type: SET_CURRENT_PRODUCT, product: res.data})})
+            dispatch({type: LOADING})
+            dispatch({type: SET_CURRENT_PRODUCT, product: {name:res.data.name, image:res.data.thumbnailImage, description:res.data.shortDescription, price:res.data.salePrice, upc:res.data.upc}})})
         .catch(err => console.log(err))
     };
 
-    const getAmazon = () => {
-        console.log("*******",props.match.params.upc)
-        API.getProductInfoAmazon(props.match.params.upc)
+    // const getAmazon = () => {
+    //     API.getProductInfoAmazon(props.match.params.upc)
+    //     .then(res => {
+    //         console.log(res.data.product.buybox_winner.price.value)
+    //         dispatch({type: LOADING})
+    //         dispatch({type: SET_AMAZON_PRODUCT, product:{name:res.data.product.title, link:res.data.product.link, price:res.data.product.buybox_winner.price.raw}})
+    //     })
+    //     .catch(err => console.log(err))
+    // };
+
+    const getBestBuy = () => {
+        API.getProductInfoBestbuy(props.match.params.upc)
         .then(res => {
             console.log(res.data)
-            dispatch({type: SET_AMAZON_PRODUCT, product: res.data})
+            dispatch({type: LOADING})
+            dispatch({type: SET_BESTBUY_PRODUCT, product:{name:res.data.products.name, link:res.data.products.url, price:res.data.products.salePrice}})
         })
         .catch(err => console.log(err))
     };
 
-    const getBestBuy = () => {
-
-    }
->>>>>>> 1604ca19913ea2efa95c109a8943b21fa1011a03
-
+    const trackProduct = (event) => {
+        event.preventDefault();
+        console.log(state.currentProduct.upc)
+        const productObj = {name:state.currentProduct.name, upc:state.currentProduct.upc, price:state.currentProduct.price}
+        API.trackProduct("5e4efb9517fcafdbdb20302c", productObj)
+        .then(res => {
+            console.log(res.data)
+            dispatch({
+                type: TRACK_PRODUCT,
+                product:state.currentProduct
+            });
+        })
+        .catch(err => console.log(err))
+        
+    };
 
 
     return(
@@ -63,20 +85,28 @@ const Product = props => {
 
         <Card style={{width:"18rem"}} className="shadow-sm">
             <Card.Title>{state.currentProduct.name}</Card.Title>
-            <Card.Img src={state.currentProduct.thumbnailImage} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5"/>
-            <Card.Text>Description: {state.currentProduct.shortDescription}</Card.Text>
+            <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5"/>
+            <Card.Text>Description: {state.currentProduct.description}</Card.Text>
+            <Button variant="success" onClick={trackProduct}>Track Product</Button>
 
-            
         </Card>
+{/* 
+        {state.loading ? (<Spinner animation="border" className="loading"/>) : (
+            <Card>
+            <Card.Title>Amazon:</Card.Title>
+            <Card.Text>{state.amazonProduct.name}</Card.Text>
+            <Card.Text>Price: {state.amazonProduct.price} </Card.Text>
+            <Card.Text><a href={state.amazonProduct.link}>Go to site</a></Card.Text>
+        </Card>
+        )}
+         */}
 
         <Card>
-            <Card.Title>Amazon:</Card.Title>
-            <Card.Text>{state.amazonProduct.product.title}</Card.Text>
-        </Card>
-
-        {/* <Card>
             <Card.Title>Best Buy:</Card.Title>
-        </Card>  */}
+            <Card.Text>{state.bestbuyProduct.name}</Card.Text>
+            <Card.Text>Price: {state.bestbuyProduct.price} </Card.Text>
+            <Card.Text><a href={state.bestbuyProduct.link}>Go to site</a></Card.Text>
+        </Card> 
 
 </Container>
         </div>
