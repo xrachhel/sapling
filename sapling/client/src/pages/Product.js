@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import { useStoreContext } from "../utils/GlobalState"
 import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT } from "../utils/actions";
 import API from "../utils/API";
+import { Link } from "react-router-dom";
 
 const Product = props => {
 
@@ -17,7 +18,7 @@ const Product = props => {
     const getProduct = () => {
         API.getProductInfoWalmart(props.match.params.itemId)
         .then(res => {
-            dispatch({type: SET_CURRENT_PRODUCT, product: res.data})})
+            dispatch({type: SET_CURRENT_PRODUCT, product: {name:res.data.name, image:res.data.thumbnailImage, description:res.data.shortDescription}})})
         .catch(err => console.log(err))
     };
 
@@ -25,8 +26,8 @@ const Product = props => {
         console.log("*******",props.match.params.upc)
         API.getProductInfoAmazon(props.match.params.upc)
         .then(res => {
-            console.log(res.data)
-            dispatch({type: SET_AMAZON_PRODUCT, product: res.data})
+            console.log(res.data.product.buybox_winner.price.value)
+            dispatch({type: SET_AMAZON_PRODUCT, product:{name:res.data.product.title, link:res.data.product.link, price:res.data.product.buybox_winner.price.raw}})
         })
         .catch(err => console.log(err))
     };
@@ -59,15 +60,17 @@ const Product = props => {
 
         <Card style={{width:"18rem"}} className="shadow-sm">
             <Card.Title>{state.currentProduct.name}</Card.Title>
-            <Card.Img src={state.currentProduct.thumbnailImage} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5"/>
-            <Card.Text>Description: {state.currentProduct.shortDescription}</Card.Text>
+            <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5"/>
+            <Card.Text>Description: {state.currentProduct.description}</Card.Text>
 
             
         </Card>
 
         <Card>
             <Card.Title>Amazon:</Card.Title>
-            <Card.Text>{state.amazonProduct.product.title}</Card.Text>
+            <Card.Text>{state.amazonProduct.name}</Card.Text>
+            <Card.Text>Price: {state.amazonProduct.price} </Card.Text>
+            <Card.Text><a href={state.amazonProduct.link}>Go to site</a></Card.Text>
         </Card>
 
         {/* <Card>

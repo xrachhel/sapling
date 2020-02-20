@@ -14,7 +14,7 @@ const Results = () => {
 
 
     useEffect(() => {
-        getResults("mouse");
+        getResults("sunglasses");
     }, []);
 
 
