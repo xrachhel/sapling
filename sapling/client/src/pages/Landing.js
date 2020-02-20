@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import Navbar from "../components/ourNavbar/index";
+import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
 import {Carousel,Card,CardDeck} from "react-bootstrap";
 import {useStoreContext} from "../utils/GlobalState"
