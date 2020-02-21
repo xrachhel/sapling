@@ -50,7 +50,14 @@ const Product = props => {
     const trackProduct = (event) => {
         event.preventDefault();
         console.log(state.currentProduct.upc)
-        const productObj = { name: state.currentProduct.name, upc: state.currentProduct.upc, price: state.currentProduct.price, image: state.currentProduct.image }
+        const productObj = { 
+            name: state.currentProduct.name, 
+            upc: state.currentProduct.upc, 
+            price: state.currentProduct.price, 
+            image: state.currentProduct.image,
+            amazonPrice: state.amazonProduct.price,
+            bestbuyPrice: state.bestbuyProduct.price
+        }
         API.trackProduct("5e4efb9517fcafdbdb20302c", productObj)
             .then(res => {
                 console.log(res.data)
