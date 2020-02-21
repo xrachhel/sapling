@@ -5,17 +5,16 @@ import "./assets/landing.css";
 import {Carousel,Card,CardDeck,} from "react-bootstrap";
 import { Link } from "react-router-dom"
 import {useStoreContext} from "../utils/GlobalState"
-import {TOP_WALMART_ITEMS,TOP_AMAZON_ITEMS,TOP_BESTBUY_ITEMS} from "../utils/actions"
+import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE} from "../utils/actions"
 import API from "../utils/API"
 
 function LandingPage() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [state, dispatch] = useStoreContext();
-  const list = []; 
-  const amazonList = [];
-  const bestBuyList = [];
-  const upcList=[];
+  const listOne = []; 
+  const listTwo = []; 
+  const listThree = []; 
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -29,53 +28,25 @@ function LandingPage() {
   const topItemLoad = () =>{
     API.getWalmartTopProduct()
     .then(res => {
-      for(var i = 0; i < 4;i++){
-        list.push(res.data.items[i])
-        API.getProductInfoAmazon(res.data.items[i].upc)
-        .then(res => {
-          //console.log(res.data.product.main_image.link)
-          amazonList.push(res.data.product.main_image)
-          //console.log(res.data)
-          dispatch({type:TOP_AMAZON_ITEMS,TopAmazonList:amazonList})
-        })
-        .catch(err => console.log(err))
-        upcList.push(res.data.items[i].upc)
-        dispatch({type:TOP_WALMART_ITEMS,TopWalmartList:list})
-        BestBuyPics(upcList,0)
-        //console.log(state.TopWalmartList)
-        //   for(var b = 0 ; b < upcList.length;b++){
-        //     API.getProductInfoBestbuy(upcList[b])
-        //     .then(res => {
-        //       bestBuyList.push(res.data.products)
-        //     })
-        //     .catch(err => console.log(err))
-        //   }
+      for(var a = 0; a < res.data.items.length - 11;a++){
+        listOne.push(res.data.items[a])
+        dispatch({type:ITEMS_ONE,CarasuleItemOne:listOne})
       }
+      console.log(listOne)
+      for(var b = 4; b < res.data.items.length - 7;b++){
+        listTwo.push(res.data.items[b])
+        dispatch({type:ITEMS_TWO,CarasuleItemTwo:listTwo})
+      }
+      console.log(listTwo)
+      for(var c =8; c < res.data.items.length - 3;c++){
+        listThree.push(res.data.items[c])
+        dispatch({type:ITEMS_THREE,CarasuleItemThree:listThree})
+      }
+      console.log(listThree)
     })
     .catch(err => console.log(err))
-    //console.log(upcList)
-    // console.log(bestBuyList)
-    // console.log(state.TopBestBuyList)
-
   }
 
-  function BestBuyPics(arr, index){
-    if(index < arr.length){
-    API.getProductInfoBestbuy(arr[index])
-    .then(res => {
-      if(res.data.products){
-      bestBuyList.push(res.data.products[0])
-      }
-    }).then(res =>{
-      dispatch({type:TOP_BESTBUY_ITEMS,TopBestBuyList:bestBuyList})
-      index++
-      console.log(index)
-      BestBuyPics(arr,index)
-    })
-    .catch(err =>(console.log(err)))
-    }
-
-  }
   return (
     <div>
       <Navbar/>
@@ -148,11 +119,11 @@ function LandingPage() {
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
         <Carousel.Item>
             <CardDeck>
-              {state.TopWalmartList.map(item => (
+              {state.CarasuleItemOne.map(item => (
               <div>
                   <Card key={item.itemId} style={{ width: '13rem', margin: '20px' }}>
                     <Card.Img variant="top" src={item.mediumImage} />
-                    <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Track Product</Link>
+                    <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link>
                   </Card>
                 </div>
                )
@@ -161,30 +132,30 @@ function LandingPage() {
         </Carousel.Item>
         <Carousel.Item>
             <CardDeck>
-            
-              {state.TopAmazonList.map(item => (
+              {state.CarasuleItemTwo.map(item => (
               <div>
-                  <Card style={{ width: '13rem', margin: '20px' }}>
-                    <Card.Img variant="top" src={item.link} />
-                    <Link to={"/product/" + item.itemId + "/" + item.upc}>Track Product</Link>
+                  <Card key={item.itemId} style={{ width: '13rem', margin: '20px' }}>
+                    <Card.Img variant="top" src={item.mediumImage} />
+                    <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link>
                   </Card>
                 </div>
                )
               )}
             </CardDeck>
         </Carousel.Item>
-        {/* <Carousel.Item>
+        <Carousel.Item>
             <CardDeck>
-              {state.TopBestBuyList.map(item => (
+              {state.CarasuleItemThree.map(item => (
               <div>
-                  <Card style={{ width: '13rem', margin: '20px' }}>
-                    <Card.Img variant="top" src={item.mediumImage} alt="item" />
+                  <Card key={item.itemId} style={{ width: '13rem', margin: '20px' }}>
+                    <Card.Img variant="top" src={item.mediumImage} />
+                    <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link>
                   </Card>
-                
-               </div>
-              ))}
+                </div>
+               )
+              )}
             </CardDeck>
-        </Carousel.Item> */}
+        </Carousel.Item>
 {/* 
         <Carousel.Item>
             <CardDeck>
