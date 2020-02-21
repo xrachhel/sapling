@@ -43,8 +43,8 @@ export default {
 
     //updates a product's price and pushed the old price to the 
     //recent prices list
-    updateProduct: (id, price) => {
-        return axios.put(`/api/products/${id}/${price}`);
+    updateWalmarPrice: (id, price) => {
+        return axios.put(`/api/products/walmart/${id}/${price}`);
     },
 
     //removes product from user's tracke product list and deletes it
