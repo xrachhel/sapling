@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_DASHBOARD_LIST } from "../utils/actions";
+import { SET_DASHBOARD_LIST, SET_CURRENT_PRODUCT, LOADING } from "../utils/actions";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,7 @@ const Dashboard = () => {
 
     const getModal = value => {
         setShow(value)
+        getWalmart(value)
     };
 
     useEffect(() => {
@@ -25,14 +26,23 @@ const Dashboard = () => {
     }, []);
 
     const getTrackedItems = () => {
-        API.getOneUser("5e4efb9517fcafdbdb20302c")
+        API.getOneUser("5e501cfb343503e52a09651f")
             .then(res => {
                 console.log(res.data.trackedProducts)
-                dispatch({ type: SET_DASHBOARD_LIST, trackedList: res.data.trackedProducts })
+                dispatch({ type: SET_DASHBOARD_LIST, trackedList: res.data.trackedProducts})
             })
             .catch(err => console.log(err))
     };
-
+ 
+    const getWalmart = (value) => {
+        API.getProductInfoWalmart(state.trackedList[value].itemId)
+            .then(res => {
+                console.log(res.data)
+                dispatch({ type: LOADING })
+                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.thumbnailImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc, itemId: res.data.itemId } })
+            })
+            .catch(err => console.log(err))
+    };
 
     return (
         <div>
@@ -69,9 +79,10 @@ const Dashboard = () => {
                                     </Card>
                                     <Modal show={show === index} onHide={handleClose}>
                                         <Modal.Header closeButton>
-                                            <Modal.Title>Modal heading</Modal.Title>
+                                            <Modal.Title>{product.name}</Modal.Title>
                                         </Modal.Header>
-                                        <Modal.Body>{product.name}</Modal.Body>
+                                        <Modal.Body>Walmart price before : ${product.price}</Modal.Body>
+                                        <Modal.Body>Walmart price now: ${state.currentProduct.price}</Modal.Body>
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={handleClose}>
                                                 Close
