@@ -58,7 +58,7 @@ const Product = props => {
             amazonPrice: state.amazonProduct.price,
             bestbuyPrice: state.bestbuyProduct.price
         }
-        API.trackProduct("5e4efb9517fcafdbdb20302c", productObj)
+        API.trackProduct("5e4f252863bcfee16506afe4", productObj)
             .then(res => {
                 console.log(res.data)
                 dispatch({
