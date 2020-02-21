@@ -68,7 +68,7 @@ module.exports = function(app){
 
     //pushes the a product's old price to the recent prices list,
     //and updates the current price
-    app.put("/api/products/:id/:price", (req,res)=>{
+    app.put("/api/products/walmart/:id/:price", (req,res)=>{
         db.Products.findOne({_id: req.params.id})
             .then(product=>{
                 let oldPrice = product.price;
@@ -90,7 +90,55 @@ module.exports = function(app){
             }).catch(err=>{
                 res.send(err);
             });
-    })
+    });
+
+    app.put("/api/products/amazon/:id/:price", (req,res)=>{
+        db.Products.findOne({_id: req.params.id})
+            .then(product=>{
+                let oldPrice = product.amazonPrice;
+                db.Products.findOneAndUpdate(
+                    {_id: req.params.id},
+                    {
+                        $push:{
+                            recentAmazonPrices: oldPrice
+                        },
+                        $set:{
+                            amazonPrice: req.params.price
+                        }
+                    }
+                ).then(result=>{
+                    res.json(result);
+                }).catch(err => {
+                    res.send(err);
+                });
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
+
+    app.put("/api/products/bestbuy/:id/:price", (req,res)=>{
+        db.Products.findOne({_id: req.params.id})
+            .then(product=>{
+                let oldPrice = product.bestbuyPrice;
+                db.Products.findOneAndUpdate(
+                    {_id: req.params.id},
+                    {
+                        $push:{
+                            recentBestbuyPrices: oldPrice
+                        },
+                        $set:{
+                            bestbuyPrice: req.params.price
+                        }
+                    }
+                ).then(result=>{
+                    res.json(result);
+                }).catch(err => {
+                    res.send(err);
+                });
+            }).catch(err=>{
+                res.send(err);
+            });
+    });
 
     //removes product from user's tracked product list and deletes it
     app.delete("/api/products/:userId/:productId",(req,res)=>{
