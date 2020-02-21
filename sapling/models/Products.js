@@ -10,6 +10,9 @@ const ProductSchema = new Schema({
         type: Number,
         required: true
     },
+    itemId:{
+        type: Number
+    },
     image:{
         type: String,
         required: true
@@ -19,9 +22,25 @@ const ProductSchema = new Schema({
             type: Number
         }
     ],
+    recentAmazonPrices:[
+        {
+            type: Number
+        }
+    ],
+    recentBestbuyPrices:[
+        {
+            type: Number
+        }
+    ],
     price:{
         type: Number,
         required: true
+    },
+    amazonPrice:{
+        type: Number
+    },
+    bestbuyPrice:{
+        type: Number
     }
 });
 

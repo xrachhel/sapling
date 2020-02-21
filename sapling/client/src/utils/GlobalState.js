@@ -3,14 +3,15 @@ import {
     SET_CURRENT_PRODUCT,
     SET_AMAZON_PRODUCT,
     SET_BESTBUY_PRODUCT,
-    TOP_WALMART_ITEMS,
-    TOP_AMAZON_ITEMS,
+    ITEMS_ONE,
+    ITEMS_TWO,
+    ITEMS_THREE,
     UPDATE_RESULT_LIST,
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
     UPDATE_DASHBOARD_LIST,
     SET_DASHBOARD_LIST,
-    LOADING
+    LOADING,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -38,16 +39,22 @@ const reducer = (state, action) => {
           amazonProduct: action.product,
           loading: false
         };
-    case TOP_WALMART_ITEMS:
+    case ITEMS_ONE:
         return {
            ...state,
-          TopWalmartList: [...action.TopWalmartList],
+          CarasuleItemOne: [...action.CarasuleItemOne],
           loading: false
           };
-    case TOP_AMAZON_ITEMS:
+    case ITEMS_TWO:
         return {
           ...state,
-          TopAmazonList: [...action.TopAmazonList],
+          CarasuleItemTwo: [...action.CarasuleItemTwo],
+          loading: false
+          };
+    case ITEMS_THREE:
+        return {
+          ...state,
+          CarasuleItemThree: [...action.CarasuleItemThree],
           loading: false
           };
 
@@ -115,6 +122,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         _id: 0,
         name: "",
         price: 0,
+        itemId: 0,
         recentPrices: [],
         asin: "",
         upc: 0,
@@ -122,8 +130,9 @@ const StoreProvider = ({ value = [], ...props }) => {
         description: "",
         image: ""
       },
-      TopWalmartList:[],
-      TopAmazonList:[],
+      CarasuleItemOne:[],
+      CarasuleItemTwo:[],
+      CarasuleItemThree:[],
       trackedList: [],
       loading: false
     });

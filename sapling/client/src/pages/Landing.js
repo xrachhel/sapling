@@ -2,10 +2,10 @@ import React,{ useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
-// import { Link } from 'react-router-dom';
-import { Carousel, Card, CardDeck, Col, Button } from "react-bootstrap";
-import { useStoreContext } from "../utils/GlobalState"
-import {TOP_WALMART_ITEMS,TOP_AMAZON_ITEMS} from "../utils/actions"
+import {Carousel,Card,CardDeck,Button, Col} from "react-bootstrap";
+// import { Link } from "react-router-dom"
+import {useStoreContext} from "../utils/GlobalState"
+import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE} from "../utils/actions"
 import API from "../utils/API"
 
 
@@ -13,8 +13,9 @@ function LandingPage() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [state, dispatch] = useStoreContext();
-  const list = [] 
-  const upcList = []
+  const listOne = []; 
+  const listTwo = []; 
+  const listThree = []; 
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -28,23 +29,25 @@ function LandingPage() {
   const topItemLoad = () =>{
     API.getWalmartTopProduct()
     .then(res => {
-      for(var i = 0; i < res.data.items.length -11;i++){
-        list.push(res.data.items[i])
-        API.getProductInfoAmazon(res.data.items[i].upc)
-        .then(res => {
-          console.log(res.data)
-          upcList.push(res.data.product.main_image)
-          // console.log(upcList);
-          // console.log(res.data);
-          dispatch({type:TOP_AMAZON_ITEMS,TopAmazonList:upcList})
-        })
-        .catch(err => console.log(err))
+      for(var a = 0; a < res.data.items.length - 11;a++){
+        listOne.push(res.data.items[a])
+        dispatch({type:ITEMS_ONE,CarasuleItemOne:listOne})
       }
-      dispatch({type:TOP_WALMART_ITEMS,TopWalmartList:list})
-      console.log(list)
+      console.log(listOne)
+      for(var b = 4; b < res.data.items.length - 7;b++){
+        listTwo.push(res.data.items[b])
+        dispatch({type:ITEMS_TWO,CarasuleItemTwo:listTwo})
+      }
+      console.log(listTwo)
+      for(var c =8; c < res.data.items.length - 3;c++){
+        listThree.push(res.data.items[c])
+        dispatch({type:ITEMS_THREE,CarasuleItemThree:listThree})
+      }
+      console.log(listThree)
     })
     .catch(err => console.log(err))
   }
+
   return (
     <div>
       <Navbar/>
@@ -121,24 +124,59 @@ function LandingPage() {
       <div>
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
 
+      <Carousel.Item>
+            <CardDeck id="walmart-deck">
+              {state.CarasuleItemOne.map(item => (
+              <div className="mx-auto" id="walmart-card">
+                  <Col className="text-center">
+                    <Card key={item.itemId}>
+                      <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
+                        {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
+                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
+                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        </Button>
+                    </Card>
+                  </Col>
+                </div>
+               ))}
+            </CardDeck>
+        </Carousel.Item>
+
+
         <Carousel.Item>
             <CardDeck id="walmart-deck">
-              {state.TopWalmartList.map(item => (
+              {state.CarasuleItemTwo.map(item => (
+              <div className="mx-auto" id="walmart-card">
+                  <Col className="text-center">
+                    <Card key={item.itemId}>
+                      <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
+                        {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
+                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
+                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        </Button>
+                    </Card>
+                  </Col>
+                </div>
+               ))}
+            </CardDeck>
+        </Carousel.Item>
 
-                    <div className="mx-auto" id="walmart-card">
-                      <Col className="text-center">
 
-                          <Card key={item.itemId}>
-                            <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
-                              <Button id="tracking-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
-                                <i id="track-icon-leaf" class="fas fa-leaf"></i> Track
-                              </Button>
-                          </Card>
-
-                      </Col>
-                    </div>
-
-                ))}
+        <Carousel.Item>
+            <CardDeck id="walmart-deck">
+              {state.CarasuleItemThree.map(item => (
+              <div className="mx-auto" id="walmart-card">
+                  <Col className="text-center">
+                    <Card key={item.itemId}>
+                      <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
+                        {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
+                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
+                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        </Button>
+                    </Card>
+                  </Col>
+                </div>
+               ))}
             </CardDeck>
         </Carousel.Item>
 
