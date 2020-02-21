@@ -9,7 +9,7 @@ import Jumbotron from "./components/Footer/Index";
 // import Button from "./components/Button/index";
 // import Card from "./components/Card/index";
 // import Columns from "./components/Columns/index";
-// import Graph from "./components/Graph/index";
+ import Graph from "./components/Graph/index";
 // import Rows from "./components/Rows/index";
 
 //Bringing pages into play
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <Navbar/>
+      <Graph/>
     </div>
   );
 }
