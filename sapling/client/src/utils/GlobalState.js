@@ -5,6 +5,7 @@ import {
     SET_BESTBUY_PRODUCT,
     TOP_WALMART_ITEMS,
     TOP_AMAZON_ITEMS,
+    TOP_BESTBUY_ITEMS,
     UPDATE_RESULT_LIST,
     TRACK_PRODUCT,
     REMOVE_PRODUCT,
@@ -48,6 +49,12 @@ const reducer = (state, action) => {
         return {
           ...state,
           TopAmazonList: [...action.TopAmazonList],
+          loading: false
+          };
+    case TOP_BESTBUY_ITEMS:
+        return {
+          ...state,
+          TopBestBuyList: [...action.TopBestBuyList],
           loading: false
           };
 
@@ -124,6 +131,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       },
       TopWalmartList:[],
       TopAmazonList:[],
+      TopBestBuyList:[],
       trackedList: [],
       loading: false
     });
