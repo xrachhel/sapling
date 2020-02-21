@@ -2,10 +2,12 @@ import React,{ useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
-import {Carousel,Card,CardDeck} from "react-bootstrap";
-import {useStoreContext} from "../utils/GlobalState"
+// import { Link } from 'react-router-dom';
+import { Carousel, Card, CardDeck, Col, Button } from "react-bootstrap";
+import { useStoreContext } from "../utils/GlobalState"
 import {TOP_WALMART_ITEMS,TOP_AMAZON_ITEMS} from "../utils/actions"
 import API from "../utils/API"
+
 
 function LandingPage() {
   const [index, setIndex] = useState(0);
@@ -30,9 +32,10 @@ function LandingPage() {
         list.push(res.data.items[i])
         API.getProductInfoAmazon(res.data.items[i].upc)
         .then(res => {
-          //console.log(res.data.product.main_image.link)
+          console.log(res.data)
           upcList.push(res.data.product.main_image)
-          console.log(upcList)
+          // console.log(upcList);
+          // console.log(res.data);
           dispatch({type:TOP_AMAZON_ITEMS,TopAmazonList:upcList})
         })
         .catch(err => console.log(err))
@@ -109,7 +112,12 @@ function LandingPage() {
 
     </Carousel>
       </div>
-      {/* This is the items cards  */}
+
+
+
+
+
+
       <div>
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
 
@@ -118,27 +126,19 @@ function LandingPage() {
               {state.TopWalmartList.map(item => (
 
                     <div className="mx-auto" id="walmart-card">
-                      <img src={require('./assets/images/logos/walmart-logo.png')} className="walmart-logo" />
+                      <Col className="text-center">
 
-                        <Card key={item.itemId}>
-                          <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
-                        </Card>
+                          <Card key={item.itemId}>
+                            <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
+                              <Button id="tracking-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
+                                <i id="track-icon-leaf" class="fas fa-leaf"></i> Track
+                              </Button>
+                          </Card>
+
+                      </Col>
                     </div>
 
-                )
-              )}
-            </CardDeck>
-        </Carousel.Item>
-        <Carousel.Item>
-            <CardDeck>
-              {state.TopAmazonList.map(item => (
-              <div>
-                  <Card style={{ width: '13rem', margin: '20px' }}>
-                    <Card.Img variant="top" src={item.link} />
-                  </Card>
-                </div>
-               )
-              )}
+                ))}
             </CardDeck>
         </Carousel.Item>
 

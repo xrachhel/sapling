@@ -1,73 +1,64 @@
+@font-face {
+    font-family: TheLeavesOfTheForestRegular;
+    src: url('../../components/ourNavbar/assets/fonts/TheLeavesOfTheForestRegular-X0Gd.ttf');
+}
+@font-face {
+    font-family: BungaMelatiPutih;
+    src: url('../../components/ourNavbar/assets/fonts/BungaMelatiPutih-eLWm.ttf');
+}
+
+
+body {
+    background-image: url('./images/background-vines.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #carousel {
     background-color: grey;
     margin-left: 17%;
     margin-right: 17%;
+
+    opacity: 0.9;
 }
 
-#image-1 {
-    height: 437px;
-    width: 100%;
-}
-#image-2 {
-    height: 437px;
-    width: 100%;
-}
-#image-3 {
-    height: 437px;
-    width: 100%;
-}
-#image-4 {
-    height: 437px;
-    width: 100%;
-}
-#image-5 {
-    height: 437px;
-    width: 100%;
-}
-#image-6 {
-    height: 437px;
-    width: 100%;
-}
+#image-1 {height: 437px; width: 100%;}
+#image-2 {height: 437px; width: 100%;}
+#image-3 {height: 437px; width: 100%;}
+#image-4 {height: 437px; width: 100%;}
+#image-5 {height: 437px; width: 100%;}
+#image-6 {height: 437px; width: 100%;}
 
 
-.carousel-control-prev-icon {
-    opacity: 0;
-}
+/* =========================                  ================================================== */
+/* ========================= Carousel Buttons ================================================== */
+/* =========================                  ================================================== */
 
-.carousel-control-next-icon {
-    opacity: 0;
-}
-
+.carousel-control-prev-icon {opacity: 0; z-index: 1;}
+.carousel-control-next-icon {opacity: 0; z-index: 1;}
 
 #carousel:hover .carousel-control-prev-icon {
     height: 80px;
     width: 80px;
     margin-right: 50px;
-
     outline: black;
     border-radius: 50%;
     background-image: none;
     background-color: red;
     box-shadow: 0px 0px 25px 0px red;
-
     opacity: 1;
 }
-
-
 #carousel:hover .carousel-control-next-icon {
   height: 80px;
   width: 80px;
   margin-left: 50px;
-
   outline: black;
   border-radius: 50%;
   background-image: none;
   background-color: green;
   box-shadow: 0px 0px 25px 0px green;
-  
   opacity: 1;
 }
-
         .carousel-control-prev-icon:after {
             font-family: "Font Awesome 5 free";
             content: "\f359";
@@ -75,7 +66,6 @@
             font-weight: bold;
             color: white;
         }
-
         .carousel-control-next-icon:after {
             font-family: "Font Awesome 5 free";
             content: "\f35a";
@@ -85,13 +75,12 @@
         }
 
 
-
-
+/* =========================              ================================================== */
+/* ========================= Walmart Deck ================================================== */
+/* =========================              ================================================== */
 
 #walmart-deck {
-    background-color: #0b7bb2;
-    padding-left: 42px;
-    padding-right: 42px;
+    background-color: #292929;
 }
     #walmart-card {
         background-color: white;
@@ -100,23 +89,47 @@
         margin-top: 20px;
         margin-bottom: 20px;
         border-radius: 5px;
-    }
 
+        width: 200px;
+        height: 250px;
+    }
         #walmart-card:hover {
             box-shadow: 0px 0px 25px 0px white;
         }
-
-        .walmart-logo {
-            height: 40px;
-            margin-top: -10px;
-            margin-bottom: 10px;
-            margin-left: 10%;
-        }
         .walmart-card-image {
-            border: 5px solid #0b7bb2;
+            /* border: 5px solid #27b7ff; */
+            border: 5px solid #63ab1b;
             border-radius: 2px;
-            width: 142px;
         }
             .walmart-card-image:hover {
-                border: 5px solid #fdbb30;
+                border: 5px solid #d9e836;
+                box-shadow: 0px 0px 10px 0px #d9e836;
             }
+
+
+/* ========================= Card Tracking Button ================================================== */
+
+    #tracking-button {
+        z-index: 2;
+
+        background-color: black;
+        border: 5px solid #63ab1b;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+
+        margin-top: 160px;
+        width: 100%;
+        position: absolute;
+
+        font-family: TheLeavesOfTheForestRegular;
+    }
+
+        #tracking-button:hover {
+            border: 5px solid #d9e836;
+            box-shadow: 0px 0px 10px 0px #d9e836;
+        }
+    #tracking-button:hover #track-icon-leaf {
+        color: limegreen;
+    }

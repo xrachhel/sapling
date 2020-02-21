@@ -1,0 +1,149 @@
+@font-face {
+    font-family: HojasDePlata;
+    src: url("../fonts/HojasDePlata-M5We.ttf");
+}
+@font-face {
+    font-family: CfPlantsAndFlowersRegular;
+    src: url('../fonts/CfPlantsAndFlowersRegular-gvr1.ttf');
+}
+@font-face {
+    font-family: VinetTimesregular;
+    src: url('../fonts/VineyTimesregular-vABM.ttf');
+}
+@font-face {
+    font-family: BungaMelatiPutih;
+    src: url('../fonts/BungaMelatiPutih-eLWm.ttf');
+}
+@font-face {
+    font-family: TheLeavesOfTheForestRegular;
+    src: url('../fonts/TheLeavesOfTheForestRegular-X0Gd.ttf');
+}
+
+
+/* ========================= Guest Navbar ================================================== */
+
+#guest-navbar {
+    /* background-color: #292929; */
+    background-color: black;
+    /* border-bottom: 10px solid #27b7ff; */
+    border-bottom: 10px solid #63ab1b;
+    box-shadow: 0px 0px 10px 0px #63ab1b;
+    margin-bottom: 25px;
+
+    padding: 0;
+}
+
+    #guest-navbar:hover {
+        border-bottom: 10px solid #abcd32;
+        box-shadow: 0px 0px 20px 0px #abcd32;
+    }
+
+
+/* ========================= Navbar Sapling Logo ================================================== */
+#sapling-nav-logo {
+    color: lawngreen;
+    font-size: 70px;
+    border: 2.5px solid green;
+    border-radius: 50%;
+
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+    #sapling-nav-logo:hover, #app-nav-name:hover #sapling-nav-logo {
+        box-shadow: 0px 0px 25px 0px limegreen;
+    }
+
+
+    /* ========================= Navbar App Name ================================================== */
+    #app-nav-name {
+        /* color: #d9e836; */
+        color: white;
+        font-weight: bold;
+        font-size: 50px;
+        font-family: BungaMelatiPutih;
+        letter-spacing: 3px;
+        margin-right: 100px;
+        
+        margin-top: -10px;
+        margin-bottom: -20px;
+        padding: 0;
+    }
+    #S {
+        color: green;
+        font-weight: bolder;
+        font-size: 70px;
+        font-family: TheLeavesOfTheForestRegular;
+        /* -webkit-text-stroke: 2px #d9e836; */
+        -webkit-text-stroke: 1px white;
+    }
+
+
+    /* ========================= Navbar Home Link ================================================== */
+#nav-home-link {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+
+    background-color: transparent;
+    border: 5px solid transparent;
+    border-radius: 10px;
+
+    margin-top: -10px;
+    margin-bottom: -15px;
+    padding: 0;
+}
+        #nav-home-icon {
+            font-size: 50px;
+            border-radius: 10px;
+            margin-top: 20px;
+            padding: 5px;
+        }
+            #nav-home-icon:hover, #nav-home-link:hover #nav-home-icon {
+                color: black;
+                background-color: white;
+                box-shadow: 0px 0px 25px 0px white;
+            }
+
+
+/* ========================= Navbar additional Link ================================================== */
+#nav-link-link {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 10px;
+
+    background-color: black;
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+/* ========================= Navbar Login Modal ================================================== */
+
+
+    #login-modal-button {
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+    
+        background-color: transparent;
+        border: 5px solid transparent;
+        border-radius: 10px;
+    
+        margin-top: -10px;
+        margin-bottom: -15px;
+        padding: 0;
+    }
+            #login-button-icon {
+                font-size: 50px;
+                border-radius: 10px;
+                margin-top: 20px;
+                padding: 5px;
+            }
+                #login-button-icon:hover, #login-modal-button:hover #login-button-icon {
+                    color: black;
+                    background-color: white;
+                    box-shadow: 0px 0px 25px 0px white;
+                }
