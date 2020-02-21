@@ -22,7 +22,7 @@ const Product = props => {
         API.getProductInfoWalmart(props.match.params.itemId)
             .then(res => {
                 dispatch({ type: LOADING })
-                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.thumbnailImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc } })
+                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.thumbnailImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc, itemId: res.data.itemId } })
             })
             .catch(err => console.log(err))
     };
@@ -50,8 +50,16 @@ const Product = props => {
     const trackProduct = (event) => {
         event.preventDefault();
         console.log(state.currentProduct.upc)
-        const productObj = { name: state.currentProduct.name, upc: state.currentProduct.upc, price: state.currentProduct.price, image: state.currentProduct.image }
-        API.trackProduct("5e4efb9517fcafdbdb20302c", productObj)
+        const productObj = { 
+            name: state.currentProduct.name, 
+            upc: state.currentProduct.upc, 
+            itemId: state.currentProduct.itemId,
+            price: state.currentProduct.price, 
+            image: state.currentProduct.image,
+            amazonPrice: state.amazonProduct.price,
+            bestbuyPrice: state.bestbuyProduct.price
+        }
+        API.trackProduct("5e501cfb343503e52a09651f", productObj)
             .then(res => {
                 console.log(res.data)
                 dispatch({

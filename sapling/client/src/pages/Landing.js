@@ -28,9 +28,22 @@ function LandingPage() {
   const topItemLoad = () =>{
     API.getWalmartTopProduct()
     .then(res => {
+<<<<<<< HEAD
       for(var a = 0; a < res.data.items.length - 11;a++){
         listOne.push(res.data.items[a])
         dispatch({type:ITEMS_ONE,CarasuleItemOne:listOne})
+=======
+      for(var i = 0; i < res.data.items.length -11;i++){
+        list.push(res.data.items[i])
+        API.getProductInfoAmazon(res.data.items[i].upc)
+        .then(res => {
+          //console.log(res.data.product.main_image.link)
+          upcList.push(res.data.product.main_image)
+          console.log(upcList)
+          dispatch({type:TOP_AMAZON_ITEMS,TopAmazonList:upcList})
+        })
+        .catch(err => console.log(err))
+>>>>>>> c6fedc58ed5b9fb3e1c4b03d92bdfe166c2ae9eb
       }
       console.log(listOne)
       for(var b = 4; b < res.data.items.length - 7;b++){
@@ -117,7 +130,9 @@ function LandingPage() {
       {/* This is the items cards  */}
       <div>
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
+
         <Carousel.Item>
+<<<<<<< HEAD
             <CardDeck>
               {state.CarasuleItemOne.map(item => (
               <div>
@@ -140,6 +155,20 @@ function LandingPage() {
                   </Card>
                 </div>
                )
+=======
+            <CardDeck id="walmart-deck">
+              {state.TopWalmartList.map(item => (
+
+                    <div className="mx-auto" id="walmart-card">
+                      <img src={require('./assets/images/logos/walmart-logo.png')} className="walmart-logo" />
+
+                        <Card key={item.itemId}>
+                          <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
+                        </Card>
+                    </div>
+
+                )
+>>>>>>> c6fedc58ed5b9fb3e1c4b03d92bdfe166c2ae9eb
               )}
             </CardDeck>
         </Carousel.Item>
@@ -156,23 +185,7 @@ function LandingPage() {
               )}
             </CardDeck>
         </Carousel.Item>
-{/* 
-        <Carousel.Item>
-            <CardDeck>
-                <CardLanding></CardLanding>
-                <CardLanding></CardLanding>
-                <CardLanding></CardLanding>
-                <CardLanding></CardLanding>
-            </CardDeck>
-        </Carousel.Item> */}
-         {/* {state.TopWalmartList.map(item => (
-              <div>
-                  <Card style={{ width: '18rem', margin: '20px' }}>
-                    <Card.Img variant="top" src={item.mediumImage} />
-                  </Card>
-                </div>
-               )
-              )} */}
+
     </Carousel>
       </div>
 
