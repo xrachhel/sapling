@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Modal, Container, InputGroup, FormControl} from 'react-bootstrap';
+import {Button, Modal, Container, InputGroup, FormControl, Col} from 'react-bootstrap';
 
 
 
@@ -17,9 +17,13 @@ function LoginModal() {
     return (
         <Container>
             <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch modal
-            </Button>
+
+            <Col className="mr-auto">
+                <Button id="login-modal-button" variant="primary" onClick={handleShow}>
+                    <i id="login-button-icon" class="fas fa-sign-in-alt"></i>
+                    <p>Sign-In</p>
+                </Button>
+            </Col>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

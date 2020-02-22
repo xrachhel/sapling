@@ -264,7 +264,7 @@ module.exports = function(app){
 
     //searches best buy api
     app.get("/api/bestbuy/product/:upc", (req,res)=>{
-        axios.get(`https://api.bestbuy.com/v1/products(upc=${req.params.upc})?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`)
+        axios.get(`https://api.bestbuy.com/v1/products(upc=${req.params.upc}*)?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`)
             .then(result =>{
                 res.json(result.data);
             }).catch(err=>{
