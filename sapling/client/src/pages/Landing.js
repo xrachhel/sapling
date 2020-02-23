@@ -58,7 +58,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/amazon-skyline.png')} height
+            src={require('./assets/images/carousel-images/amazon-skyline.png')} height
             alt="First slide"
             id="image-1"
             />
@@ -73,7 +73,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/target-symbol.gif')}
+            src={require('./assets/images/carousel-images/target-symbol.gif')}
             alt="Third slide"
             id="image-3"
             />
@@ -87,7 +87,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/macys-logo.jpg')}
+            src={require('./assets/images/carousel-images/macys-logo.jpg')}
             alt="Fifth slide"
             id="image-5"
             />
@@ -102,7 +102,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/walmart-logo.jpg')}
+            src={require('./assets/images/carousel-images/walmart-logo.jpg')}
             alt="Sixth slide"
             id="image-6"
             />

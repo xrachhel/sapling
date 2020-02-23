@@ -9,7 +9,7 @@
 
 
 body {
-    background-image: url('./images/background-vines.jpg');
+    background-image: url('./images/backgrounds/background-city.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -19,7 +19,7 @@ body {
     margin-left: 17%;
     margin-right: 17%;
 
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 #image-1 {height: 437px; width: 100%;}
