@@ -56,24 +56,24 @@ function Signup() {
       });
   };
 
-  const handleSignIn = e => {
-    console.log("handleSignIN");
-    console.log(password);
-    e.preventDefault();
-    API.getOneUser({ email, password })
-      .then(response => {
-        console.log(response);
-        if (!response.data.errmsg) {
-          console.log("successful Login");
-          handleClose();
-        } else {
-          console.log("No user exit");
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // const handleSignIn = e => {
+  //   console.log("handleSignIN");
+  //   console.log(password);
+  //   e.preventDefault();
+  //   API.getOneUser({ email, password })
+  //     .then(response => {
+  //       console.log(response);
+  //       if (!response.data.errmsg) {
+  //         console.log("successful Login");
+  //         handleClose();
+  //       } else {
+  //         console.log("No user exit");
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <Container>
@@ -119,7 +119,7 @@ function Signup() {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button id="sign-in" variant="primary" onClick={handleSignIn}>
+            <Button id="sign-in" variant="primary" onClick={handleClose}>
               <i className="fas fa-tree"></i> Sign-In
             </Button>
 
