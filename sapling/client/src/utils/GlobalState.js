@@ -131,11 +131,14 @@ const StoreProvider = ({ value = [], ...props }) => {
         price: 0,
         itemId: 0,
         recentPrices: [],
+        recentAmazonPrices: [],
+        recentBestBuyPrices: [],
         asin: "",
         upc: 0,
         rating: 0.0,
         description: "",
-        image: ""
+        image: "",
+        link: ""
       },
       CarasuleItemOne:[],
       CarasuleItemTwo:[],
