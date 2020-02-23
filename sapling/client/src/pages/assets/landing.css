@@ -133,3 +133,9 @@ body {
     #view-button:hover #view-icon-leaf {
         color: limegreen;
     }
+    #view-text{
+        font-weight: bold;
+        font-size: 15px;
+        color:white;
+        font-family: TheLeavesOfTheForestRegular;
+    }

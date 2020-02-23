@@ -22,7 +22,7 @@ const Product = props => {
         API.getProductInfoWalmart(props.match.params.itemId)
             .then(res => {
                 dispatch({ type: LOADING })
-                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.thumbnailImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc, itemId: res.data.itemId } })
+                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.thumbnailImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc, itemId: res.data.itemId, link: res.data.productUrl } })
             })
             .catch(err => console.log(err))
     };

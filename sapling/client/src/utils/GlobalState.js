@@ -12,6 +12,7 @@ import {
     UPDATE_DASHBOARD_LIST,
     SET_DASHBOARD_LIST,
     LOADING,
+    LOG_IN
 } from "./actions";
 
 const StoreContext = createContext();
@@ -96,8 +97,14 @@ const reducer = (state, action) => {
   case LOADING:
     return{
         ...state,
-        loading: true
+        loading: false
     };
+  case LOG_IN:{
+    return{
+      ...state,
+      LogIn:true
+    }
+  }
 
   default:
     return state;
@@ -124,17 +131,21 @@ const StoreProvider = ({ value = [], ...props }) => {
         price: 0,
         itemId: 0,
         recentPrices: [],
+        recentAmazonPrices: [],
+        recentBestBuyPrices: [],
         asin: "",
         upc: 0,
         rating: 0.0,
         description: "",
-        image: ""
+        image: "",
+        link: ""
       },
       CarasuleItemOne:[],
       CarasuleItemTwo:[],
       CarasuleItemThree:[],
       trackedList: [],
-      loading: false
+      loading: false,
+      LogIn:false
     });
   
     return <Provider value={[state, dispatch]} {...props} />;
