@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Modal, Container, InputGroup, FormControl} from 'react-bootstrap';
+import {Button, Modal, Container, InputGroup, FormControl, Col} from 'react-bootstrap';
 
 
 
@@ -17,13 +17,17 @@ function LoginModal() {
     return (
         <Container>
             <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch modal
-            </Button>
+
+            <Col className="mr-auto">
+                <Button id="login-modal-button" variant="primary" onClick={handleShow}>
+                    <i id="login-button-icon" class="fas fa-sign-in-alt"></i>
+                    <p>Sign-In</p>
+                </Button>
+            </Col>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title> <i className="fas fa-seedling"></i> Modal heading</Modal.Title>
+                <Modal.Title> <i className="fas fa-seedling"></i> Sapling Sign in</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -31,7 +35,7 @@ function LoginModal() {
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">
-                            <i className="fas fa-sun"></i> Email
+                            <i className="fas fa-sun"></i> &#32; Email
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
@@ -76,7 +80,7 @@ function LoginModal() {
             <>
             <Modal show={showUp} onHide={handleCloseSignUp}>
             <Modal.Header closeButton>
-            <Modal.Title> Modal heading</Modal.Title>
+            <Modal.Title className="w-100"> Sapling Sign Up</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>

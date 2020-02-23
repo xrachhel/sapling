@@ -10,3 +10,4 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const UPDATE_DASHBOARD_LIST = "UPDATE_DASHBOARD_LIST";
 export const SET_DASHBOARD_LIST = "SET_DASHBOARD_LIST";
 export const LOADING = "LOADING";
+export const LOG_IN = "LogIn";
