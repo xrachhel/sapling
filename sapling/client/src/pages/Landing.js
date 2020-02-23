@@ -154,8 +154,10 @@ function LandingPage() {
                     <Card key={item.itemId}>
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
-                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        <Button id="view-button" className="mx-auto"> 
+                          <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
+                          <i id="view-icon-leaf" class="fas fa-leaf"></i>View Item
+                          </Link>
                         </Button>
                     </Card>
                   </Col>
@@ -173,8 +175,10 @@ function LandingPage() {
                     <Card key={item.itemId}>
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
-                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        <Button id="view-button" className="mx-auto"> 
+                          <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
+                          <i id="view-icon-leaf" class="fas fa-leaf"></i>View Item
+                          </Link>
                         </Button>
                     </Card>
                   </Col>
