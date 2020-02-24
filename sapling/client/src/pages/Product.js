@@ -81,11 +81,7 @@ const Product = props => {
 
 
 
-<<<<<<< HEAD
-                {/* <Card style={{ width: "18rem" }} className="shadow-sm">
-=======
                 <Card className="shadow-sm">
->>>>>>> 8466873b7238382bd4453dfa56d21905cef02a97
                     <Card.Title>{state.currentProduct.name}</Card.Title>
                     <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
                     <Card.Text>Description: {state.currentProduct.description}</Card.Text>

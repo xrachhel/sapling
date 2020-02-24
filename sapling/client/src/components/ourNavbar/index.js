@@ -10,7 +10,7 @@ function ourNavbar() {
       <Navbar id="guest-navbar" expand="lg">
           {/* <Row> */}
             <Navbar.Brand id="app-nav-name" href="#home"><i id="sapling-nav-logo" class="fas fa-seedling"></i> <a id="S">S</a>apling</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light"/>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" className="bg-light"/>
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">
@@ -34,7 +34,7 @@ function ourNavbar() {
 
                   <button href="#news" id="nav-news-link">
                     <i id="nav-news-icon" class="fas fa-bell"></i>
-                    <p> </p>
+                    <p></p>
                   </button>
                 {/* </Form> */}
 

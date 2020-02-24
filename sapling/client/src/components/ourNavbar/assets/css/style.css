@@ -147,33 +147,151 @@
 /* ========================= Navbar Login Modal ================================================== */
 
 
-    #login-modal-button {
+#login-modal-button {
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+
+    background-color: transparent;
+    border: 5px solid transparent;
+    border-radius: 10px;
+
+    margin-top: -10px;
+    margin-bottom: -15px;
+
+    margin-right: 2.5%;
+
+    padding: 0;
+}
+    #login-button-icon {
+        font-size: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding: 5px;
+    }
+        #login-button-icon:hover, #login-modal-button:hover #login-button-icon {
+            color: black;
+            background-color: white;
+            box-shadow: 0px 0px 25px 0px white;
+        }
+
+#login-modal-body {
+    background-color: black;
+    border: 10px solid white;
+    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#modal-heading-logo {
+    color: lawngreen;
+    font-size: 55px;
+    border: 2.5px solid green;
+    border-radius: 50%;
+    margin-right: 10px;
+
+    padding: 0;
+}
+
+#S2 {
+    color: black;
+    font-weight: bolder;
+    font-size: 50px;
+    font-family: TheLeavesOfTheForestRegular;
+    -webkit-text-stroke: 1px black;
+}
+#apling {
+    color: black;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: BungaMelatiPutih;
+
+    padding: 0;
+}
+#modal-heading {
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    /* font-family: BungaMelatiPutih; */
+
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: -15px;
+    padding: 0;
+}
+
+#email-logo {
+    color: #ffbb00;
+}
+#password-logo {
+    color: #6a99ff;
+}
+
+    #sign-in {
+        background-color: black;
+        border: 5px solid black;
+        border-radius: 5px;
         color: white;
         font-weight: bold;
-        font-size: 13px;
-    
-        background-color: transparent;
-        border: 5px solid transparent;
-        border-radius: 10px;
-    
-        margin-top: -10px;
-        margin-bottom: -15px;
-
-        margin-right: 2.5%;
-
-        padding: 0;
+        font-size: 17px;
     }
-            #login-button-icon {
-                font-size: 50px;
-                border-radius: 10px;
-                margin-top: 20px;
-                padding: 5px;
-            }
-                #login-button-icon:hover, #login-modal-button:hover #login-button-icon {
-                    color: black;
-                    background-color: white;
-                    box-shadow: 0px 0px 25px 0px white;
-                }
+
+        #sign-in:hover {
+            border: 5px solid #abcd32;
+            box-shadow: 0px 0px 10px 0px #abcd32;
+        }
+    #sign-in:hover #sign-in-logo {
+        color: limegreen;
+    }
+
+    #sign-up {
+        background-color: black;
+        border: 5px solid black;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+        #sign-up:hover {
+            border: 5px solid #abcd32;
+            box-shadow: 0px 0px 10px 0px #abcd32;
+        }
+    #sign-up:hover #sign-up-logo {
+        color: limegreen;
+    }
+
+
+    #first-name-logo {
+        color: green;
+    }
+    #last-name-logo {
+        color: limegreen;
+    }
+    #confirm-logo {
+        color: #8cc7e9;
+    }
+
+
+    #submit {
+        background-color: black;
+        border: 5px solid black;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+        #submit:hover {
+            border: 5px solid #abcd32;
+            box-shadow: 0px 0px 10px 0px #abcd32;
+        }
+    #submit:hover #submit-logo {
+        color: limegreen;
+    }
+
 
 /* ========================= Search Bar ================================================== */
 #search-bar {
