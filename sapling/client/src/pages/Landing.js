@@ -50,7 +50,7 @@ function LandingPage() {
 
   return (
     <div>
-      {state.logIn ?(
+      {!state.logIn ?(
       <Navbar/>
       ):(<h1>True</h1>)}
       <div>
@@ -135,7 +135,7 @@ function LandingPage() {
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
                           <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i>View Item
+                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>
                     </Card>
@@ -156,7 +156,7 @@ function LandingPage() {
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
                           <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i>View Item
+                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>
                     </Card>
@@ -177,7 +177,7 @@ function LandingPage() {
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
                           <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i>View Item
+                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>
                     </Card>

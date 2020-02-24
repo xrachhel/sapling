@@ -78,8 +78,9 @@ function Signup() {
   return (
     <Container>
       <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch modal
+        <Button id="login-modal-button" onClick={handleShow}>
+        <i id="login-button-icon" class="fas fa-sign-in-alt"></i>
+        <p>Sign-In</p>
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

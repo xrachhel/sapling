@@ -92,7 +92,7 @@ const Product = props => {
 
 
 
-                <Card style={{ width: "18rem" }} className="shadow-sm">
+                <Card className="shadow-sm">
                     <Card.Title>{state.currentProduct.name}</Card.Title>
                     <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
                     <Card.Text>Description: {state.currentProduct.description}</Card.Text>
