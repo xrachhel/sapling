@@ -34,9 +34,12 @@ const Product = props => {
     const getAmazon = () => {
         API.getProductInfoAmazon(props.match.params.upc)
         .then(res => {
+            if(res.data.product){
+                dispatch({type: LOADING})
+                dispatch({type: SET_AMAZON_PRODUCT, product:{name:res.data.product.title, link:res.data.product.link, price:res.data.product.buybox_winner.price.raw}})
+            }
             console.log("amazon", res.data.product.buybox_winner.price.value)
-            dispatch({type: LOADING})
-            dispatch({type: SET_AMAZON_PRODUCT, product:{name:res.data.product.title, link:res.data.product.link, price:res.data.product.buybox_winner.price.raw}})
+            
         })
         .catch(err => console.log(err))
     };
