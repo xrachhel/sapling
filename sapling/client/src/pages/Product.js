@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { Navbar, Nav, Button, Container, FormControl } from 'react-bootstrap';
+import {Button, Container, FormControl, Row, Col,Image } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
+import Navbar from "../components/ourNavbar"
 import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT, SET_BESTBUY_PRODUCT, LOADING, TRACK_PRODUCT } from "../utils/actions";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+import "./assets/product.css"
 
 const Product = props => {
 
@@ -22,7 +24,7 @@ const Product = props => {
         API.getProductInfoWalmart(props.match.params.itemId)
             .then(res => {
                 dispatch({ type: LOADING })
-                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.thumbnailImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc, itemId: res.data.itemId, link: res.data.productUrl } })
+                dispatch({ type: SET_CURRENT_PRODUCT, product: { name: res.data.name, image: res.data.largeImage, description: res.data.shortDescription, price: res.data.salePrice, upc: res.data.upc, itemId: res.data.itemId, link: res.data.productUrl } })
             })
             .catch(err => console.log(err))
     };
@@ -74,31 +76,35 @@ const Product = props => {
 
     return (
         <div>
-            <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">Sapling</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
+            <Navbar/>
             <Container>
 
 
 
-                <Card style={{ width: "18rem" }} className="shadow-sm">
+<<<<<<< HEAD
+                {/* <Card style={{ width: "18rem" }} className="shadow-sm">
+=======
+                <Card className="shadow-sm">
+>>>>>>> 8466873b7238382bd4453dfa56d21905cef02a97
                     <Card.Title>{state.currentProduct.name}</Card.Title>
                     <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
                     <Card.Text>Description: {state.currentProduct.description}</Card.Text>
                     <Button variant="success" onClick={trackProduct}>Track Product</Button>
 
-                </Card>
+                </Card> */}
+                <Row>
+                    <Col>
+                    <Image id="main-image" src={state.currentProduct.image} />
+                    </Col>
+                    <Col className="text-center" id="item-description">
+                    <h4 className="font-weight-bold"> {state.currentProduct.name} </h4>
+                    <div className="m-4">
+                        <p>Description:  {state.currentProduct.description}</p>
+                    </div>
+                    <Button variant="success" onClick={trackProduct}>Track Product</Button>
+
+                    </Col>
+                </Row>
                 {/* 
         {state.loading ? (<Spinner animation="border" className="loading"/>) : (
             <Card>

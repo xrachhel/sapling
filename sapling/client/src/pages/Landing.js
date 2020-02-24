@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
 import {Carousel,Card,CardDeck,Button, Col} from "react-bootstrap";
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {useStoreContext} from "../utils/GlobalState"
-import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE} from "../utils/actions"
+import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE,LOG_IN} from "../utils/actions"
 import API from "../utils/API"
 
 
@@ -50,15 +50,16 @@ function LandingPage() {
 
   return (
     <div>
+      {!state.logIn ?(
       <Navbar/>
-      
+      ):(<h1>True</h1>)}
       <div>
         {/* Thsis is the about us Carasuel */}
       <Carousel id="carousel">
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/amazon-skyline.png')} height
+            src={require('./assets/images/carousel-images/amazon-skyline.png')} height
             alt="First slide"
             id="image-1"
             />
@@ -73,7 +74,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/target-symbol.gif')}
+            src={require('./assets/images/carousel-images/target-symbol.gif')}
             alt="Third slide"
             id="image-3"
             />
@@ -87,7 +88,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/macys-logo.jpg')}
+            src={require('./assets/images/carousel-images/macys-logo.jpg')}
             alt="Fifth slide"
             id="image-5"
             />
@@ -102,7 +103,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/walmart-logo.jpg')}
+            src={require('./assets/images/carousel-images/walmart-logo.jpg')}
             alt="Sixth slide"
             id="image-6"
             />
@@ -132,8 +133,10 @@ function LandingPage() {
                     <Card key={item.itemId}>
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
-                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        <Button id="view-button" className="mx-auto"> 
+                          <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
+                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                          </Link>
                         </Button>
                     </Card>
                   </Col>
@@ -151,8 +154,10 @@ function LandingPage() {
                     <Card key={item.itemId}>
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
-                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        <Button id="view-button" className="mx-auto"> 
+                          <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
+                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                          </Link>
                         </Button>
                     </Card>
                   </Col>
@@ -170,8 +175,10 @@ function LandingPage() {
                     <Card key={item.itemId}>
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
-                        <Button id="view-button" className="mx-auto" to={"/product/" + item.itemId + "/" + item.upc}>
-                          <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                        <Button id="view-button" className="mx-auto"> 
+                          <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
+                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                          </Link>
                         </Button>
                     </Card>
                   </Col>

@@ -9,7 +9,8 @@
 
 
 body {
-    background-image: url('./images/background-vines.jpg');
+    /* background-image: url('./images/backgrounds/background-nature-2.jpg'); */
+    background-image: url('./images/backgrounds/giphy-2.gif');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -19,7 +20,7 @@ body {
     margin-left: 17%;
     margin-right: 17%;
 
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 #image-1 {height: 437px; width: 100%;}
@@ -80,7 +81,7 @@ body {
 /* =========================              ================================================== */
 
 #walmart-deck {
-    background-color: #292929;
+    background-color: black;
 }
     #walmart-card {
         background-color: white;
@@ -92,18 +93,20 @@ body {
 
         width: 200px;
         height: 250px;
+
+        opacity: 1;
     }
         #walmart-card:hover {
             box-shadow: 0px 0px 25px 0px white;
+            opacity: 1;
         }
         .walmart-card-image {
-            /* border: 5px solid #27b7ff; */
-            border: 5px solid #63ab1b;
+            border: 5px solid green;
             border-radius: 2px;
         }
-            .walmart-card-image:hover {
-                border: 5px solid #d9e836;
-                box-shadow: 0px 0px 10px 0px #d9e836;
+        #walmart-card:hover .walmart-card-image {
+                border: 5px solid #abcd32;
+                box-shadow: 0px 0px 10px 0px #abcd32;
             }
 
 
@@ -113,7 +116,7 @@ body {
         z-index: 2;
 
         background-color: black;
-        border: 5px solid #63ab1b;
+        border: 5px solid green;
         border-radius: 5px;
         color: white;
         font-weight: bold;
@@ -122,14 +125,18 @@ body {
         margin-top: 160px;
         width: 100%;
         position: absolute;
-
-        font-family: TheLeavesOfTheForestRegular;
     }
 
         #view-button:hover {
-            border: 5px solid #d9e836;
-            box-shadow: 0px 0px 10px 0px #d9e836;
+            border: 5px solid #abcd32;
+            box-shadow: 0px 0px 10px 0px #abcd32;
         }
     #view-button:hover #view-icon-leaf {
         color: limegreen;
+    }
+    #view-text{
+        font-weight: bold;
+        font-size: 15px;
+        color:white;
+        text-decoration: none;
     }
