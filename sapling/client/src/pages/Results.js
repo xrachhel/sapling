@@ -5,6 +5,7 @@ import { useStoreContext } from "../utils/GlobalState"
 import { UPDATE_RESULT_LIST } from "../utils/actions";
 import API from "../utils/API";
 import { Link } from "react-router-dom"
+import "./assets/product.css"
 
 
 
