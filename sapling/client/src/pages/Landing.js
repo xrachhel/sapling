@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import {useStoreContext} from "../utils/GlobalState"
 import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE,LOG_IN} from "../utils/actions"
 import API from "../utils/API"
-
+//Set up search bar that will connect to results page 
 
 function LandingPage() {
   const [index, setIndex] = useState(0);
@@ -155,7 +155,7 @@ function LandingPage() {
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
-                          <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
+                          <Link className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
                             <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>

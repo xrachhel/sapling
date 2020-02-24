@@ -75,23 +75,19 @@ const Product = props => {
 
 
     return (
-        <div>
+        <div id="background">
             <Navbar/>
             <Container>
 
 
-
-<<<<<<< HEAD
-                {/* <Card style={{ width: "18rem" }} className="shadow-sm">
-=======
+{/* 
                 <Card className="shadow-sm">
->>>>>>> 8466873b7238382bd4453dfa56d21905cef02a97
                     <Card.Title>{state.currentProduct.name}</Card.Title>
                     <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
                     <Card.Text>Description: {state.currentProduct.description}</Card.Text>
                     <Button variant="success" onClick={trackProduct}>Track Product</Button>
 
-                </Card> */}
+                </Card> */} 
                 <Row>
                     <Col>
                     <Image id="main-image" src={state.currentProduct.image} />
@@ -102,9 +98,9 @@ const Product = props => {
                         <p>Description:  {state.currentProduct.description}</p>
                     </div>
                     <Button variant="success" onClick={trackProduct}>Track Product</Button>
-
                     </Col>
                 </Row>
+                <div className="m-3"></div>
                 {/* 
         {state.loading ? (<Spinner animation="border" className="loading"/>) : (
             <Card>
@@ -115,14 +111,40 @@ const Product = props => {
         </Card>
         )}
          */}
-
-                <Card>
-                    <Card.Title>Best Buy:</Card.Title>
+         <Row className="justify-content-around">
+            <Col>
+                <Card id="bestBuy-card" className="text-center"style={{ width: '18rem' }}>
+                    <Card.Title>
+                    <Image id="bestbuy-image" src={require("./assets/images/logos/BestBuy-logo.png")}/>
+                    </Card.Title>
                     <Card.Text>{state.bestbuyProduct.name}</Card.Text>
+                    <Row className="m-4">
+                    <Col>
                     <Card.Text>Price: {state.bestbuyProduct.price} </Card.Text>
+                    </Col>
+                    <Col>
                     <Card.Text><a href={state.bestbuyProduct.link}>Go to site</a></Card.Text>
+                    </Col>
+                    </Row>
                 </Card>
-
+                </Col>
+                <Col>
+                <Card  className="text-center"id="amazon-card"style={{ width: '18rem' }}>
+                    <Card.Title> 
+                    <Image  id="amazon-image" src={require("./assets/images/logos/amazon-logo.png")}/>
+                    </Card.Title>
+                    <Card.Text>{state.amazonProduct.name}</Card.Text>
+                    <Row className="m-4">
+                    <Col>
+                    <Card.Text>Price: {state.amazonProduct.price} </Card.Text>
+                    </Col>
+                    <Col>
+                    <Card.Text><a href={state.amazonProduct.link}>Go to site</a></Card.Text>
+                    </Col>
+                    </Row>
+                </Card>
+                </Col>
+                </Row>
             </Container>
         </div>
     );

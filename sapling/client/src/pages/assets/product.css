@@ -1,3 +1,35 @@
-#item-description{
-    background-color: white
+#main-image{
+    border-radius: 10px;
+    box-shadow: #abcd32
 }
+
+#item-description{
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+
+#background{
+    background-color:white
+    !important;
+}
+
+#amazon-image{
+    height:200px;
+    width:250px;
+}
+#amazon-card{
+    border: 5px solid rgba(255,153,0);
+}
+#bestBuy-card{
+    border: 5px solid rgba(10,74,191);
+}
+
+
+#bestbuy-image{
+    margin: 35px;
+    height:130px;
+    width:210px;
+}
+
