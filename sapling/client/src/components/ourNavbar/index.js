@@ -4,25 +4,31 @@ import './assets/css/style.css';
 
 import Login from "../logInModal/index";
 import { Navbar, Nav, Form, FormControl, Button, Row } from 'react-bootstrap'
+import { STATES } from "mongoose";
 
 function ourNavbar() {
     return (
       <Navbar id="guest-navbar" expand="lg">
           {/* <Row> */}
+<<<<<<< HEAD
             <Navbar.Brand id="app-nav-name" href="#home"><i id="sapling-nav-logo" class="fas fa-seedling"></i> <a id="S">S</a>apling</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" className="bg-light"/>
+=======
+            <Navbar.Brand id="app-nav-name" href="/home"><i id="sapling-nav-logo" class="fas fa-seedling"></i> <a id="S">S</a>apling</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light"/>
+>>>>>>> 4db1212362c33b7386685bcb81b1bae1b08289ba
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">
-                  <button href="#home" id="nav-home-link">
+                  <Button href="/home" id="nav-home-link">
                     <i id="nav-home-icon" class="fas fa-home"></i>
                     <p>Home</p>
-                  </button>
+                  </Button>
 
-                  <button href="#dashboard" id="nav-home-link">
+                  <Button href="#dashboard" id="nav-home-link" href="/dashboard">
                     <i id="nav-home-icon" class="fas fa-chart-line"></i>
                     <p>Dashboard</p>
-                  </button>
+                  </Button>
                 </Nav>
 
 

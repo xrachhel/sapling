@@ -23,6 +23,8 @@ const Dashboard = () => {
         getTrackedItems();
     }, []);
 
+    console.log("tracked list", state.trackedList)
+
     const [lineData, setLineData] = useState({
 
         datasets: [
@@ -122,14 +124,17 @@ const Dashboard = () => {
                                     .then(resultbestbuy => {
                                         console.log("*****Get BestBuy")
                                         console.log(resultbestbuy)
-                                        dispatch({ type: LOADING })
-                                        dispatch({
-                                            type: SET_BESTBUY_PRODUCT, product: {
-                                                name: res.data.products.name,
-                                                link: res.data.products.url,
-                                                price: res.data.products.salePrice
-                                            }
-                                        })
+                                        if(res.data.products){
+                                            dispatch({ type: LOADING })
+                                            dispatch({
+                                                type: SET_BESTBUY_PRODUCT, product: {
+                                                    name: res.data.products.name,
+                                                    link: res.data.products.url,
+                                                    price: res.data.products.salePrice
+                                                }
+                                            })
+                                        }
+                                        
                                     })
                             })
                     })
@@ -140,14 +145,17 @@ const Dashboard = () => {
                                     .then(resultamazon => {
                                         console.log("*****get Amazon")
                                         console.log(resultamazon)
-                                        dispatch({ type: LOADING })
-                                        dispatch({
-                                            type: SET_AMAZON_PRODUCT, product: {
-                                                name: res.data.product.title,
-                                                link: res.data.product.link,
-                                                price: res.data.product.buybox_winner.price.value
-                                            }
-                                        })
+                                        if(res.data.product){
+                                            dispatch({ type: LOADING })
+                                            dispatch({
+                                                type: SET_AMAZON_PRODUCT, product: {
+                                                    name: res.data.product.title,
+                                                    link: res.data.product.link,
+                                                    price: res.data.product.buybox_winner.price.value
+                                                }
+                                            })
+                                        }
+                                        
                                         setLineData({
                             ...lineData,
                             datasets: [
@@ -297,15 +305,27 @@ const Dashboard = () => {
                                             <Line data={lineData} options={lineOptions.options} />
                                         </div>
                                         <Button onClick={() => { getRecentPrices(index) }}>click</Button>
+
                                         <Modal.Body>Walmart price before: ${product.price}</Modal.Body>
                                         <Modal.Body>Walmart price now: ${state.currentProduct.price}</Modal.Body>
                                         <p><a href={state.currentProduct.link}> Go to Walmart's website</a></p>
+
+                                        {product.recentAmazonPrices.length !== 0 ? (<div>
                                         <Modal.Body>Amazon price before: ${product.amazonPrice}</Modal.Body>
                                         <Modal.Body>Amazon price now: ${state.amazonProduct.price}</Modal.Body>
-                                        <p><a href={state.amazonProduct.link}></a></p>
+                                        <p><a href={state.amazonProduct.link}>Go to Amazon's website</a></p>
+                                        </div>) : (
+                                            <div></div>
+                                        )}
+                                        
+                                        {product.recentBestbuyPrices.length !== 0  ? (<div>
                                         <Modal.Body>Best Buy price before: ${product.bestbuyPrice}</Modal.Body>
                                         <Modal.Body>Best Buy price now: ${state.bestbuyProduct.price}</Modal.Body>
-                                        <p><a href={state.bestbuyProduct.link}></a></p>
+                                        <p><a href={state.bestbuyProduct.link}>Go to Best Buy website</a></p>
+                                        </div>) : (
+                                            <div></div>
+                                        )}
+                                        
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={handleClose}>
                                                 Close
