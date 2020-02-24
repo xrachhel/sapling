@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Button, Container, FormControl, Row, Col,Image } from 'react-bootstrap';
+import { Button, Container, FormControl, Row, Col, Image } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
 import Navbar from "../components/ourNavbar"
 import Spinner from 'react-bootstrap/Spinner';
@@ -14,9 +14,11 @@ const Product = props => {
 
     const [state, dispatch] = useStoreContext();
 
+    console.log("Best buy state price", state)
+
     useEffect(() => {
         getProduct()
-        // getAmazon();
+        getAmazon();
         getBestBuy();
     }, []);
 
@@ -29,34 +31,46 @@ const Product = props => {
             .catch(err => console.log(err))
     };
 
-    // const getAmazon = () => {
-    //     API.getProductInfoAmazon(props.match.params.upc)
-    //     .then(res => {
-    //         console.log(res.data.product.buybox_winner.price.value)
-    //         dispatch({type: LOADING})
-    //         dispatch({type: SET_AMAZON_PRODUCT, product:{name:res.data.product.title, link:res.data.product.link, price:res.data.product.buybox_winner.price.raw}})
-    //     })
-    //     .catch(err => console.log(err))
-    // };
+    const getAmazon = () => {
+        API.getProductInfoAmazon(props.match.params.upc)
+        .then(res => {
+            if(res.data.product){
+                dispatch({type: LOADING})
+                dispatch({type: SET_AMAZON_PRODUCT, product:{name:res.data.product.title, link:res.data.product.link, price:res.data.product.buybox_winner.price.raw}})
+            }
+            console.log("amazon", res.data.product.buybox_winner.price.value)
+            
+        })
+        .catch(err => console.log(err))
+    };
 
     const getBestBuy = () => {
         API.getProductInfoBestbuy(props.match.params.upc)
             .then(res => {
-                console.log(res.data)
-                dispatch({ type: LOADING })
-                dispatch({ type: SET_BESTBUY_PRODUCT, product: { name: res.data.products.name, link: res.data.products.url, price: res.data.products.salePrice } })
+                console.log(res.data.products)
+                if (res.data.products.name){
+                    dispatch({ type: LOADING })
+                    dispatch({ type: SET_BESTBUY_PRODUCT, 
+                        product: { 
+                            name: res.data.products.name, 
+                            link: res.data.products.url, 
+                            price: res.data.products.salePrice 
+                        }})
+                }
+              
             })
+            
             .catch(err => console.log(err))
     };
 
     const trackProduct = (event) => {
         event.preventDefault();
         console.log(state.currentProduct.upc)
-        const productObj = { 
-            name: state.currentProduct.name, 
-            upc: state.currentProduct.upc, 
+        const productObj = {
+            name: state.currentProduct.name,
+            upc: state.currentProduct.upc,
             itemId: state.currentProduct.itemId,
-            price: state.currentProduct.price, 
+            price: state.currentProduct.price,
             image: state.currentProduct.image,
             amazonPrice: state.amazonProduct.price,
             bestbuyPrice: state.bestbuyProduct.price
@@ -90,7 +104,7 @@ const Product = props => {
                 </Card> */} 
                 <Row>
                     <Col>
-                    <Image id="main-image" src={state.currentProduct.image} />
+                        <Image id="main-image" src={state.currentProduct.image} />
                     </Col>
                     <Col className="text-center" id="item-description">
                     <h4 className="font-weight-bold"> {state.currentProduct.name} </h4>
