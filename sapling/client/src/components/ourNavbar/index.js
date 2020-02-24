@@ -10,13 +10,8 @@ function ourNavbar() {
     return (
       <Navbar id="guest-navbar" expand="lg">
           {/* <Row> */}
-<<<<<<< HEAD
             <Navbar.Brand id="app-nav-name" href="#home"><i id="sapling-nav-logo" class="fas fa-seedling"></i> <a id="S">S</a>apling</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" className="bg-light"/>
-=======
-            <Navbar.Brand id="app-nav-name" href="/home"><i id="sapling-nav-logo" class="fas fa-seedling"></i> <a id="S">S</a>apling</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light"/>
->>>>>>> 4db1212362c33b7386685bcb81b1bae1b08289ba
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">

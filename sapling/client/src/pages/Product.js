@@ -94,11 +94,7 @@ const Product = props => {
             <Container>
 
 
-<<<<<<< HEAD
-
-=======
 {/* 
->>>>>>> 4db1212362c33b7386685bcb81b1bae1b08289ba
                 <Card className="shadow-sm">
                     <Card.Title>{state.currentProduct.name}</Card.Title>
                     <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
