@@ -13,12 +13,15 @@ export default {
   },
 
   //returns one user and that user's tracked product list
-  getOneUser: data => {
+  getOneUser: id => {
+    return axios.get(`/api/user/${id}`);
+  },
+  getLoggedUser: data => {
     return axios.put(`/api/user/login`, data);
   },
 
   getUserHash: email => {
-    return axios.get(`/api/user/${email}`);
+    return axios.get(`/api/user/login/${email}`);
   },
 
   //returns one specic product's info

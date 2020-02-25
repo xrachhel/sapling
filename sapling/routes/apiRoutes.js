@@ -14,7 +14,19 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/user/:email", (req, res) => {
+  //returns a specific user
+  app.get("/api/user/:id", (req, res) => {
+    db.User.findOne({ _id: req.params.id })
+      .populate("trackedProducts")
+      .then(user => {
+        res.json(user);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
+
+  app.get("/api/user/login/:email", (req, res) => {
     db.User.findOne({ email: req.params.email })
       .then(dbUser => {
         res.json(dbUser);
