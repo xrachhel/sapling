@@ -39,10 +39,10 @@
         }
 
             #view-product-image {
-                width: 150px;
+                width: 250px;
                 margin-top: 20px;
                 margin-left: 20px;
-                border: 5px solid black;
+                border: 5px solid white;
                 border-radius: 5px;
             }
 
