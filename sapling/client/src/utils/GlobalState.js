@@ -12,6 +12,7 @@ import {
     UPDATE_DASHBOARD_LIST,
     SET_DASHBOARD_LIST,
     LOADING,
+    SET_SEARCH_TERM,
     LOG_IN
 } from "./actions";
 
@@ -93,6 +94,11 @@ const reducer = (state, action) => {
       trackedList: [...action.trackedList],
       loading: false
     };
+    case SET_SEARCH_TERM:
+      return{
+        ...state,
+        searchTerm: action.searchTerm,
+      }
   
   case LOADING:
     return{
@@ -144,6 +150,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       CarasuleItemTwo:[],
       CarasuleItemThree:[],
       trackedList: [],
+      searchTerm:"chromebook",
       loading: false,
       LogIn:false
     });

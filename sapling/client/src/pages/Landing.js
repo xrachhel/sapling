@@ -1,11 +1,13 @@
-import React,{ useEffect, useState } from 'react';
+import React,{ useEffect, useState,useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from "../components/ourNavbar/index";
+// import Navbar from "../components/ourNavbar/index";
 import "./assets/landing.css";
-import {Carousel,Card,CardDeck,Button, Col} from "react-bootstrap";
+import "../components/ourNavbar/assets/css/style.css"
+//import Login from "../components/logInModal/index";
+import {Carousel,Card,CardDeck,Button, Col,FormControl,Form,Navbar,Nav} from "react-bootstrap";
 import { Link } from "react-router-dom"
 import {useStoreContext} from "../utils/GlobalState"
-import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE,LOG_IN} from "../utils/actions"
+import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE,LOG_IN,SET_SEARCH_TERM} from "../utils/actions"
 import API from "../utils/API"
 //Set up search bar that will connect to results page 
 
@@ -16,7 +18,12 @@ function LandingPage() {
   const listOne = []; 
   const listTwo = []; 
   const listThree = []; 
-
+  const SearchValue = useRef(null)
+  const  handleSearch = (event) =>{
+        event.preventDefault()
+        console.log(SearchValue.current.value)
+        dispatch({type:SET_SEARCH_TERM,searchTerm:SearchValue.current.value})
+  }
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
     setDirection(e.direction);
@@ -24,7 +31,7 @@ function LandingPage() {
   };
  useEffect(()=>{
    topItemLoad()
- },[])
+ },[SearchValue])
 
   const topItemLoad = () =>{
     API.getWalmartTopProduct()
@@ -48,10 +55,55 @@ function LandingPage() {
     .catch(err => console.log(err))
   }
 
+
   return (
     <div>
       {!state.logIn ?(
-      <Navbar/>
+      <Navbar id="guest-navbar" expand="lg">
+        <Navbar.Brand id="app-nav-name" href="/home"><i id="sapling-nav-logo" className="fas fa-seedling"></i><span id="S">S</span>apling</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light"/>
+          <Navbar.Collapse id="basic-navbar-nav">
+
+            <Nav className="mr-auto">
+              <Button href="/home" id="nav-home-link">
+                <i id="nav-home-icon" className="fas fa-home"></i>
+                <p>Home</p>
+              </Button>
+
+              <Button href="#dashboard" id="nav-home-link" href="/dashboard">
+                <i id="nav-home-icon" className="fas fa-chart-line"></i>
+                <p>Dashboard</p>
+              </Button>
+            </Nav>
+
+
+            <Form inline>
+
+              <FormControl id="search-bar" type="text" placeholder="Search" ref={SearchValue} className="mr-sm-0"/>
+              
+              <Button variant="outline-success" onClick ={handleSearch}><Link  to="/results">Search</Link></Button>
+
+            </Form>
+
+              <button href="#news" id="nav-news-link">
+                <i id="nav-news-icon" className="fas fa-bell"></i>
+                <p> </p>
+              </button>
+
+
+          <Nav>
+            {/* <Login/> */}
+          </Nav>
+
+            <Nav>
+              <button href="#logout" id="login-modal-button">
+                <i id="login-button-icon" className="fas fa-sign-out-alt"></i>
+                <p>Sign-Out</p>
+              </button>
+            </Nav>
+
+          </Navbar.Collapse>
+  </Navbar>
       ):(<h1>True</h1>)}
       <div>
         {/* Thsis is the about us Carasuel */}
@@ -59,7 +111,7 @@ function LandingPage() {
         <Carousel.Item>
             <img
             className="d-block w-100"
-            src={require('./assets/images/carousel-images/amazon-skyline.png')} height
+            src={require('./assets/images/carousel-images/amazon-skyline.png')} 
             alt="First slide"
             id="image-1"
             />
@@ -135,7 +187,7 @@ function LandingPage() {
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
                           <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
-                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                            <i id="view-icon-leaf" className="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>
                     </Card>
@@ -156,7 +208,7 @@ function LandingPage() {
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
                           <Link className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
-                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                            <i id="view-icon-leaf" className="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>
                     </Card>
@@ -177,7 +229,7 @@ function LandingPage() {
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
                           <Link  className="text-center" id="view-text"to={"/product/" + item.itemId + "/" + item.upc}> 
-                            <i id="view-icon-leaf" class="fas fa-leaf"></i> View Item
+                            <i id="view-icon-leaf" className="fas fa-leaf"></i> View Item
                           </Link>
                         </Button>
                     </Card>

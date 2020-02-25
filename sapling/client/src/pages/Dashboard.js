@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, Button, Container, FormControl, Col, CardColumns, Badge } from 'react-bootstrap';
+import {Button, Container, FormControl, Col, CardColumns, Badge } from 'react-bootstrap';
+import Navbar from "../components/ourNavbar"
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
@@ -9,6 +10,7 @@ import { SET_DASHBOARD_LIST, SET_CURRENT_PRODUCT, LOADING, SET_AMAZON_PRODUCT, S
 import API from "../utils/API";
 import { Line } from "react-chartjs-2"
 import { set } from "mongoose";
+import "./assets/dashboard.css"
 
 const Dashboard = () => {
 
@@ -266,27 +268,14 @@ const Dashboard = () => {
 
     return (
         <div>
-            <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">Sapling</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
+            <Navbar/>
 
             <Container>
                 <h1>Your Tracked Products:</h1>
                 <Col className="md-4">
                     {!state.trackedList.length ? (
                         <h1>No products to display</h1>
-                    ) : (<Container>
+                    ) : (<Container  id="background">
                         <CardColumns>
                             {state.trackedList.map((product, index) => (
                                 <div>
