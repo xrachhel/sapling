@@ -51,7 +51,7 @@ const Results = () => {
                                 {state.productList.map(product => {
                                     return (
                                         <Card key={product.name} id="result-card" >
-                                            <Card.Img id="view-product-image" variant="top" src={product.thumbnailImage}/>
+                                            <Card.Img id="view-product-image" variant="top" src={product.mediumImage}/>
                                             <Card.Body className="text-center">
                                                 <Card.Title>{product.name}</Card.Title>
                                                 

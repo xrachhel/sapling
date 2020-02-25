@@ -65,8 +65,9 @@ function Login() {
     <Container>
       {/* Login */}
       <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch Login
+        <Button id="login-modal-button" onClick={handleShow}>
+          <i id="login-button-icon" class="fas fa-sign-in-alt"></i>
+          <p>Sign-In</p>
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
