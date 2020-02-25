@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./assets/css/style.css";
 
 import Login from "../logInModal/index";
+import Signup from "../signUpModal/index";
 import { Navbar, Nav, Form, FormControl, Button, Row } from "react-bootstrap";
 import { STATES } from "mongoose";
 import { useRef } from "react";
@@ -13,6 +14,8 @@ import {
 } from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 import API from "../../utils/API";
+
+let userId = localStorage.getItem("userID");
 
 function OurNavbar() {
   const SearchValue = useRef(null);
@@ -54,10 +57,14 @@ function OurNavbar() {
                 <p>Home</p>
               </Button>
 
-              <Button href="#dashboard" id="nav-home-link" href="/dashboard">
-                <i id="nav-home-icon" className="fas fa-chart-line"></i>
-                <p>Dashboard</p>
-              </Button>
+              {!userId || userId === "" ? (
+                <div></div>
+              ) : (
+                <Button href="#dashboard" id="nav-home-link" href="/dashboard">
+                  <i id="nav-home-icon" className="fas fa-chart-line"></i>
+                  <p>Dashboard</p>
+                </Button>
+              )}
             </Nav>
 
             <Form inline style={{ width: 500 }}>
@@ -87,6 +94,7 @@ function OurNavbar() {
 
             <Nav>
               <Login />
+              <Signup />
             </Nav>
 
             <Nav>
@@ -95,7 +103,6 @@ function OurNavbar() {
                 <p>Sign-Out</p>
               </button>
             </Nav>
-
           </Navbar.Collapse>
         </Navbar>
       ) : (

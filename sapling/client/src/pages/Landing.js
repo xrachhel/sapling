@@ -22,6 +22,8 @@ import {
 import API from "../utils/API";
 //Set up search bar that will connect to results page
 
+let userId = localStorage.getItem("userID");
+
 function LandingPage() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(null);

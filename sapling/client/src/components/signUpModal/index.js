@@ -66,7 +66,7 @@ function Signup() {
       {/* Signup */}
       <>
         <Button variant="primary" onClick={handleShow}>
-          Launch Signup
+          Signup
         </Button>
         <Modal show={show} onHide={handleCloseSignUp}>
           <Modal.Header closeButton>

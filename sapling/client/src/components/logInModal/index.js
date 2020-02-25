@@ -9,6 +9,8 @@ import {
 import ShowSignUp from "../signUpModal/index";
 import API from "../../utils/API";
 
+let userId = localStorage.getItem("userID");
+
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -45,6 +47,7 @@ function Login() {
           API.getUserHash(email).then(response => {
             console.log("hash response", response.data);
             window.localStorage.setItem("userID", response.data._id);
+            window.location.reload();
             // window.localStorage.setItem("password", res.data.password);
           });
           console.log("successful Login");
@@ -61,13 +64,22 @@ function Login() {
       });
   };
 
+  const handleLogout = () => {
+    window.localStorage.removeItem("userID");
+    window.location.reload();
+  };
+
   return (
     <Container>
       {/* Login */}
       <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch Login
-        </Button>
+        {!userId || userId === "" ? (
+          <Button variant="primary" onClick={handleShow}>
+            Login
+          </Button>
+        ) : (
+          <Button onClick={handleLogout}>Logout</Button>
+        )}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>
@@ -112,11 +124,6 @@ function Login() {
           <Modal.Footer>
             <Button id="sign-in" variant="primary" onClick={handleSignIn}>
               <i className="fas fa-tree"></i> Sign-In
-            </Button>
-
-            <Button id="sign-up" variant="primary">
-              {/* <i className="fas fa-seedling"></i> Sign-Up */}
-              <ShowSignUp />
             </Button>
           </Modal.Footer>
         </Modal>
