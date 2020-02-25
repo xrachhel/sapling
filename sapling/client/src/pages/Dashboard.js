@@ -1,16 +1,13 @@
-import React, { useEffect, useState,useRef } from "react";
-import {Button, Container, FormControl, Col, CardColumns, Badge,Navbar,Nav } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import {Button, Container, Col, CardColumns } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom"
-import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import "../components/ourNavbar/assets/css/style.css"
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_DASHBOARD_LIST, SET_CURRENT_PRODUCT, LOADING, SET_AMAZON_PRODUCT, SET_BESTBUY_PRODUCT,SET_SEARCH_TERM } from "../utils/actions";
 import API from "../utils/API";
 import { Line } from "react-chartjs-2"
-import { set } from "mongoose";
+
 import "./assets/dashboard.css"
 
 const Dashboard = () => {

@@ -144,10 +144,12 @@
     border: 5px solid black;
     border-radius: 10px;
 }
-
+/* ========================= Navbar Login Modal ================================================== */
+/* ========================= Navbar Login Modal ================================================== */
 /* ========================= Navbar Login Modal ================================================== */
 
 
+/* ========================= Login button ================================================== */
 #login-modal-button {
     color: white;
     font-weight: bold;
@@ -175,6 +177,49 @@
             background-color: white;
             box-shadow: 0px 0px 25px 0px white;
         }
+
+/* ========================= Logout button ================================================== */
+#logout-modal-button {
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+
+    background-color: transparent;
+    border: 5px solid transparent;
+    border-radius: 10px;
+
+    margin-top: -10px;
+    margin-bottom: -15px;
+
+    margin-right: 25px;
+
+    padding: 0;
+
+    display: none;
+}
+    #logout-button-icon {
+        font-size: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding: 5px;
+    }
+        #logout-button-icon:hover, #logout-modal-button:hover #logout-button-icon {
+            color: black;
+            background-color: white;
+            box-shadow: 0px 0px 25px 0px white;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 #login-modal-body {
     background-color: black;
