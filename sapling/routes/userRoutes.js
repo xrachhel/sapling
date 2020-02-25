@@ -1,7 +1,7 @@
 const User = require("../models/User");
 // const passport = require("../config/localStrategy");
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
   app.post("/", (req, res) => {
     console.log("user signup");
 
@@ -27,22 +27,39 @@ module.exports = function(app) {
     });
   });
 
-  // app.post(
-  //   "/login",
-  //   function(req, res, next) {
-  //     console.log("routes/user.js, login, req.body: ");
-  //     console.log(req.body);
-  //     next();
-  //   },
-  //   passport.authenticate("local"),
-  //   (req, res) => {
-  //     console.log("logged in", req.user);
-  //     var userInfo = {
-  //       email: req.user.email
-  //     };
-  //     res.send(userInfo);
-  //   }
-  // );
+  //   creates one user
+  app.post("/api/user", (req, res) => {
+    User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password
+    })
+      .then(dbUser => {
+        res.json(dbUser);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
+
+  app.put(
+    "/api/user/login",
+    passport.authenticate("local-login"),
+    function(req, res) {
+      console.log("routes/user.js, login, req.body: ");
+      console.log(req.body);
+      res.send("test");
+    }
+
+    // (req, res) => {
+    //   console.log("logged in", req.user);
+    //   var userInfo = {
+    //     email: req.user.email
+    //   };
+    //   res.send(userInfo);
+    // }
+  );
 
   app.get("/", (req, res, next) => {
     console.log("===== user!!======");
