@@ -6,7 +6,7 @@ import Login from "../logInModal/index";
 import { Navbar, Nav, Form, FormControl, Button, Row } from 'react-bootstrap'
 import { STATES } from "mongoose";
 import { useRef } from 'react';
-import {SET_SEARCH_TERM,UPDATE_RESULT_LIST} from "../../utils/actions"
+import {SET_SEARCH_TERM,UPDATE_RESULT_LIST,LOADING} from "../../utils/actions"
 import {useStoreContext} from "../../utils/GlobalState"
 import API from "../../utils/API"
 
@@ -18,15 +18,17 @@ function OurNavbar() {
     API.searchProductWalmart(search)
     .then(res =>{ 
         console.log(res)
-        dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items})})
+        dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items})
+        dispatch({type:SET_SEARCH_TERM,searchTerm:SearchValue.current.value})
+      })
     .catch(err => console.log(err));
   
 };
 
   const  handleSearch = () =>{
+    dispatch({type:LOADING})
     console.log(SearchValue.current.value)
-    dispatch({type:SET_SEARCH_TERM,searchTerm:SearchValue.current.value})
-    getResults(state.searchTerm)
+    getResults(SearchValue.current.value)
 }
     return (
       <div>

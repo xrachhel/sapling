@@ -23,7 +23,7 @@ function LandingPage() {
   };
  useEffect(()=>{
    topItemLoad()
- })
+ },[])
 
   const topItemLoad = () =>{
     API.getWalmartTopProduct()
