@@ -101,7 +101,7 @@ body {
             opacity: 1;
         }
         .walmart-card-image {
-            border: 5px solid green;
+            border: 5px solid black;
             border-radius: 2px;
         }
         #walmart-card:hover .walmart-card-image {
@@ -116,11 +116,11 @@ body {
         z-index: 2;
 
         background-color: black;
-        border: 5px solid green;
+        border: 5px solid black;
         border-radius: 5px;
         color: white;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 17px;
 
         margin-top: 160px;
         width: 100%;
@@ -136,7 +136,7 @@ body {
     }
     #view-text{
         font-weight: bold;
-        font-size: 15px;
+        font-size: 17px;
         color:white;
         text-decoration: none;
     }

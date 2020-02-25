@@ -239,7 +239,7 @@ function LandingPage() {
             </CardDeck>
         </Carousel.Item>
 
-    </Carousel>
+      </Carousel>
       </div>
 
     </div>
