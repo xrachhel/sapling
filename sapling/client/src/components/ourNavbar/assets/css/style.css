@@ -300,3 +300,22 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+
+    #search-button {
+        background-color: black;
+        border: 5px solid black;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        /* padding: 4px; */
+        margin-left: 5px;
+        text-decoration: none;
+    }
+
+    #search-button:hover {
+        border: 5px solid #abcd32;
+        box-shadow: 0px 0px 10px 0px #abcd32;
+        margin-left: 5px;
+        text-decoration: none;
+    }
