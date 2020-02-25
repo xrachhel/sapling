@@ -22,16 +22,23 @@ const Results = () => {
 
 
     const getResults = (search) => {
+
         API.searchProductWalmart(search)
         .then(res =>{ 
             console.log(res)
             dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items})})
         .catch(err => console.log(err));
+      
     };
-    const  handleSearch = (event) =>{
+    const handleSearch = (event) =>{
+      if(SearchValue.current.value){
+        dispatch({type:SET_SEARCH_TERM,searchTerm:""})
         event.preventDefault()
-        console.log(SearchValue.current.value)
+        console.log(state.searchTerm)
         dispatch({type:SET_SEARCH_TERM,searchTerm:SearchValue.current.value})
+        console.log(state.searchTerm)
+        getResults(state.searchTerm)
+      }
     }
 
     // const trackProduct = () => {
@@ -61,11 +68,11 @@ const Results = () => {
             </Nav>
 
 
-            <Form inline>
+            <Form inline style={{width:500}}>
 
               <FormControl id="search-bar" type="text" placeholder="Search" ref={SearchValue} className="mr-sm-0"/>
               
-              <Button variant="outline-success" onClick ={handleSearch}><Link  to="/results">Search</Link></Button>
+              <Button type="submit" variant="outline-success" onClick={handleSearch}><Link  to="/results">Search</Link></Button>
 
             </Form>
 

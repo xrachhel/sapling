@@ -20,9 +20,10 @@
 
 #amazon-image{
     height:200px;
-    width:250px;
+    width:300px;
 }
 #walMart-image{
+    margin:25px;
     height:150px;
     width:280px;
 }
@@ -33,16 +34,16 @@
 }
 #amazon-card{
     border: 5px solid rgba(255,153,0);
-    width:24rem;
+    width:20rem;
     height: 20rem;
 }
 #bestBuy-card{
     border: 5px solid rgba(10,74,191);
-    width:18rem;
+    width:10rem;
 }
 #walMart-card{
     border:5px solid #0B7BB2;
-    width:24rem;
+    width:20rem;
     height: 20rem;
 }
 

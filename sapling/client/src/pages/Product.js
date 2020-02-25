@@ -115,11 +115,10 @@ const Product = props => {
             </Nav>
 
 
-            <Form inline>
+            <Form inline style={{width:500}}>
 
               <FormControl id="search-bar" type="text" placeholder="Search" ref={SearchValue} className="mr-sm-0"/>
-              
-              <Button variant="outline-success" onClick ={handleSearch}><Link  to="/results">Search</Link></Button>
+              <Button variant="outline-success" onClick={() => handleSearch()}><Link  to="/results">Search</Link></Button>
 
             </Form>
 
@@ -158,18 +157,18 @@ const Product = props => {
                     </Col>
                 </Row>
 
-                <CardDeck>
+                <CardDeck className="justify-content-around">
                 <CardColumns>
                     <Card id="walMart-card" className="text-center">
                         <Card.Title>
                     <Card.Img id="walMart-image" src={require("./assets/images/logos/walmart-logo.png")}/>
                         </Card.Title>
-                        <Row className="m-5">
+                        <Row>
                         <Col>
                         <Card.Text id="price">Price: ${state.currentProduct.price} </Card.Text>
                         </Col>  
                         <Col>
-                        <Card.Text><a href={state.currentProduct.link}>Go to site</a></Card.Text>
+                        <Card.Text><a href={state.currentProduct.link} target="_blank">Go to site</a></Card.Text>
                         </Col>
                         </Row>
                     </Card>
@@ -184,7 +183,7 @@ const Product = props => {
                         <Card.Text id="price">Price: {state.amazonProduct.price} </Card.Text>
                         </Col>
                         <Col>
-                        <Card.Text><a href={state.amazonProduct.link}>Go to site</a></Card.Text>
+                        <Card.Text><a href={state.amazonProduct.link} target="_blank">Go to site</a></Card.Text>
                         </Col>
                         </Row>
                     </Card>     
@@ -193,6 +192,7 @@ const Product = props => {
                 )}
 
                 {state.bestbuyProduct.name !== "" ? (
+                
                     <Card className="justify-content-center">
                     <Card.Title>
                         <Card.Img id="bestbuy-image"src={require("./assets/images/logos/amazon-logo.png")}/>
@@ -202,7 +202,7 @@ const Product = props => {
                     <Card.Text className="ml-4"id="price">Price: ${state.bestbuyProduct.price} </Card.Text>
                     </Col>
                     <Col>      
-                    <Card.Text><a href={state.bestbuyProduct.link}>Go to site</a></Card.Text>
+                    <Card.Text><a href={state.bestbuyProduct.link} target="_blank">Go to site</a></Card.Text>
                     </Col>
                     </Row>
                 </Card>   

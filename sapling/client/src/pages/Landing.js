@@ -77,12 +77,9 @@ function LandingPage() {
             </Nav>
 
 
-            <Form inline>
-
+            <Form inline style={{width:500}}>
               <FormControl id="search-bar" type="text" placeholder="Search" ref={SearchValue} className="mr-sm-0"/>
-              
-              <Button variant="outline-success" onClick ={handleSearch}><Link  to="/results">Search</Link></Button>
-
+              <Button variant="outline-success" onClick ={handleSearch}><Link to="/results">Search</Link></Button>
             </Form>
 
               <button href="#news" id="nav-news-link">
