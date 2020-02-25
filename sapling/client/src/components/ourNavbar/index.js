@@ -53,7 +53,7 @@ function OurNavbar() {
 
               <FormControl id="search-bar" type="text" placeholder="Search" ref={SearchValue} className="mr-sm-0"/>
               
-              <Button type="submit" variant="outline-success" onClick={handleSearch}><Link  to="/results">Search</Link></Button>
+              <Button type="submit" id="search-button-style" onClick={handleSearch}><Link id="search-button-style-text" to="/results">Search</Link></Button>
 
             </Form>
 
