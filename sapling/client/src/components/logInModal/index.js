@@ -38,7 +38,7 @@ function Login() {
     // console.log(email);
     // console.log(password);
     e.preventDefault();
-    API.getOneUser({ email: email, password: password })
+    API.getLoggedUser({ email: email, password: password })
       .then(response => {
         console.log("get one user", response.data);
         if (response.data) {
