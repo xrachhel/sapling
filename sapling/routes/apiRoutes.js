@@ -14,6 +14,16 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/user/:email", (req, res) => {
+    db.User.findOne({ email: req.params.email })
+      .then(dbUser => {
+        res.json(dbUser);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
+
   //returns a specific user
   //   app.put(
   //     "/api/user/login",

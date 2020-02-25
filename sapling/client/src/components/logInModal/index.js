@@ -40,9 +40,15 @@ function Login() {
     e.preventDefault();
     API.getOneUser({ email: email, password: password })
       .then(response => {
-        console.log(response);
+        console.log("get one user", response.data);
         if (response.data) {
+          API.getUserHash(email).then(response => {
+            console.log("hash response", response.data);
+            window.localStorage.setItem("userID", response.data._id);
+            // window.localStorage.setItem("password", res.data.password);
+          });
           console.log("successful Login");
+
           // login: true,
           // username: response.data.username
           handleClose();

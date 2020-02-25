@@ -50,7 +50,7 @@ module.exports = passport => {
       function(email, password, done) {
         console.log("pre db search for local-login");
         User.findOne({ email: email }, function(err, user) {
-          console.log("passport insession");
+          console.log("Passport.js In Session");
           if (err) {
             console.log("err");
             return done(err);
@@ -77,12 +77,12 @@ module.exports = passport => {
     });
   });
 
-  passport.deserializeUser(function(id, done) {
-    console.log("deserialize user " + id);
-    // done(null, {
-    //   id: user["id"],
-    //   email: user["email"]
-    // });
+  passport.deserializeUser(function(user, done) {
+    console.log("deserialize user " + user);
+    done(null, {
+      id: user["id"],
+      email: user["email"]
+    });
   });
 };
 

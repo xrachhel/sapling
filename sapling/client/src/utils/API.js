@@ -17,6 +17,10 @@ export default {
     return axios.put(`/api/user/login`, data);
   },
 
+  getUserHash: email => {
+    return axios.get(`/api/user/${email}`);
+  },
+
   //returns one specic product's info
   getOneProduct: id => {
     return axios.get(`/api/products/${id}`);
