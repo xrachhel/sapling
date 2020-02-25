@@ -6,11 +6,10 @@ import {
   InputGroup,
   FormControl
 } from "react-bootstrap";
+import ShowSignUp from "../signUpModal/index";
 import API from "../../utils/API";
 
-function Signup() {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
+function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -20,14 +19,13 @@ function Signup() {
 
   const [showUp, setShowSign] = useState(false);
   const handleCloseSignUp = () => setShowSign(false);
-  const handleShowSignUp = () => setShowSign(true);
+  // const handleShowSignUp = () => ShowSignUp(true);
 
-  const handleFirstName = e => {
-    setFirstName(e.target.value);
-  };
-  const handleLastName = e => {
-    setLastName(e.target.value);
-  };
+  // function handleShowSignUp() {
+  //   console.log("handleShowSignUp");
+  //   ShowSignUp();
+  // }
+
   const handleEmail = e => {
     setEmail(e.target.value);
   };
@@ -35,172 +33,60 @@ function Signup() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = e => {
-    console.log("handleSubmit");
-    console.log(email);
+  const handleSignIn = e => {
+    console.log("handleSignIn");
+    // console.log(email);
+    // console.log(password);
     e.preventDefault();
-    API.createUser({ firstName, lastName, email, password })
+    API.getOneUser({ email: email, password: password })
       .then(response => {
-        console.log(response);
-        if (!response.data.errmsg) {
-          console.log("successful signup");
-          handleCloseSignUp();
+        console.log("get one user", response.data);
+        if (response.data) {
+          API.getUserHash(email).then(response => {
+            console.log("hash response", response.data);
+            window.localStorage.setItem("userID", response.data._id);
+            // window.localStorage.setItem("password", res.data.password);
+          });
+          console.log("successful Login");
+
+          // login: true,
+          // username: response.data.username
           handleClose();
         } else {
-          console.log("This user has already exist");
+          console.log("No user exit");
         }
       })
       .catch(error => {
-        console.log("signup error: ");
         console.log(error);
       });
   };
 
-  // const handleSignIn = e => {
-  //   console.log("handleSignIN");
-  //   console.log(password);
-  //   e.preventDefault();
-  //   API.getOneUser({ email, password })
-  //     .then(response => {
-  //       console.log(response);
-  //       if (!response.data.errmsg) {
-  //         console.log("successful Login");
-  //         handleClose();
-  //       } else {
-  //         console.log("No user exit");
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
   return (
     <Container>
+      {/* Login */}
       <>
-        <Button id="login-modal-button" onClick={handleShow}>
-          <i id="login-button-icon" className="fas fa-sign-in-alt"></i>
-          <p>Sign-In</p>
+        <Button variant="primary" onClick={handleShow}>
+          Launch Login
         </Button>
-
-        <Modal show={show} onHide={handleClose} >
+        <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>
-              {" "}
-              <i id="modal-heading-logo" className="fas fa-seedling"></i>
-              <a id="S2">S</a>
-              <a id="apling">apling</a>
-              <p id="modal-heading">Login:</p>
+              {"Login"}
+              <i className="fas fa-seedling"></i> Modal heading
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body id="login-modal-body" >
+          <Modal.Body>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">
-                  <i id="email-logo" className="fas fa-sun"></i> Email
+                  <i className="fas fa-sun"></i> Email
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
                 placeholder="Email"
                 aria-label="Email"
                 aria-describedby="basic-addon1"
-              />
-            </InputGroup>
-
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon2">
-                  <i id="password-logo" className="fas fa-cloud-rain"></i> Password
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="Password"
-                aria-label="Password"
-                aria-describedby="basic-addon2"
-                type="password"
-              />
-            </InputGroup>
-          </Modal.Body>
-
-
-
-
-          <Modal.Footer>
-            <Button id="sign-in" variant="primary" onClick={handleClose}>
-              <i id="sign-in-logo" className="fas fa-tree"></i> Sign-In
-            </Button>
-
-            <Button id="sign-up" variant="primary" onClick={handleShowSignUp}>
-              <i  id="sign-up-logo" className="fas fa-seedling"></i> Sign-Up
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-
-
-
-
-
-
-      {/* Signup */}
-      <>
-        <Modal show={showUp} onHide={handleCloseSignUp}>
-          <Modal.Header closeButton >
-              <Modal.Title>
-                <i id="modal-heading-logo" className="fas fa-seedling"></i>
-                <a id="S2">S</a>
-                <a id="apling">ign Up</a>
-              </Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body id="login-modal-body">
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">
-                  <i id="first-name-logo" className="fas fa-leaf"></i> First Name
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="FirstName"
-                aria-label="FirstName"
-                aria-describedby="basic-addon1"
-                type="text"
-                name="firstName"
-                value={firstName}
-                onChange={handleFirstName}
-              />
-            </InputGroup>
-
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">
-                  <i id="last-name-logo" className="fas fa-seedling"></i> Last Name
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="LastName"
-                aria-label="LastName"
-                aria-describedby="basic-addon2"
-                type="text"
-                name="lastName"
-                value={lastName}
-                onChange={handleLastName}
-              />
-            </InputGroup>
-
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">
-                  <i id="email-logo" className="fas fa-sun"></i> Email
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="EmailSignUp"
-                aria-label="EmailSignUp"
-                aria-describedby="basic-addon3"
-                type="text"
-                name="email"
                 value={email}
                 onChange={handleEmail}
               />
@@ -209,38 +95,28 @@ function Signup() {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon2">
-                  <i id="password-logo" className="fas fa-cloud-rain"></i> Password
+                  <i className="fas fa-cloud-rain"></i> Password
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
                 placeholder="Password"
                 aria-label="Password"
-                aria-describedby="basic-addon4"
+                aria-describedby="basic-addon2"
                 type="password"
-                name="password"
                 value={password}
                 onChange={handlePassword}
-              />
-            </InputGroup>
-
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon2">
-                  <i id="confirm-logo" className="fas fa-cloud"></i> Confirm
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="Confirm"
-                aria-label="Confirm"
-                aria-describedby="basic-addon5"
-                type="password"
               />
             </InputGroup>
           </Modal.Body>
 
           <Modal.Footer>
-            <Button id="submit" variant="primary" onClick={handleSubmit}>
-              <i id="submit-logo" className="fas fa-tree"></i> Submit
+            <Button id="sign-in" variant="primary" onClick={handleSignIn}>
+              <i className="fas fa-tree"></i> Sign-In
+            </Button>
+
+            <Button id="sign-up" variant="primary">
+              {/* <i className="fas fa-seedling"></i> Sign-Up */}
+              <ShowSignUp />
             </Button>
           </Modal.Footer>
         </Modal>
@@ -249,4 +125,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
