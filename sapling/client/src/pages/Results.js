@@ -1,8 +1,8 @@
-import React, { useEffect,useRef } from "react";
-import { Form, FormControl, Button, Container, Col, CardColumns } from 'react-bootstrap';
+import React, { useEffect } from "react";
+import { Container, Col, Row, CardColumns } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { useStoreContext } from "../utils/GlobalState"
-import { UPDATE_RESULT_LIST,SET_SEARCH_TERM } from "../utils/actions";
+import { UPDATE_RESULT_LIST } from "../utils/actions";
 import API from "../utils/API"; 
 import { Link } from "react-router-dom"
 import "./assets/result.css"
@@ -37,8 +37,12 @@ const Results = () => {
 
     return (
         <div id="background">
-        <Container>
-             <h1>Products:</h1>
+        <Container id="search-result-container" >
+
+            <div>
+            <a id="S3">S</a><a id="search-result-text">earch</a>
+            <a id="S3">R</a> <a id="search-result-text">esults</a>
+            </div>
                     <Col className="md-4">
                         {!state.productList.length ? (
                             <h1>No products to display</h1>
@@ -46,18 +50,30 @@ const Results = () => {
                             <CardColumns>
                                 {state.productList.map(product => {
                                     return (
-                                        <Card key={product.name} >
-                                            <Card.Img variant="top" src={product.thumbnailImage} style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
+                                        <Card key={product.name} id="result-card" >
+                                            <Card.Img id="view-product-image" variant="top" src={product.thumbnailImage}/>
                                             <Card.Body className="text-center">
                                                 <Card.Title>{product.name}</Card.Title>
-                                                <Card.Text>
-                                                    <strong>Price: </strong> ${product.salePrice}
-                                                </Card.Text>
-                                                <Card.Text>
-                                                    <strong>Rating:</strong>
-                                                    {product.customerRating}/5
-                                                </Card.Text>
-                                                <Link to={"/product/" + product.itemId + "/" + product.upc}>View Product</Link>
+                                                
+                                                <Row>
+                                                    <Col>
+                                                        <Card.Text id="results-card-text">
+                                                            <strong>Price: </strong>
+                                                            ${product.salePrice}
+                                                        </Card.Text>
+                                                    </Col>
+                                                    <Col>
+                                                        <Card.Text id="results-card-text">
+                                                            <strong>Rating: </strong>
+                                                            {product.customerRating}/5
+                                                        </Card.Text>
+                                                    </Col>
+                                                </Row>
+
+                                                <Link id="view-product-button" to={"/product/" + product.itemId + "/" + product.upc}>
+                                                    <i id="results-view-product-logo" class="fas fa-seedling"></i> 
+                                                     View Product
+                                                </Link>
                                                 {/* <Button variant="success" onClick={trackProduct}>Track Product</Button> */}
                                             </Card.Body>
                                         </Card>

@@ -2,3 +2,88 @@
     background-color:white
     !important;
 }
+
+#search-result-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+    #S3 {
+        color: green;
+        font-weight: bolder;
+        font-size: 70px;
+        font-family: TheLeavesOfTheForestRegular;
+        -webkit-text-stroke: 1px black;
+        margin: 0;
+        margin-right: -5px;
+    }
+    #search-result-text {
+        color: black;
+        font-weight: bold;
+        font-size: 40px;
+        font-family: BungaMelatiPutih;
+
+        margin: 0;
+        margin-right: 20px;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+
+        #result-card {
+            border-radius: 10px;
+            border: 5px solid black;
+
+            text-align: center;
+            /* width: 20rem; */
+        }
+
+            #view-product-image {
+                width: 150px;
+                margin-top: 20px;
+                margin-left: 20px;
+                border: 5px solid black;
+                border-radius: 5px;
+            }
+
+            #results-card-text {
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+
+            #view-product-button {
+                background-color: black;
+                border: 5px solid black;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 15px;
+                padding: 7px;
+                margin-left: 20px;
+                text-decoration: none;
+            }
+
+                #view-product-button:hover {
+                    border: 5px solid #abcd32;
+                    box-shadow: 0px 0px 10px 0px #abcd32;
+                    text-decoration: none;
+                }
+
+            #results-view-product-logo {
+                border: 2px solid white;
+                border-radius: 50%;
+                color: white;
+                margin-right: 5px;
+            }
+
+                #view-product-button:hover #results-view-product-logo {
+                    border: 2px solid green;
+                    color: limegreen;
+                    box-shadow: 0px 0px 10px 0px #abcd32;
+                }
+
+                #result-card:hover #view-product-image {
+                    border: 5px solid #abcd32;
+                    box-shadow: 0px 0px 10px 0px #abcd32;
+                }

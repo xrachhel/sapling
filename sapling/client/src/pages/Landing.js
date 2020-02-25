@@ -1,10 +1,10 @@
 import React,{ useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./assets/landing.css";
-import {Carousel,Card,CardDeck,Button, Col,FormControl,Form} from "react-bootstrap";
+import { Carousel, Card, CardDeck, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom"
-import {useStoreContext} from "../utils/GlobalState"
-import {ITEMS_ONE,ITEMS_TWO,ITEMS_THREE,LOG_IN,SET_SEARCH_TERM} from "../utils/actions"
+import { useStoreContext } from "../utils/GlobalState"
+import { ITEMS_ONE, ITEMS_TWO, ITEMS_THREE } from "../utils/actions"
 import API from "../utils/API"
 //Set up search bar that will connect to results page 
 
@@ -61,10 +61,10 @@ function LandingPage() {
             id="image-1"
             />
 
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
             <h3>First slide</h3>
             <p>First slide description goes here.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
 
 
@@ -76,10 +76,10 @@ function LandingPage() {
             id="image-3"
             />
 
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
             <h3>Third slide</h3>
             <p>Third slide description goes here.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
 
         <Carousel.Item>
@@ -90,10 +90,10 @@ function LandingPage() {
             id="image-5"
             />
 
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
             <h3>Fifth slide</h3>
             <p>Fifth slide description goes here.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
 
 
@@ -105,10 +105,10 @@ function LandingPage() {
             id="image-6"
             />
 
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
             <h3>Sixth slide</h3>
             <p>Sixth slide description goes here.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
 
     </Carousel>

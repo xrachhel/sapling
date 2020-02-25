@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
-import { Button, Container, FormControl, Row, Col, Image, CardDeck, CardColumns } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form'
-import Spinner from 'react-bootstrap/Spinner';
+import { Button, Container, Row, Col, Image, CardDeck, CardColumns } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT, SET_BESTBUY_PRODUCT, LOADING, TRACK_PRODUCT } from "../utils/actions";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import "./assets/product.css"
 
 const Product = props => {
