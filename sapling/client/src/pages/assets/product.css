@@ -1,6 +1,9 @@
+#background{
+    background-color: white;
+}
 #main-image{
     border-radius: 10px;
-    box-shadow: #abcd32
+    border: 2px solid black; 
 }
 
 #item-description{
@@ -19,17 +22,30 @@
     height:200px;
     width:250px;
 }
-#amazon-card{
-    border: 5px solid rgba(255,153,0);
+#walMart-image{
+    height:150px;
+    width:280px;
 }
-#bestBuy-card{
-    border: 5px solid rgba(10,74,191);
-}
-
-
 #bestbuy-image{
     margin: 35px;
     height:130px;
     width:210px;
 }
+#amazon-card{
+    border: 5px solid rgba(255,153,0);
+    width:24rem;
+    height: 20rem;
+}
+#bestBuy-card{
+    border: 5px solid rgba(10,74,191);
+    width:18rem;
+}
+#walMart-card{
+    border:5px solid #0B7BB2;
+    width:24rem;
+    height: 20rem;
+}
 
+#price{
+    font-weight: bold;
+}

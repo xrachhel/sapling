@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Button, Container, FormControl, Row, Col, Image } from 'react-bootstrap';
+import React, { useEffect,useRef } from "react";
+import { Button, Container, FormControl, Row, Col, Image,Navbar,Nav, CardDeck, CardColumns } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
-import Navbar from "../components/ourNavbar"
+import "../components/ourNavbar/assets/css/style.css"
 import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT, SET_BESTBUY_PRODUCT, LOADING, TRACK_PRODUCT } from "../utils/actions";
+import { SET_CURRENT_PRODUCT, SET_AMAZON_PRODUCT, SET_BESTBUY_PRODUCT, LOADING, TRACK_PRODUCT,SET_SEARCH_TERM } from "../utils/actions";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import "./assets/product.css"
@@ -13,6 +13,7 @@ import "./assets/product.css"
 const Product = props => {
 
     const [state, dispatch] = useStoreContext();
+    const SearchValue = useRef(null)
 
     console.log("Best buy state price", state)
 
@@ -21,6 +22,11 @@ const Product = props => {
         getAmazon();
         getBestBuy();
     }, []);
+    const handleSearch = (event) =>{
+        event.preventDefault()
+        console.log(SearchValue.current.value)
+        dispatch({type:SET_SEARCH_TERM,searchTerm:SearchValue.current.value})
+    }
 
     const getProduct = () => {
         API.getProductInfoWalmart(props.match.params.itemId)
@@ -89,17 +95,56 @@ const Product = props => {
 
 
     return (
-        <div>
-            <Navbar />
-            <Container>
-                <Card className="shadow-sm">
-                    <Card.Title>{state.currentProduct.name}</Card.Title>
-                    <Card.Img src={state.currentProduct.image} variant="top" style={{ width: "45%" }} className="ml-5 pl-5 pt-5" />
-                    <Card.Text>Description: {state.currentProduct.description}</Card.Text>
-                    <Button variant="success" onClick={trackProduct}>Track Product</Button>
+      <div id="background">
+      {!state.logIn ?(
+      <Navbar id="guest-navbar" expand="lg">
+        <Navbar.Brand id="app-nav-name" href="/home"><i id="sapling-nav-logo" className="fas fa-seedling"></i><span id="S">S</span>apling</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light"/>
+          <Navbar.Collapse id="basic-navbar-nav">
 
-                </Card> */}
-                <Row>
+            <Nav className="mr-auto">
+              <Button href="/home" id="nav-home-link">
+                <i id="nav-home-icon" className="fas fa-home"></i>
+                <p>Home</p>
+              </Button>
+
+              <Button href="#dashboard" id="nav-home-link" href="/dashboard">
+                <i id="nav-home-icon" className="fas fa-chart-line"></i>
+                <p>Dashboard</p>
+              </Button>
+            </Nav>
+
+
+            <Form inline>
+
+              <FormControl id="search-bar" type="text" placeholder="Search" ref={SearchValue} className="mr-sm-0"/>
+              
+              <Button variant="outline-success" onClick ={handleSearch}><Link  to="/results">Search</Link></Button>
+
+            </Form>
+
+              <button href="#news" id="nav-news-link">
+                <i id="nav-news-icon" className="fas fa-bell"></i>
+                <p> </p>
+              </button>
+
+
+          <Nav>
+            {/* <Login/> */}
+          </Nav>
+
+            <Nav>
+              <button href="#logout" id="login-modal-button">
+                <i id="login-button-icon" className="fas fa-sign-out-alt"></i>
+                <p>Sign-Out</p>
+              </button>
+            </Nav>
+
+          </Navbar.Collapse>
+  </Navbar>
+      ):(<h1>True</h1>)}
+            <Container>
+                <Row className="justify-content-center">
                     <Col>
                         <Image id="main-image" src={state.currentProduct.image} />
                     </Col>
@@ -113,31 +158,59 @@ const Product = props => {
                     </Col>
                 </Row>
 
-               
-                    <Card>
-                        <Card.Title>Walmart:</Card.Title>
-                        <Card.Text>Price: ${state.currentProduct.price} </Card.Text>
+                <CardDeck>
+                <CardColumns>
+                    <Card id="walMart-card" className="text-center">
+                        <Card.Title>
+                    <Card.Img id="walMart-image" src={require("./assets/images/logos/walmart-logo.png")}/>
+                        </Card.Title>
+                        <Row className="m-5">
+                        <Col>
+                        <Card.Text id="price">Price: ${state.currentProduct.price} </Card.Text>
+                        </Col>  
+                        <Col>
                         <Card.Text><a href={state.currentProduct.link}>Go to site</a></Card.Text>
+                        </Col>
+                        </Row>
                     </Card>
-              
 
-                {state.amazonProduct.name !== "" ? (<Card>
-                        <Card.Title>Amazon:</Card.Title>
-                        <Card.Text>Price: {state.amazonProduct.price} </Card.Text>
+                {state.amazonProduct.name !== "" ? (
+                        <Card id="amazon-card"className="text-center">
+                        <Card.Title>
+                            <Card.Img id="amazon-image"src={require("./assets/images/logos/amazon-logo.png")}/>
+                            </Card.Title>
+                        <Row>
+                        <Col className="ml-4">
+                        <Card.Text id="price">Price: {state.amazonProduct.price} </Card.Text>
+                        </Col>
+                        <Col>
                         <Card.Text><a href={state.amazonProduct.link}>Go to site</a></Card.Text>
-                    </Card>) : ( <div></div>
+                        </Col>
+                        </Row>
+                    </Card>     
+                    ) : ( <div></div>
                     
                 )}
 
-                {state.bestbuyProduct.name !== "" ? (<Card>
-                    <Card.Title>Best Buy:</Card.Title>
-                    <Card.Text>Price: ${state.bestbuyProduct.price} </Card.Text>
+                {state.bestbuyProduct.name !== "" ? (
+                    <Card className="justify-content-center">
+                    <Card.Title>
+                        <Card.Img id="bestbuy-image"src={require("./assets/images/logos/amazon-logo.png")}/>
+                    </Card.Title>
+                    <Row>
+                    <Col>
+                    <Card.Text className="ml-4"id="price">Price: ${state.bestbuyProduct.price} </Card.Text>
+                    </Col>
+                    <Col>      
                     <Card.Text><a href={state.bestbuyProduct.link}>Go to site</a></Card.Text>
-                </Card>) : (
+                    </Col>
+                    </Row>
+                </Card>   
+                ) : (
                     <div></div>
                 )}
-                
-
+              </CardColumns>  
+            </CardDeck>
             </Container>
         </div>
     );
