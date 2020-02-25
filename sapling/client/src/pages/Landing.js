@@ -120,14 +120,20 @@ function LandingPage() {
 
 
       <div>
+        {/* <h1 className="mx-auto">Best Sellers:</h1> */}
       <Carousel id="carousel" activeIndex={index} direction={direction} onSelect={handleSelect}>
+
+
+
 
       <Carousel.Item>
             <CardDeck id="walmart-deck">
               {state.CarasuleItemOne.map(item => (
               <div className="mx-auto" id="walmart-card">
                   <Col className="text-center">
+                    <Card.Title id="top-seller-text">Best Seller</Card.Title>
                     <Card key={item.itemId}>
+
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
@@ -148,7 +154,9 @@ function LandingPage() {
               {state.CarasuleItemTwo.map(item => (
               <div className="mx-auto" id="walmart-card">
                   <Col className="text-center">
+                    <Card.Title id="top-seller-text">Best Seller</Card.Title>
                     <Card key={item.itemId}>
+
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 
@@ -169,7 +177,9 @@ function LandingPage() {
               {state.CarasuleItemThree.map(item => (
               <div className="mx-auto" id="walmart-card">
                   <Col className="text-center">
+                    <Card.Title id="top-seller-text">Best Seller</Card.Title>
                     <Card key={item.itemId}>
+                      
                       <Card.Img variant="top" src={item.mediumImage} className="walmart-card-image" />
                         {/* <Link  className="text-center bg-warning"to={"/product/" + item.itemId + "/" + item.upc}>Go to Product</Link> */}
                         <Button id="view-button" className="mx-auto"> 

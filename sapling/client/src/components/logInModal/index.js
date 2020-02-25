@@ -79,7 +79,7 @@ function Signup() {
     <Container>
       <>
         <Button id="login-modal-button" onClick={handleShow}>
-          <i id="login-button-icon" class="fas fa-sign-in-alt"></i>
+          <i id="login-button-icon" className="fas fa-sign-in-alt"></i>
           <p>Sign-In</p>
         </Button>
 

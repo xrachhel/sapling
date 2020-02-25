@@ -10,13 +10,15 @@
 
 body {
     /* background-image: url('./images/backgrounds/background-nature-2.jpg'); */
-    background-image: url('./images/backgrounds/giphy-2.gif');
+    /* background-image: url('./images/backgrounds/giphy-2.gif'); */
     background-repeat: no-repeat;
     background-size: cover;
+    /* background-size: auto; */
 }
 
 #carousel {
     background-color: grey;
+    margin-top: 20px;
     margin-left: 17%;
     margin-right: 17%;
 
@@ -75,6 +77,14 @@ body {
             color: white;
         }
 
+        #top-seller-text {
+            color: black;
+            font-weight: bold;
+            font-size: 15px;
+            margin: 0;
+            margin-top: -10px;
+            margin-bottom: 5px;
+        }
 
 /* =========================              ================================================== */
 /* ========================= Walmart Deck ================================================== */

@@ -66,15 +66,15 @@ function OurNavbar() {
 
 
           <Nav>
-            {/* <Login/> */}
+            <Login/>
           </Nav>
 
-            <Nav>
+            {/* <Nav>
               <button href="#logout" id="login-modal-button">
                 <i id="login-button-icon" className="fas fa-sign-out-alt"></i>
                 <p>Sign-Out</p>
               </button>
-            </Nav>
+            </Nav> */}
 
           </Navbar.Collapse>
   </Navbar>

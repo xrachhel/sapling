@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
-import {Modal,Button,Container,Row,Col} from "react-bootstrap";
-import {Bar,Line,Pie} from "react-chartjs-2";
+import { Modal, Button, Container, Row, Col } from "react-bootstrap";
+import { Bar, Line, Pie } from "react-chartjs-2";
  
 
 function productModal(props){
