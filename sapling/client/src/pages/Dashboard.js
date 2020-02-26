@@ -149,9 +149,15 @@ const Dashboard = () => {
         })
         .then(amazon => {
           API.getProductInfoAmazon(state.trackedList[value].upc).then(res => {
+            let amazonPrice = 0;
+            if(res.data.product){
+              if(res.data.product.buybox_winner){
+                amazonPrice = res.data.product.buybox_winner;
+              }
+            }
             API.updateAmazonPrice(
               state.trackedList[value]._id,
-              res.data.product.buybox_winner.price.value
+              amazonPrice
             ).then(resultamazon => {
               console.log("*****get Amazon");
               console.log(resultamazon);
@@ -345,7 +351,7 @@ const Dashboard = () => {
                         </a>
                       </p>
 
-                      {product.recentAmazonPrices.length !== 0 ? (
+                      {(product.amazonPrice !== 0 && product.recentAmazonPrices.length !== 0) ? (
                         <div>
                           <Modal.Body>
                             Amazon price before: ${product.amazonPrice}
