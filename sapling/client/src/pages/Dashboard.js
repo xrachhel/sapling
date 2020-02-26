@@ -10,7 +10,8 @@ import {
   LOADING,
   SET_AMAZON_PRODUCT,
   SET_BESTBUY_PRODUCT,
-  SET_SEARCH_TERM
+  SET_SEARCH_TERM,
+  REMOVE_PRODUCT
 } from "../utils/actions";
 import API from "../utils/API";
 import { Line } from "react-chartjs-2";
@@ -269,6 +270,18 @@ const Dashboard = () => {
     });
   };
 
+  const stopTracking = upc => {
+    API.getProductId(upc).then(res => {
+      console.log("stop dashboard tracking", res.data);
+      API.deleteProduct(userId, res.data._id).then(res => {
+        dispatch({
+          type: REMOVE_PRODUCT,
+          upc: upc
+        });
+      });
+    });
+  };
+
   return (
     <div>
       <Container>
@@ -295,6 +308,12 @@ const Dashboard = () => {
                           onClick={() => getModal(index)}
                         >
                           See Product Info
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => stopTracking(product.upc)}
+                        >
+                          Stop Tracking
                         </Button>
                       </Card.Body>
                     </Card>

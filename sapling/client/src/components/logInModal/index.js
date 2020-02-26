@@ -6,6 +6,7 @@ import {
   InputGroup,
   FormControl
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ShowSignUp from "../signUpModal/index";
 import API from "../../utils/API";
 
@@ -78,7 +79,9 @@ function Login() {
             Login
           </Button>
         ) : (
-          <Button onClick={handleLogout}>Logout</Button>
+          <Link to="/home">
+            <Button onClick={handleLogout}>Logout</Button>
+          </Link>
         )}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
