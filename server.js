@@ -21,13 +21,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // MIDDLEWARE
-// app.use(morgan("dev"));
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true
-//   })
-// );
-// app.use(bodyParser.json());
+app.use(morgan("dev"));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+app.use(bodyParser.json());
 
 // Sessions
 app.use(
