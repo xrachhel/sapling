@@ -1,4 +1,5 @@
 const User = require("../models/User");
+// const passport = require("../config/localStrategy");
 
 module.exports = function(app, passport) {
   app.post("/", (req, res) => {
