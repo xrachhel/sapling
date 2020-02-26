@@ -7,7 +7,6 @@ import {
   FormControl
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ShowSignUp from "../signUpModal/index";
 import API from "../../utils/API";
 
 let userId = localStorage.getItem("userID");
@@ -20,15 +19,6 @@ function Login() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showUp, setShowSign] = useState(false);
-  const handleCloseSignUp = () => setShowSign(false);
-  // const handleShowSignUp = () => ShowSignUp(true);
-
-  // function handleShowSignUp() {
-  //   console.log("handleShowSignUp");
-  //   ShowSignUp();
-  // }
-
   const handleEmail = e => {
     setEmail(e.target.value);
   };
@@ -38,8 +28,6 @@ function Login() {
 
   const handleSignIn = e => {
     console.log("handleSignIn");
-    // console.log(email);
-    // console.log(password);
     e.preventDefault();
     API.getLoggedUser({ email: email, password: password })
       .then(response => {
@@ -49,18 +37,17 @@ function Login() {
             console.log("hash response", response.data);
             window.localStorage.setItem("userID", response.data._id);
             window.location.reload();
-            // window.localStorage.setItem("password", res.data.password);
+
           });
           console.log("successful Login");
 
-          // login: true,
-          // username: response.data.username
           handleClose();
         } else {
           console.log("No user exit");
         }
       })
       .catch(error => {
+        alert("User does not exist.");
         console.log(error);
       });
   };
@@ -75,27 +62,34 @@ function Login() {
       {/* Login */}
       <>
         {!userId || userId === "" ? (
-          <Button variant="primary" onClick={handleShow}>
-            Login
+          <Button id="login-modal-button" onClick={handleShow}>
+            <i id="login-button-icon" className="fas fa-sign-in-alt"></i>
+            <p>Sign-In</p>
           </Button>
         ) : (
           <Link to="/home">
-            <Button onClick={handleLogout}>Logout</Button>
+            <Button id="logout-modal-button" onClick={handleLogout}>
+              <i id="logout-button-icon" className="fas fa-sign-out-alt"></i>
+              <p>Sign-Out</p>
+            </Button>
           </Link>
         )}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>
+            <Modal.Title id="modal-heading">
+              <i id="modal-heading-logo" className="fas fa-seedling"></i>
+              <span id="S2">S</span>
+              <span id="apling">apling</span>
+              <br/>
               {"Login"}
-              <i className="fas fa-seedling"></i> Modal heading
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body>
+          <Modal.Body id="login-modal-body">
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">
-                  <i className="fas fa-sun"></i> Email
+                  <i id="email-logo" className="fas fa-sun"></i> Email
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
@@ -110,7 +104,7 @@ function Login() {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon2">
-                  <i className="fas fa-cloud-rain"></i> Password
+                  <i id="password-logo" className="fas fa-cloud-rain"></i> Password
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
@@ -126,7 +120,7 @@ function Login() {
 
           <Modal.Footer>
             <Button id="sign-in" variant="primary" onClick={handleSignIn}>
-              <i className="fas fa-tree"></i> Sign-In
+              <i id="sign-in-logo" className="fas fa-tree"></i> Sign-In
             </Button>
           </Modal.Footer>
         </Modal>

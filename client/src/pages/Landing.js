@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/landing.css";
-import {
-  Carousel,
-  Card,
-  CardDeck,
-  Button,
-  Col,
-  FormControl,
-  Form
-} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import CardDeck from "react-bootstrap/CardDeck";
+import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 import {
@@ -65,7 +61,7 @@ function LandingPage() {
   return (
     <>
       <div>
-        {/* Thsis is the about us Carasuel */}
+        {/* This is the about us Carasuel */}
         <Carousel id="carousel">
           <Carousel.Item>
             <img
@@ -74,41 +70,15 @@ function LandingPage() {
               alt="First slide"
               id="image-1"
             />
-
-            <Carousel.Caption>
-              <h3>First slide</h3>
-              <p>First slide description goes here.</p>
-            </Carousel.Caption>
           </Carousel.Item>
-
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={require("./assets/images/carousel-images/target-symbol.gif")}
+              src={require("./assets/images/carousel-images/best-buy-logo.jpg")}
               alt="Third slide"
               id="image-3"
             />
-
-            <Carousel.Caption>
-              <h3>Third slide</h3>
-              <p>Third slide description goes here.</p>
-            </Carousel.Caption>
           </Carousel.Item>
-
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={require("./assets/images/carousel-images/macys-logo.jpg")}
-              alt="Fifth slide"
-              id="image-5"
-            />
-
-            <Carousel.Caption>
-              <h3>Fifth slide</h3>
-              <p>Fifth slide description goes here.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-
           <Carousel.Item>
             <img
               className="d-block w-100"
@@ -116,11 +86,6 @@ function LandingPage() {
               alt="Sixth slide"
               id="image-6"
             />
-
-            <Carousel.Caption>
-              <h3>Sixth slide</h3>
-              <p>Sixth slide description goes here.</p>
-            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>

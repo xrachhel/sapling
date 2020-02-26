@@ -29,8 +29,8 @@ export default {
     return axios.get(`/api/products/${id}`);
   },
 
-  getProductId: upc => {
-    return axios.get(`/api/products/id/${upc}`);
+  getProductId: itemId => {
+    return axios.get(`/api/products/id/${itemId}`);
   },
 
   //creates one user

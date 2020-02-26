@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
-import { Container, Col, Row, CardColumns } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card'
-import { useStoreContext } from "../utils/GlobalState"
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import CardColumns from "react-bootstrap/CardColumns";
+import Card from 'react-bootstrap/Card';
+import Spinner from "react-bootstrap/Spinner";
+import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_RESULT_LIST } from "../utils/actions";
 import API from "../utils/API"; 
-import { Link } from "react-router-dom"
-import "./assets/result.css"
+import { Link } from "react-router-dom";
+import "./assets/result.css";
 
 
 
@@ -23,8 +27,14 @@ const Results = () => {
 
         API.searchProductWalmart(search)
         .then(res =>{ 
-            console.log(res)
-            dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items})})
+            console.log("HELLO",res.data.totalResults);
+            if(res.data.totalResults !== 0 && res.data.totalResults){
+                console.log("GOODBYE",res)
+                dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items})
+            } else {
+                dispatch({type: UPDATE_RESULT_LIST, productList: []});
+            }
+        })
         .catch(err => console.log(err));
       
     };
@@ -43,6 +53,8 @@ const Results = () => {
             <a id="S3">S</a><a id="search-result-text">earch</a>
             <a id="S3">R</a> <a id="search-result-text">esults</a>
             </div>
+            {state.loading ? (<Spinner animation="border" />):
+                (
                     <Col className="md-4">
                         {!state.productList.length ? (
                             <h1>No products to display</h1>
@@ -71,7 +83,7 @@ const Results = () => {
                                                 </Row>
 
                                                 <Link id="view-product-button" to={"/product/" + product.itemId + "/" + product.upc}>
-                                                    <i id="results-view-product-logo" class="fas fa-seedling"></i> 
+                                                    <i id="results-view-product-logo" className="fas fa-seedling"></i> 
                                                      View Product
                                                 </Link>
                                                 {/* <Button variant="success" onClick={trackProduct}>Track Product</Button> */}
@@ -83,6 +95,8 @@ const Results = () => {
                         </Container>
                             )}
                     </Col>
+                )
+            }
         </Container>
 
         </div>

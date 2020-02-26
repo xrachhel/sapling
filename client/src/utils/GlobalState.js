@@ -77,7 +77,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         trackedList: state.trackedList.filter(product => {
-          return product.upc !== action.upc;
+          return product.itemId !== action.itemId;
         })
       };
 
@@ -103,7 +103,7 @@ const reducer = (state, action) => {
     case LOADING:
       return {
         ...state,
-        loading: false
+        loading: true
       };
     case LOG_IN: {
       return {
@@ -150,7 +150,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     CarasuleItemTwo: [],
     CarasuleItemThree: [],
     trackedList: [],
-    searchTerm: "chromebook",
+    searchTerm: "",
     loading: false,
     LogIn: false
   });

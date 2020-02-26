@@ -23,12 +23,19 @@ function OurNavbar() {
   const getResults = search => {
     API.searchProductWalmart(search)
       .then(res => {
-        console.log(res);
-        dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items });
-        dispatch({
-          type: SET_SEARCH_TERM,
-          searchTerm: SearchValue.current.value
-        });
+        if(res.data.totalResults !== 0 && res.data.totalResults){
+          dispatch({ type: UPDATE_RESULT_LIST, productList: res.data.items });
+          dispatch({
+            type: SET_SEARCH_TERM,
+            searchTerm: SearchValue.current.value
+          });
+        } else{
+          dispatch({ type: UPDATE_RESULT_LIST, productList: [] });
+          dispatch({
+            type: SET_SEARCH_TERM,
+            searchTerm: SearchValue.current.value
+          });
+        }
       })
       .catch(err => console.log(err));
   };
@@ -67,7 +74,7 @@ function OurNavbar() {
               )}
             </Nav>
 
-            <Form inline style={{ width: 500 }}>
+            <Form inline style={{ width: 500 }} onSubmit={e => {e.preventDefault()}}>
               <FormControl
                 id="search-bar"
                 type="text"
@@ -75,16 +82,15 @@ function OurNavbar() {
                 ref={SearchValue}
                 className="mr-sm-0"
               />
-
-              <Button
-                type="submit"
-                id="search-button-style"
-                onClick={handleSearch}
-              >
-                <Link id="search-button-style-text" to="/results">
-                  Search
-                </Link>
-              </Button>
+              <Link id="search-button-style-text" to="/results">
+                <Button
+                  type="submit"
+                  id="search-button-style"
+                  onClick={handleSearch}
+                >
+                    Search
+                </Button>
+              </Link>
             </Form>
 
             <button href="#news" id="nav-news-link">
@@ -94,15 +100,9 @@ function OurNavbar() {
 
             <Nav>
               <Login />
-              <Signup />
+              {!userId || userId === "" ? (<Signup/>) : (<div></div>)}
             </Nav>
 
-            <Nav>
-              <button href="#logout" id="logout-modal-button">
-                <i id="logout-button-icon" className="fas fa-sign-out-alt"></i>
-                <p>Sign-Out</p>
-              </button>
-            </Nav>
           </Navbar.Collapse>
         </Navbar>
       ) : (

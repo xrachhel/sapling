@@ -8,7 +8,6 @@ const ProductSchema = new Schema({
   },
   upc: {
     type: Number,
-    required: true
   },
   itemId: {
     type: Number

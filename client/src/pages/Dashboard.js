@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Col, CardColumns } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import CardColumns from "react-bootstrap/CardColumns";
 import Modal from "react-bootstrap/Modal";
 import Card from "react-bootstrap/Card";
 import "../components/ourNavbar/assets/css/style.css";
@@ -10,7 +14,6 @@ import {
   LOADING,
   SET_AMAZON_PRODUCT,
   SET_BESTBUY_PRODUCT,
-  SET_SEARCH_TERM,
   REMOVE_PRODUCT
 } from "../utils/actions";
 import API from "../utils/API";
@@ -23,9 +26,6 @@ let userId = localStorage.getItem("userID");
 const Dashboard = () => {
   const [state, dispatch] = useStoreContext();
   const [show, setShow] = useState(false);
-  let walmartArr = [];
-  let amazonArr = [];
-  let bestbuyArr = [];
 
   useEffect(() => {
     getTrackedItems();
@@ -152,9 +152,10 @@ const Dashboard = () => {
             let amazonPrice = 0;
             if(res.data.product){
               if(res.data.product.buybox_winner){
-                amazonPrice = res.data.product.buybox_winner;
+                amazonPrice = res.data.product.buybox_winner.price.value;
               }
             }
+
             API.updateAmazonPrice(
               state.trackedList[value]._id,
               amazonPrice
@@ -168,7 +169,7 @@ const Dashboard = () => {
                   product: {
                     name: res.data.product.title,
                     link: res.data.product.link,
-                    price: res.data.product.buybox_winner.price.value
+                    price: amazonPrice
                   }
                 });
               }
@@ -202,87 +203,13 @@ const Dashboard = () => {
     });
   };
 
-  // const getWalmart = (value) => {
-  //     API.getProductInfoWalmart(state.trackedList[value].itemId)
-  //         .then(res => {
-  //             API.updateWalmarPrice(state.trackedList[value]._id, res.data.salePrice)
-  //                 .then(result => {
-  //                     console.log("*****Get WalMart")
-  //                     console.log(result)
-  //                     walmartArr = result.data.recentPrices
-  //                     console.log(walmartArr)
-  //                     dispatch({ type: LOADING })
-  //                     dispatch({
-  //                         type: SET_CURRENT_PRODUCT, product: {
-  //                             name: res.data.name,
-  //                             image: res.data.thumbnailImage,
-  //                             description: res.data.shortDescription,
-  //                             price: res.data.salePrice,
-  //                             upc: res.data.upc,
-  //                             itemId: res.data.itemId,
-  //                             link: res.data.productUrl,
-  //                             recentPrices: result.data.recentPrices
-  //                         }
-  //                     })
-  //                 })
-  //         })
-  //         .catch(err => console.log(err))
-  // };
-
-  // const getAmazon = (value) => {
-  //     API.getProductInfoAmazon(state.trackedList[value].upc)
-  //         .then(res => {
-  //             API.updateAmazonPrice(state.trackedList[value]._id, res.data.product.buybox_winner.price.raw)
-  //                 .then(result => {
-  //                     console.log("*****result")
-  //                     console.log(result)
-  //                     amazonArr = result.data.recentAmazonPrices
-  //                     dispatch({ type: LOADING })
-  //                     dispatch({
-  //                         type: SET_AMAZON_PRODUCT, product: {
-  //                             name: res.data.product.title,
-  //                             link: res.data.product.link,
-  //                             price: res.data.product.buybox_winner.price.raw }
-  //                     })
-  //                 })
-  //         })
-  //         .catch(err => console.log(err))
-  // };
-
-  // const getBestBuy = (value) => {
-  //     API.getProductInfoBestbuy(state.trackedList[value].upc)
-  //         .then(res => {
-  //             API.updateBestbuyPrice(state.trackedList[value]._id, res.data.products.salePrice)
-  //                 .then(result => {
-  //                     console.log("*****Get BestBuy")
-  //                     console.log(result)
-  //                     bestbuyArr = result.data.recentBestbuyPrices
-  //                     dispatch({ type: LOADING })
-  //                     dispatch({
-  //                         type: SET_BESTBUY_PRODUCT, product: {
-  //                             name: res.data.products.name,
-  //                             link: res.data.products.url,
-  //                             price: res.data.products.salePrice
-  //                         }
-  //                     })
-  //                 })
-  //         })
-  //         .catch(err => console.log(err))
-  // };
-
-  const getRecentPrices = value => {
-    API.getOneProduct(state.trackedList[value]._id).then(res => {
-      walmartArr = res.data.recentPrices;
-    });
-  };
-
-  const stopTracking = upc => {
-    API.getProductId(upc).then(res => {
+  const stopTracking = itemId => {
+    API.getProductId(itemId).then(res => {
       console.log("stop dashboard tracking", res.data);
       API.deleteProduct(userId, res.data._id).then(res => {
         dispatch({
           type: REMOVE_PRODUCT,
-          upc: upc
+          itemId: itemId
         });
       });
     });
@@ -291,7 +218,7 @@ const Dashboard = () => {
   return (
     <div>
       <Container>
-        <h1>Your Tracked Products:</h1>
+        <h1 className="text-center">Your Tracked Products:</h1>
         <Col className="md-4">
           {!state.trackedList.length ? (
             <h1>No products to display</h1>
@@ -300,88 +227,108 @@ const Dashboard = () => {
               <CardColumns>
                 {state.trackedList.map((product, index) => (
                   <div>
-                    <Card key={product.name}>
+                    <Card className="text-center" id="result-card" key={product.name}>
                       <Card.Img
                         variant="top"
                         src={product.image}
-                        style={{ width: "45%" }}
+                        style={{ width: "70%" }}
                         className="ml-5 pl-5 pt-5"
                       />
                       <Card.Body className="text-center">
                         <Card.Title>{product.name}</Card.Title>
                         <Button
-                          variant="primary"
+                          variant="dark"
                           onClick={() => getModal(index)}
                         >
                           See Product Info
                         </Button>
                         <Button
                           variant="danger"
-                          onClick={() => stopTracking(product.upc)}
+                          onClick={() => stopTracking(product.itemId)}
+                          className="mt-2 mt-lg-0 ml-lg-2"
                         >
                           Stop Tracking
                         </Button>
                       </Card.Body>
                     </Card>
-                    <Modal show={show === index} onHide={handleClose}>
+                    <Modal size="lg" show={show === index} onHide={handleClose}>
                       <Modal.Header closeButton>
                         <Modal.Title>{product.name}</Modal.Title>
                       </Modal.Header>
                       <div className="lineGraph">
                         <Line data={lineData} options={lineOptions.options} />
                       </div>
-                      <Button
-                        onClick={() => {
-                          getRecentPrices(index);
-                        }}
-                      >
-                        click
-                      </Button>
 
-                      <Modal.Body>
-                        Walmart price before: ${product.price}
-                      </Modal.Body>
-                      <Modal.Body>
-                        Walmart price now: ${state.currentProduct.price}
-                      </Modal.Body>
-                      <p>
-                        <a href={state.currentProduct.link}>
-                          {" "}
-                          Go to Walmart's website
-                        </a>
-                      </p>
+                      <h4 className="ml-3 mt-2">Walmart:</h4>
 
-                      {(product.amazonPrice !== 0 && product.recentAmazonPrices.length !== 0) ? (
-                        <div>
+                      <Row>
+                        <Col>
                           <Modal.Body>
-                            Amazon price before: ${product.amazonPrice}
+                            Walmart price before: ${product.price}
                           </Modal.Body>
+                        </Col>
+                        <Col>
                           <Modal.Body>
-                            Amazon price now: ${state.amazonProduct.price}
+                            Walmart price now: ${state.currentProduct.price}
                           </Modal.Body>
-                          <p>
-                            <a href={state.amazonProduct.link}>
-                              Go to Amazon's website
+                        </Col>
+                        <Col>
+                          <Modal.Body>
+                            <a target="_blank" href={state.currentProduct.link}>
+                              {" "}
+                              Go to Walmart's website
                             </a>
-                          </p>
+                          </Modal.Body>
+                        </Col>
+                      </Row>
+
+                      {product.amazonPrice !== null ? (
+                        <div>
+                          <h4 className="ml-3">Amazon:</h4>
+                          <Row>
+                            <Col>
+                              <Modal.Body>
+                                  Amazon price before: ${product.amazonPrice}
+                              </Modal.Body>
+                            </Col>
+                            <Col>
+                              <Modal.Body>
+                                  Amazon price now: ${state.amazonProduct.price}
+                              </Modal.Body>
+                            </Col>
+                            <Col>
+                              <Modal.Body>
+                                  <a target="_blank"href={state.amazonProduct.link}>
+                                      Go to Amazon's website
+                                      </a>
+                              </Modal.Body>
+                            </Col>
+                          </Row>
                         </div>
                       ) : (
                         <div></div>
                       )}
 
-                      {product.recentBestbuyPrices.length !== 0 ? (
+                      {product.bestbuyPrice !== null ? (
                         <div>
-                          <Modal.Body>
-                            Best Buy price before: ${product.bestbuyPrice}
-                          </Modal.Body>
-                          <Modal.Body>
-                            Best Buy price now: ${state.bestbuyProduct.price}
-                          </Modal.Body>
-                          <p>
-                            <a href={state.bestbuyProduct.link}>
-                              Go to Best Buy website
-                            </a>
-                          </p>
+                          <h4 className="ml-3">BestBuy:</h4>
+                            <Row>
+                              <Col>
+                                <Modal.Body>
+                                    Best Buy price before: ${product.bestbuyPrice}
+                                </Modal.Body>
+                              </Col>
+                              <Col>
+                                <Modal.Body>
+                                    Best Buy price now: ${state.bestbuyProduct.price}
+                                </Modal.Body>
+                              </Col>
+                              <Col>
+                                <Modal.Body>
+                                <a target="_blank"href={state.bestbuyProduct.link}>Go to Best Buy website</a>
+                                </Modal.Body>
+                              </Col>
+                            </Row>
                         </div>
                       ) : (
                         <div></div>
@@ -390,9 +337,6 @@ const Dashboard = () => {
                       <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                           Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                          Save Changes
                         </Button>
                       </Modal.Footer>
                     </Modal>

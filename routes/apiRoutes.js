@@ -69,8 +69,8 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/products/id/:upc", (req, res) => {
-    db.Products.findOne({ upc: req.params.upc })
+  app.get("/api/products/id/:itemId", (req, res) => {
+    db.Products.findOne({ itemId: req.params.itemId })
       .then(product => {
         res.json(product);
       })

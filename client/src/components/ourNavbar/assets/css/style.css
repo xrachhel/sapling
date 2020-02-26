@@ -26,7 +26,6 @@
     background-color: black;
     border-bottom: 10px solid white;
     box-shadow: 0px 0px 10px 0px white;
-    /* margin-bottom: 25px; */
 
     padding: 0;
 }
@@ -56,7 +55,6 @@
 
     /* ========================= Navbar App Name ================================================== */
     #app-nav-name {
-        /* color: #d9e836; */
         color: white;
         font-weight: bold;
         font-size: 50px;
@@ -125,6 +123,8 @@
             border-radius: 10px;
             margin-top: 20px;
             padding: 5px;
+
+            display: none;
         }
             #nav-news-icon:hover, #nav-news-link:hover #nav-news-icon {
                 color: black;
@@ -162,8 +162,6 @@
     margin-top: -10px;
     margin-bottom: -15px;
 
-    margin-right: 25px;
-
     padding: 0;
 }
     #login-button-icon {
@@ -178,6 +176,37 @@
             box-shadow: 0px 0px 25px 0px white;
         }
 
+
+/* ========================= sign-up button ================================================== */
+#sign-up-modal-button {
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+
+    background-color: transparent;
+    border: 5px solid transparent;
+    border-radius: 10px;
+
+    margin-top: -10px;
+    margin-bottom: -15px;
+    margin-right: 25px;
+
+    padding: 0;
+}
+    #sign-up-button-icon {
+        font-size: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding: 5px;
+    }
+        #sign-up-button-icon:hover, #sign-up-modal-button:hover #sign-up-button-icon {
+            color: black;
+            background-color: white;
+            box-shadow: 0px 0px 25px 0px white;
+        }
+
+
+
 /* ========================= Logout button ================================================== */
 #logout-modal-button {
     color: white;
@@ -190,12 +219,9 @@
 
     margin-top: -10px;
     margin-bottom: -15px;
-
-    margin-right: 25px;
+    margin-right: 20px;
 
     padding: 0;
-
-    display: none;
 }
     #logout-button-icon {
         font-size: 50px;
@@ -208,15 +234,6 @@
             background-color: white;
             box-shadow: 0px 0px 25px 0px white;
         }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -353,7 +370,6 @@
         color: white;
         font-weight: bold;
         font-size: 20px;
-        /* padding: 4px; */
         margin-left: 5px;
         text-decoration: none;
     }
