@@ -75,8 +75,9 @@ function Login() {
       {/* Login */}
       <>
         {!userId || userId === "" ? (
-          <Button variant="primary" onClick={handleShow}>
-            Login
+          <Button id="login-modal-button" onClick={handleShow}>
+            <i id="login-button-icon" class="fas fa-sign-in-alt"></i>
+            <p>Sign-In</p>
           </Button>
         ) : (
           <Link to="/home">
@@ -85,17 +86,20 @@ function Login() {
         )}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>
+            <Modal.Title id="modal-heading">
+              <i id="modal-heading-logo" className="fas fa-seedling"></i>
+              <span id="S2">S</span>
+              <span id="apling">apling</span>
+              <br/>
               {"Login"}
-              <i className="fas fa-seedling"></i> Modal heading
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body>
+          <Modal.Body id="login-modal-body">
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">
-                  <i className="fas fa-sun"></i> Email
+                  <i id="email-logo" className="fas fa-sun"></i> Email
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
@@ -110,7 +114,7 @@ function Login() {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon2">
-                  <i className="fas fa-cloud-rain"></i> Password
+                  <i id="password-logo" className="fas fa-cloud-rain"></i> Password
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
@@ -126,7 +130,7 @@ function Login() {
 
           <Modal.Footer>
             <Button id="sign-in" variant="primary" onClick={handleSignIn}>
-              <i className="fas fa-tree"></i> Sign-In
+              <i id="sign-in-logo" className="fas fa-tree"></i> Sign-In
             </Button>
           </Modal.Footer>
         </Modal>

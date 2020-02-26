@@ -162,7 +162,7 @@
     margin-top: -10px;
     margin-bottom: -15px;
 
-    margin-right: 25px;
+    /* margin-right: 25px; */
 
     padding: 0;
 }
@@ -177,7 +177,34 @@
             background-color: white;
             box-shadow: 0px 0px 25px 0px white;
         }
+/* ========================= sign-up button ================================================== */
+#sign-up-modal-button {
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
 
+    background-color: transparent;
+    border: 5px solid transparent;
+    border-radius: 10px;
+
+    margin-top: -10px;
+    margin-bottom: -15px;
+
+    margin-right: 25px;
+
+    padding: 0;
+}
+    #sign-up-button-icon {
+        font-size: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding: 5px;
+    }
+        #sign-up-button-icon:hover, #sign-up-modal-button:hover #sign-up-button-icon {
+            color: black;
+            background-color: white;
+            box-shadow: 0px 0px 25px 0px white;
+        }
 /* ========================= Logout button ================================================== */
 #logout-modal-button {
     color: white;
@@ -292,6 +319,9 @@
         color: limegreen;
     }
 
+
+
+    
     #sign-up {
         background-color: black;
         border: 5px solid black;
