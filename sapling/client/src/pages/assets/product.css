@@ -1,0 +1,51 @@
+#background{
+    background-color: white;
+}
+#main-image{
+    border-radius: 10px;
+    border: 2px solid black; 
+}
+
+#item-description{
+    background-color: white;
+    /* opacity: 0.9; */
+}
+
+
+#background{
+    background-color:white
+    !important;
+}
+
+#amazon-image{
+    height:200px;
+    width:300px;
+}
+#walMart-image{
+    margin:25px;
+    height:150px;
+    width:280px;
+}
+#bestbuy-image{
+    margin: 35px;
+    height:130px;
+    width:210px;
+}
+#amazon-card{
+    border: 5px solid rgba(255,153,0);
+    width:20rem;
+    height: 20rem;
+}
+#bestBuy-card{
+    border: 5px solid rgba(10,74,191);
+    width:10rem;
+}
+#walMart-card{
+    border:5px solid #0B7BB2;
+    width:20rem;
+    height: 20rem;
+}
+
+#price{
+    font-weight: bold;
+}
