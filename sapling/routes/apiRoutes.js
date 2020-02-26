@@ -69,6 +69,16 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/products/id/:upc", (req, res) => {
+    db.Products.findOne({ upc: req.params.upc })
+      .then(product => {
+        res.json(product);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
+
   //   creates one user
   //   app.post("/api/user",(req,res)=>{
   //       db.User.create({

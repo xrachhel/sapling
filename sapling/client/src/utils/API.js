@@ -29,6 +29,10 @@ export default {
     return axios.get(`/api/products/${id}`);
   },
 
+  getProductId: upc => {
+    return axios.get(`/api/products/id/${upc}`);
+  },
+
   //creates one user
   /*The userObj handed to the function should be structured like this:
         {

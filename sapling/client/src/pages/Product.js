@@ -15,7 +15,8 @@ import {
   SET_AMAZON_PRODUCT,
   SET_BESTBUY_PRODUCT,
   LOADING,
-  TRACK_PRODUCT
+  TRACK_PRODUCT,
+  REMOVE_PRODUCT
 } from "../utils/actions";
 import API from "../utils/API";
 import "./assets/product.css";
@@ -113,6 +114,27 @@ const Product = props => {
       .catch(err => console.log(err));
   };
 
+  const stopTracking = () => {
+    API.getProductId(state.currentProduct.upc).then(res => {
+      console.log("stop tracking", res.data);
+      API.deleteProduct(userId, res.data._id).then(res => {
+        dispatch({
+          type: REMOVE_PRODUCT,
+          upc: state.currentProduct.upc
+        });
+      });
+    });
+  };
+
+  const checkTrackedList = () => {
+    for (var i = 0; i < state.trackedList.length; i++) {
+      if (state.currentProduct.upc === state.trackedList[i].upc) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   return (
     <div id="background">
                   
@@ -139,9 +161,17 @@ const Product = props => {
             {!userId || userId === "" ? (
               <div></div>
             ) : (
-              <Button variant="success" onClick={trackProduct}>
-                Track Product
-              </Button>
+              <div>
+                {checkTrackedList() ? (
+                  <Button variant="danger" onClick={stopTracking}>
+                    Stop Tracking
+                  </Button>
+                ) : (
+                  <Button variant="success" onClick={trackProduct}>
+                    Track Product
+                  </Button>
+                )}
+              </div>
             )}
                                 
           </Col>
